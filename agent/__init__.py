@@ -8,4 +8,5 @@ Modules:
     reviewers  the Reviewer interface and a no-LLM baseline
     llm        the LLM reviewer (agent loop over any OpenAI-compatible API)
     pipeline   run a reviewer over flagged cases, then evaluate
+    case_query match a chat message to one flagged transaction, or leave it as a question
 """

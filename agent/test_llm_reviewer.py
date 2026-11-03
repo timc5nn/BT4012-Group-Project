@@ -10,7 +10,7 @@ import pytest
 
 from agent.data import RAW_FILES, TransactionStore
 from agent.config import DATA_DIR
-from agent.llm import HISTORY_TOOLS, ChatResponse, LLMReviewer, parse_decision
+from agent.llm import HISTORY_TOOLS, TOOL_NUDGE, ChatResponse, LLMReviewer, parse_decision, prepare_tool_arguments
 from agent.schemas import Case
 from agent.tools import CaseTools
 
@@ -81,14 +81,18 @@ def test_tool_loop_then_decision(case_and_tools):
 
 def test_score_withheld_when_asked(case_and_tools):
     case, make_tools = case_and_tools
-    backend = ScriptedBackend([answer(json.dumps(ANSWER))])
+    backend = ScriptedBackend([answer(json.dumps(ANSWER)), answer(json.dumps(ANSWER))])
     LLMReviewer(backend, include_score=False).review(case, make_tools())
     assert "xgb_score" not in backend.sent[0]["messages"][1]["content"]
 
 
 def test_kyc_tool_removed_and_refused(case_and_tools):
     case, make_tools = case_and_tools
-    backend = ScriptedBackend([tool_call("get_kyc_profile", {}), answer(json.dumps(ANSWER))])
+    backend = ScriptedBackend([
+        tool_call("get_kyc_profile", {}),
+        answer(json.dumps(ANSWER)),
+        answer(json.dumps(ANSWER)),
+    ])
     reviewer = LLMReviewer(backend, allowed_tools=HISTORY_TOOLS)
     tools = make_tools()
     reviewer.review(case, tools)
@@ -102,9 +106,68 @@ def test_malformed_answer_retried_once(case_and_tools):
     backend = ScriptedBackend([answer("I think it's fraud."), answer("```json\n" + json.dumps(ANSWER) + "\n```")])
     assert LLMReviewer(backend).review(case, make_tools()).decision == "fraud"
 
-    backend = ScriptedBackend([answer("no idea"), answer("still no idea")])
+    backend = ScriptedBackend([answer("no idea"), answer("still no idea"), answer("still no idea")])
     with pytest.raises(ValueError):
         LLMReviewer(backend).review(case, make_tools())
+
+
+def test_prepare_tool_arguments_drops_identity_and_dates():
+    cleaned, dropped = prepare_tool_arguments("get_kyc_profile", {"customer_id": "KYC-00001"})
+    assert cleaned == {} and dropped == ["customer_id"]
+    cleaned, dropped = prepare_tool_arguments(
+        "get_transaction_history", {"customer_id": "KYC-1", "before": "2099-01-01", "limit": 1000}
+    )
+    assert cleaned == {"limit": 100}
+    assert set(dropped) == {"customer_id", "before"}
+
+
+def test_customer_id_argument_still_returns_the_bound_profile(case_and_tools):
+    case, make_tools = case_and_tools
+    backend = ScriptedBackend([
+        tool_call("get_kyc_profile", {"customer_id": "KYC-99999"}),
+        tool_call("get_transaction_history", {"customer_id": "KYC-99999", "limit": 2}, call_id="c2"),
+        answer(json.dumps(ANSWER)),
+    ])
+    reviewer = LLMReviewer(backend)
+    tools = make_tools()
+    reviewer.review(case, tools)
+    assert tools.calls == [
+        {"name": "get_kyc_profile", "arguments": {}},
+        {"name": "get_transaction_history", "arguments": {"limit": 2}},
+    ]
+    tool_messages = [m for m in backend.sent[2]["messages"] if m["role"] == "tool"]
+    assert len(tool_messages) == 2
+    assert "error" not in tool_messages[0]["content"]
+    assert "transactions" in tool_messages[1]["content"]
+
+
+def test_follow_up_uses_the_same_case_tools(case_and_tools):
+    case, make_tools = case_and_tools
+    backend = ScriptedBackend([
+        tool_call("get_spending_summary", {}),
+        answer(json.dumps(ANSWER)),
+        tool_call("get_kyc_profile", {"customer_id": "KYC-99999"}),
+        answer("The credit limit is on the KYC profile."),
+    ])
+    reviewer = LLMReviewer(backend)
+    tools = make_tools()
+    reviewer.review(case, tools)
+    text = reviewer.ask(reviewer.last_messages, tools, "What is the credit limit?")
+    assert "credit limit" in text.lower()
+    assert {"name": "get_kyc_profile", "arguments": {}} in tools.calls
+
+
+def test_decision_without_tools_is_nudged_once(case_and_tools):
+    case, make_tools = case_and_tools
+    backend = ScriptedBackend([
+        answer(json.dumps(ANSWER)),
+        tool_call("get_spending_summary", {}),
+        answer(json.dumps(ANSWER)),
+    ])
+    reviewer = LLMReviewer(backend)
+    assert reviewer.review(case, make_tools()).decision == "fraud"
+    nudge = [m for m in backend.sent[1]["messages"] if m["role"] == "user" and m["content"] == TOOL_NUDGE]
+    assert len(nudge) == 1
 
 
 def test_gives_up_after_max_turns(case_and_tools):

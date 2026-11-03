@@ -79,7 +79,9 @@ class OpenAICompatibleBackend:
         tools = [{"type": "function", "function": {"name": d["name"], "description": d["description"],
                                                    "parameters": d["input_schema"]}} for d in tool_definitions]
         options = {} if self.temperature is None else {"temperature": self.temperature}
-        response = self.client.chat.completions.create(model=self.model, messages=messages, tools=tools, **options)
+        if tools:
+            options["tools"] = tools
+        response = self.client.chat.completions.create(model=self.model, messages=messages, **options)
         message = response.choices[0].message
 
         calls = []
@@ -104,6 +106,39 @@ class OpenAICompatibleBackend:
             input_tokens=getattr(usage, "prompt_tokens", 0) or 0,
             output_tokens=getattr(usage, "completion_tokens", 0) or 0,
         )
+
+
+TOOL_NUDGE = (
+    "Call the tools before you decide. get_kyc_profile and get_spending_summary take {}, "
+    "and get_transaction_history takes {\"limit\": 20} only. Do not pass a customer id or a date."
+)
+
+
+def prepare_tool_arguments(name, arguments):
+    """Drop anything the tool is not allowed to use, and clamp `limit`.
+
+    A customer id or a timestamp cannot select a different customer or time.
+    The case binding already fixed both. Returns (arguments to pass, dropped keys).
+    """
+    if not isinstance(arguments, dict):
+        raise ValueError("tool arguments must be a JSON object")
+    spec = next((d for d in TOOL_DEFINITIONS if d["name"] == name), None)
+    if spec is None:
+        raise ValueError(f"unknown tool {name!r}")
+    allowed = set(spec["input_schema"].get("properties", {}))
+    cleaned, dropped = {}, []
+    for key, value in arguments.items():
+        if key in allowed:
+            cleaned[key] = value
+        else:
+            dropped.append(key)
+    if "limit" in cleaned:
+        try:
+            limit = int(cleaned["limit"])
+        except (TypeError, ValueError):
+            limit = 20
+        cleaned["limit"] = min(100, max(1, limit))
+    return cleaned, dropped
 
 
 def parse_decision(text):
@@ -132,13 +167,19 @@ class LLMReviewer:
             variant = ("" if self.include_score else "-noscore") + ("" if set(self.allowed_tools) == set(ALL_TOOLS) else "-nokyc")
             self.name = f"llm-{self.backend.provider}-{self.backend.model}{variant}".replace("/", "_")
         self.last_usage = None
+        self.last_transcript = []  # display events for one review: user, assistant, tool, note
 
     def review(self, case, tools):
         backend = self.backend
-        messages = [backend.system(SYSTEM_PROMPT), backend.user(render_case(case, self.include_score))]
+        opening = render_case(case, self.include_score)
+        messages = [backend.system(SYSTEM_PROMPT), backend.user(opening)]
         usage = {"model": backend.model, "turns": 0, "input_tokens": 0, "output_tokens": 0}
         self.last_usage = usage  # filled in as the loop runs, so a failed case still reports its spend
+        self.last_transcript = [{"role": "user", "text": opening}]
+        self.last_messages = messages
         retried_format = False
+        nudged_tools = False
+        saw_tool_data = False
 
         for _ in range(self.max_turns):
             response = backend.chat(messages, self.tool_definitions)
@@ -148,18 +189,22 @@ class LLMReviewer:
             messages.append(response.assistant_message)
 
             if response.tool_calls:
-                for call in response.tool_calls:
-                    if call["name"] not in self.allowed_tools:
-                        result = {"error": f"tool {call['name']!r} is not available"}
-                    elif call["arguments"] is None:
-                        result = {"error": "the tool arguments were not valid JSON"}
-                    else:
-                        result = tools.call(call["name"], call["arguments"])
-                    messages.append(backend.tool_result(call["id"], result))
+                if self._dispatch_tool_calls(response, tools, messages):
+                    saw_tool_data = True
                 continue
 
+            if not saw_tool_data and not nudged_tools:
+                nudged_tools = True
+                messages.append(backend.user(TOOL_NUDGE))
+                self.last_transcript.append({
+                    "role": "note",
+                    "text": "No tool result yet. Asking for the three lookups before a decision.",
+                })
+                continue
+
+            self.last_transcript.append({"role": "assistant", "text": response.text})
             try:
-                return parse_decision(response.text)
+                decision = parse_decision(response.text)
             except (ValueError, KeyError, TypeError) as error:
                 if retried_format:
                     raise
@@ -168,5 +213,84 @@ class LLMReviewer:
                     f"That reply could not be read as a decision ({error}). "
                     "Reply with only the JSON object described in your instructions."
                 ))
+                self.last_transcript.append({
+                    "role": "note",
+                    "text": f"That reply was not a valid decision ({error}). Asking again.",
+                })
+                continue
+            self.last_transcript[-1]["decision"] = decision.to_dict()
+            self.last_messages = messages
+            return decision
 
+        self.last_messages = messages
         raise RuntimeError(f"no decision after {self.max_turns} model turns")
+
+    def ask(self, messages, tools, question):
+        """Answer a follow-up about the same case. Tools stay bound to that case."""
+        backend = self.backend
+        messages = list(messages)
+        messages.append(backend.user(
+            f"The analyst asks: {question}\n\n"
+            "Answer in plain language. Call a tool only if you need a lookup that is not already in the conversation. "
+            "Every number must come from a tool result or the flagged transaction. "
+            "Do not reply with the decision JSON unless they ask you to decide again."
+        ))
+        usage = {"model": backend.model, "turns": 0, "input_tokens": 0, "output_tokens": 0}
+        self.last_usage = usage
+        self.last_transcript = []
+        self.last_messages = messages
+
+        for _ in range(self.max_turns):
+            response = backend.chat(messages, self.tool_definitions)
+            usage["turns"] += 1
+            usage["input_tokens"] += response.input_tokens
+            usage["output_tokens"] += response.output_tokens
+            messages.append(response.assistant_message)
+            if response.tool_calls:
+                self._dispatch_tool_calls(response, tools, messages)
+                continue
+            text = (response.text or "").strip() or "I don't have anything further from the tools."
+            event = {"role": "assistant", "text": text}
+            try:
+                event["decision"] = parse_decision(text).to_dict()
+            except (ValueError, KeyError, TypeError):
+                pass
+            self.last_transcript.append(event)
+            self.last_messages = messages
+            return text
+
+        self.last_messages = messages
+        raise RuntimeError(f"no answer after {self.max_turns} model turns")
+
+    def _dispatch_tool_calls(self, response, tools, messages):
+        """Run one round of tool calls. Returns whether any call returned data."""
+        saw_data = False
+        self.last_transcript.append({
+            "role": "assistant",
+            "text": response.text,
+            "tool_calls": [{"name": call["name"], "arguments": call["arguments"]} for call in response.tool_calls],
+        })
+        for call in response.tool_calls:
+            dropped = []
+            if call["name"] not in self.allowed_tools:
+                result = {"error": f"tool {call['name']!r} is not available"}
+            elif call["arguments"] is None:
+                result = {"error": "the tool arguments were not valid JSON"}
+            else:
+                try:
+                    used, dropped = prepare_tool_arguments(call["name"], call["arguments"])
+                except ValueError as error:
+                    result = {"error": str(error)}
+                else:
+                    result = tools.call(call["name"], used)
+            if isinstance(result, dict) and "error" not in result:
+                saw_data = True
+            messages.append(self.backend.tool_result(call["id"], result))
+            self.last_transcript.append({
+                "role": "tool",
+                "name": call["name"],
+                "arguments": call["arguments"],
+                "dropped": dropped,
+                "result": result,
+            })
+        return saw_data
