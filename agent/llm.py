@@ -112,6 +112,8 @@ TOOL_NUDGE = (
     "Call the tools before you decide. get_kyc_profile and get_spending_summary take {}, "
     "and get_transaction_history takes {\"limit\": 20} only. Do not pass a customer id or a date."
 )
+HUMAN_REVIEW_THRESHOLD = 0.60
+NUMBER_PATTERN = re.compile(r"(?<![A-Za-z])(?:\d+(?:\.\d+)?)(?![A-Za-z])")
 
 
 def prepare_tool_arguments(name, arguments):
@@ -142,12 +144,60 @@ def prepare_tool_arguments(name, arguments):
 
 
 def parse_decision(text):
-    """Parse the model's final answer: a JSON object, possibly wrapped in a code fence or prose."""
-    text = re.sub(r"^```(?:json)?|```$", "", text.strip(), flags=re.MULTILINE).strip()
-    start, end = text.find("{"), text.rfind("}")
-    if start == -1 or end < start:
-        raise ValueError("no JSON object in the reply")
-    return Decision.from_dict(json.loads(text[start:end + 1]))
+    """Parse Qwen's JSON object, including harmless prose, fences, or evidence objects."""
+    text = re.sub(r"```(?:json)?|```", "", text.strip(), flags=re.IGNORECASE).strip()
+    decoder = json.JSONDecoder()
+    parsed = None
+    for start, character in enumerate(text):
+        if character != "{":
+            continue
+        try:
+            parsed, _ = decoder.raw_decode(text[start:])
+            break
+        except json.JSONDecodeError:
+            continue
+    if not isinstance(parsed, dict):
+        raise ValueError("no valid JSON object in the reply")
+    if isinstance(parsed.get("evidence"), list):
+        parsed["evidence"] = [
+            item if isinstance(item, str) else item.get("statement", "")
+            for item in parsed["evidence"]
+        ]
+    return Decision.from_dict(parsed)
+
+
+def rule_checks(case, evidence):
+    """Create deterministic findings before the model is asked to analyse."""
+    findings = []
+    summary = evidence.get("get_spending_summary", {})
+    overall = summary.get("amount_overall", {})
+    median = overall.get("median")
+    if median and case.amount / median >= 5:
+        findings.append(f"Current amount {case.amount:.2f} is at least five times the historical median {median:.2f}.")
+    recent = summary.get("recent_activity", {})
+    if recent.get("transactions_last_1h", 0) >= 3:
+        findings.append(
+            f"There were {recent['transactions_last_1h']} transactions in the previous hour."
+        )
+    if recent.get("transactions_last_24h", 0) >= 8:
+        findings.append(
+            f"There were {recent['transactions_last_24h']} transactions in the previous 24 hours."
+        )
+    hours = recent.get("hours_since_previous_transaction")
+    if hours is not None and hours < 0.25:
+        findings.append(f"Only {hours:.2f} hours elapsed since the previous transaction.")
+    if not findings:
+        findings.append("The deterministic checks found no high-risk velocity or amount rule match.")
+    return findings
+
+
+def validate_evidence(decision, evidence):
+    """Reject numeric claims that are absent from the case or collected results."""
+    corpus = json.dumps(evidence, default=str)
+    for statement in decision.evidence:
+        for number in NUMBER_PATTERN.findall(statement):
+            if number not in corpus:
+                raise ValueError(f"evidence contains unsupported number {number!r}")
 
 
 @dataclass
@@ -156,12 +206,15 @@ class LLMReviewer:
     include_score: bool = True  # False = system C: the XGBoost score is withheld
     allowed_tools: list = field(default_factory=lambda: list(ALL_TOOLS))  # HISTORY_TOOLS = system D
     max_turns: int = 8  # model calls per case before giving up
+    human_review_threshold: float = HUMAN_REVIEW_THRESHOLD
     name: str = ""
 
     def __post_init__(self):
         unknown = set(self.allowed_tools) - set(ALL_TOOLS)
         if unknown:
             raise ValueError(f"unknown tools: {sorted(unknown)}")
+        if not 0 <= self.human_review_threshold <= 1:
+            raise ValueError("human_review_threshold must be between 0 and 1")
         self.tool_definitions = [d for d in TOOL_DEFINITIONS if d["name"] in self.allowed_tools]
         if not self.name:
             variant = ("" if self.include_score else "-noscore") + ("" if set(self.allowed_tools) == set(ALL_TOOLS) else "-nokyc")
@@ -169,17 +222,39 @@ class LLMReviewer:
         self.last_usage = None
         self.last_transcript = []  # display events for one review: user, assistant, tool, note
 
+    def _collect_required_tools(self, tools):
+        """Collect every enabled tool before the first LLM analysis turn."""
+        evidence = {}
+        for definition in self.tool_definitions:
+            name = definition["name"]
+            arguments = {"limit": 20} if name == "get_transaction_history" else {}
+            result = tools.call(name, arguments)
+            evidence[name] = result
+            self.last_transcript.append({"role": "tool", "name": name, "arguments": arguments, "result": result})
+        return evidence
+
     def review(self, case, tools):
         backend = self.backend
         opening = render_case(case, self.include_score)
+        self.last_transcript = [{"role": "user", "text": opening}]
+        evidence = self._collect_required_tools(tools)
+        findings = rule_checks(case, evidence)
+        evidence_context = {
+            "flagged_transaction": case.to_dict(include_score=self.include_score),
+            "required_tool_results": evidence,
+            "deterministic_rule_findings": findings,
+        }
         messages = [backend.system(SYSTEM_PROMPT), backend.user(opening)]
+        messages.append(backend.user(
+            "The required evidence has already been collected before analysis. "
+            "Use it as the primary source of truth:\n" + json.dumps(evidence_context, default=str)
+        ))
         usage = {"model": backend.model, "turns": 0, "input_tokens": 0, "output_tokens": 0}
         self.last_usage = usage  # filled in as the loop runs, so a failed case still reports its spend
-        self.last_transcript = [{"role": "user", "text": opening}]
         self.last_messages = messages
         retried_format = False
         nudged_tools = False
-        saw_tool_data = False
+        saw_tool_data = True
 
         for _ in range(self.max_turns):
             response = backend.chat(messages, self.tool_definitions)
@@ -205,6 +280,7 @@ class LLMReviewer:
             self.last_transcript.append({"role": "assistant", "text": response.text})
             try:
                 decision = parse_decision(response.text)
+                validate_evidence(decision, evidence_context)
             except (ValueError, KeyError, TypeError) as error:
                 if retried_format:
                     raise
@@ -218,6 +294,18 @@ class LLMReviewer:
                     "text": f"That reply was not a valid decision ({error}). Asking again.",
                 })
                 continue
+            if decision.confidence < self.human_review_threshold:
+                note = (
+                    f"Confidence {decision.confidence:.0%} is below the "
+                    f"{self.human_review_threshold:.0%} automatic-review threshold. "
+                    "A human analyst must make the final decision. " + decision.case_note
+                )
+                decision = Decision(
+                    decision="needs_human_review",
+                    confidence=decision.confidence,
+                    evidence=decision.evidence,
+                    case_note=" ".join(note.split()[:120]),
+                )
             self.last_transcript[-1]["decision"] = decision.to_dict()
             self.last_messages = messages
             return decision

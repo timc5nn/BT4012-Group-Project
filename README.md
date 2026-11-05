@@ -36,3 +36,14 @@ python -m agent.pipeline run --split val --sample 20 --reviewer llm --provider o
 ```
 
 The LLM reviewer (`agent/llm.py`) works with any OpenAI-compatible API: `openai`, `gemini`, `openrouter` or a local `ollama`. Start with a 20-case pilot to measure tokens and cost per case before larger runs.
+
+Before the LLM analyses a case, the reviewer collects the enabled case-bound tools
+and runs deterministic amount and transaction-velocity checks. Numeric evidence is
+validated against the collected case data. Reviews below the configured confidence
+threshold are returned as `needs_human_review` rather than being auto-resolved.
+
+The Streamlit chat stores each session under `data/agent_runs/chat_sessions/` and
+keeps its session ID in the dashboard URL. Refreshing the same URL restores the
+conversation, open case, and follow-up context. Use **Clear chat** to remove the
+saved session. The collapsible sidebar lists the 20 most recent saved chats and
+its **New chat** button starts a separate session.

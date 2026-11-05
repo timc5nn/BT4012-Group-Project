@@ -47,24 +47,40 @@ DECISION_SCHEMA = {
 
 @dataclass
 class Decision:
-    decision: str  # "fraud" (raise the alert) or "legitimate" (clear the flag)
+    decision: str  # "fraud", "legitimate", or "needs_human_review"
     confidence: float  # 0–1, the reviewer's confidence that the transaction is fraud
     evidence: list = field(default_factory=list)
     case_note: str = ""
 
     def __post_init__(self):
-        if self.decision not in ("fraud", "legitimate"):
-            raise ValueError(f"decision must be 'fraud' or 'legitimate', got {self.decision!r}")
+        if self.decision not in ("fraud", "legitimate", "needs_human_review"):
+            raise ValueError(
+                "decision must be 'fraud', 'legitimate', or 'needs_human_review', "
+                f"got {self.decision!r}"
+            )
         if not 0 <= self.confidence <= 1:
             raise ValueError(f"confidence must be between 0 and 1, got {self.confidence}")
+        if not isinstance(self.evidence, list) or not all(isinstance(item, str) and item.strip() for item in self.evidence):
+            raise ValueError("evidence must be a non-empty list of strings")
+        if not isinstance(self.case_note, str) or len(self.case_note.split()) > 120:
+            raise ValueError("case_note must be a string of at most 120 words")
 
     @classmethod
     def from_dict(cls, d):
+        if not isinstance(d, dict):
+            raise ValueError("decision must be a JSON object")
+        required = {"decision", "confidence", "evidence", "case_note"}
+        missing = required - set(d)
+        if missing:
+            raise ValueError(f"decision is missing required fields: {sorted(missing)}")
+        extra = set(d) - required
+        if extra:
+            raise ValueError(f"decision contains unsupported fields: {sorted(extra)}")
         return cls(
             decision=d["decision"],
             confidence=float(d["confidence"]),
-            evidence=list(d.get("evidence", [])),
-            case_note=d.get("case_note", ""),
+            evidence=d["evidence"],
+            case_note=d["case_note"],
         )
 
     def to_dict(self):

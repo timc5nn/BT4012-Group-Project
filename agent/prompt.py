@@ -9,7 +9,7 @@ The tools are already limited to this customer and to times before the flagged t
 - get_spending_summary with {}
 - get_transaction_history with {"limit": 20}
 
-Call those tools before you decide. Compare the flagged amount, category, and time of day with the tool results. Most flagged transactions are legitimate. Raise an alert only when the transaction, or the activity just before it, is clearly out of character.
+The required tool results and deterministic rule findings are provided before analysis. Use them before deciding; call a tool again only if a result is missing or failed. Compare the flagged amount, category, and time of day with the evidence. Most flagged transactions are legitimate. Raise an alert only when the transaction, or the activity just before it, is clearly out of character.
 
 Every number in evidence must appear in a tool result or in the flagged transaction. If a tool returns an error, say that the lookup failed. Do not invent income, merchants, or counts.
 
@@ -17,9 +17,12 @@ When you have decided, answer with a single JSON object and nothing else:
 {
   "decision": "fraud" or "legitimate",
   "confidence": a number from 0 to 1, your confidence that the transaction is fraud,
-  "evidence": a list of short factual statements you relied on, each with its numbers,
+  "evidence": a JSON array of strings only, with no nested objects. Each string is a short factual statement you relied on, with its numbers,
   "case_note": at most 120 words explaining the decision to a human analyst
-}"""
+}
+
+Do not use Markdown, code fences, extra keys, or nested objects in the JSON.
+Return exactly one valid JSON object."""
 
 
 def render_case(case, include_score=True):

@@ -1,12 +1,15 @@
 """Dark chat page for the local fraud reviewer."""
 
+import json
 import time
+from json import JSONDecodeError
+from uuid import uuid4
 
 import pandas as pd
 import streamlit as st
 
 from agent.case_query import route_message
-from agent.config import PROCESSED_DIR
+from agent.config import CHAT_SESSIONS_DIR, DATA_DIR, PROCESSED_DIR
 from agent.data import TransactionStore
 from agent.llm import LLMReviewer, OpenAICompatibleBackend
 from agent.schemas import Case
@@ -45,8 +48,42 @@ def apply_theme():
         [data-testid="stMain"] { overflow-x: hidden !important; }
         header[data-testid="stHeader"] { display: none; }
         [data-testid="stToolbar"], [data-testid="stAppDeployButton"], [data-testid="stMainMenu"],
-        [data-testid="stHeaderActionElements"], [data-testid="stDecoration"] { display: none; }
+        [data-testid="stDecoration"] { display: none; }
         footer { visibility: hidden; }
+        [data-testid="stSidebar"] {
+          background: #17171e;
+          border-right: 1px solid #343443;
+        }
+        [data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+          color: #f0f0f5;
+        }
+        [data-testid="stSidebar"] .stButton > button {
+          width: 100%;
+          min-height: 2.4rem;
+          justify-content: flex-start;
+          text-align: left;
+          color: #f0f0f5;
+          background: #23232d;
+          border: 1px solid #4b4b60;
+          border-radius: 9px;
+        }
+        [data-testid="stSidebar"] .stButton > button:hover {
+          color: #ffffff;
+          background: #354363;
+          border-color: #9ebcff;
+        }
+        [data-testid="stSidebar"] .stButton > button[kind="primary"] {
+          justify-content: center;
+          text-align: center;
+          color: #101014;
+          background: #9ebcff;
+          border-color: #b7ceff;
+          font-weight: 700;
+        }
+        [data-testid="stSidebar"] .stButton > button[kind="primary"]:hover {
+          color: #101014;
+          background: #b7ceff;
+        }
         [data-testid="stMainBlockContainer"],
         [data-testid="stMain"] .block-container,
         .main .block-container,
@@ -209,6 +246,7 @@ def apply_theme():
         }
         .verdict.fraud { color: #ffb088; background: rgba(235, 104, 52, 0.16); }
         .verdict.clear { color: #9ee0c3; background: rgba(61, 190, 138, 0.14); }
+        .verdict.review { color: #f2d38a; background: rgba(224, 172, 61, 0.16); }
         </style>
         """,
         unsafe_allow_html=True,
@@ -218,6 +256,23 @@ def apply_theme():
 @st.cache_resource(show_spinner="Loading transactions and KYC…")
 def get_store():
     return TransactionStore.load()
+
+
+def require_pipeline_outputs():
+    required = {
+        DATA_DIR / "kyc_customers.csv": "Run `kyc.ipynb` first.",
+        PROCESSED_DIR / "flagged_val.csv": "Run `xgboost.ipynb` after `preprocessing.ipynb`.",
+        PROCESSED_DIR / "xgb_thresholds.json": "Run `xgboost.ipynb` after `preprocessing.ipynb`.",
+    }
+    missing = [path for path in required if not path.exists()]
+    if not missing:
+        return
+
+    st.error("The reviewer dashboard is missing generated pipeline data.")
+    for path in missing:
+        st.markdown(f"- `{path.relative_to(DATA_DIR.parent)}` — {required[path]}")
+    st.info("Follow the notebook order in README.md, then restart or refresh the dashboard.")
+    st.stop()
 
 
 @st.cache_resource(show_spinner=False)
@@ -343,8 +398,13 @@ def render_tool(event):
 
 
 def render_decision(decision):
-    kind = "fraud" if decision["decision"] == "fraud" else "clear"
-    title = "Raise a fraud alert" if kind == "fraud" else "Clear the flag"
+    status = decision["decision"]
+    if status == "fraud":
+        kind, title = "fraud", "Raise a fraud alert"
+    elif status == "needs_human_review":
+        kind, title = "review", "Needs human review"
+    else:
+        kind, title = "clear", "Clear the flag"
     st.markdown(f"<span class='verdict {kind}'>{title}</span>", unsafe_allow_html=True)
     st.markdown(f"{decision['confidence']:.0%} confidence it is fraud")
     for item in decision.get("evidence") or []:
@@ -387,7 +447,12 @@ def render_steps(events):
                 index += 1
             continue
         if event["role"] == "assistant" and event.get("decision"):
-            title = "raise a fraud alert" if event["decision"]["decision"] == "fraud" else "clear the flag"
+            status = event["decision"]["decision"]
+            title = {
+                "fraud": "raise a fraud alert",
+                "legitimate": "clear the flag",
+                "needs_human_review": "escalate for human review",
+            }.get(status, "review the case")
             st.markdown(f"**{step}.** Decided to {title}.")
             step += 1
             index += 1
@@ -456,28 +521,170 @@ def _welcome_turn():
     return {"role": "assistant", "events": [{"role": "assistant", "text": WELCOME}]}
 
 
+def _session_file(session_id):
+    return CHAT_SESSIONS_DIR / f"{session_id}.json"
+
+
+def _get_session_id():
+    session_id = st.query_params.get("session")
+    if not session_id:
+        session_id = uuid4().hex
+        st.query_params["session"] = session_id
+    if not session_id.isalnum():
+        st.error("This chat session link is invalid.")
+        st.stop()
+    return session_id
+
+
+def _load_saved_state(session_id):
+    path = _session_file(session_id)
+    if not path.exists():
+        return None
+    try:
+        with path.open(encoding="utf-8") as saved:
+            return json.load(saved)
+    except JSONDecodeError as error:
+        st.error(f"Could not restore chat session {session_id}: {error}")
+        st.stop()
+
+
+def _save_state():
+    CHAT_SESSIONS_DIR.mkdir(parents=True, exist_ok=True)
+    path = _session_file(st.session_state.session_id)
+    state = {
+        "chat": st.session_state.chat,
+        "cases": st.session_state.cases,
+        "active_id": st.session_state.active_id,
+        "pending_choices": st.session_state.pending_choices,
+    }
+    temporary = path.with_suffix(".tmp")
+    with temporary.open("w", encoding="utf-8") as saved:
+        json.dump(state, saved, ensure_ascii=True, default=str)
+    temporary.replace(path)
+
+
+def _delete_saved_state():
+    path = _session_file(st.session_state.session_id)
+    if path.exists():
+        path.unlink()
+
+
+def _session_title(state):
+    for turn in state.get("chat", []):
+        if turn.get("role") == "user":
+            text = turn.get("text") or turn.get("label")
+            if text:
+                return " ".join(str(text).split())[:42]
+            case = turn.get("case") or {}
+            if case:
+                return f"{case.get('customer_id', 'Case')} · ${case.get('amount', 0):,.2f}"
+    return "New chat"
+
+
+def _reset_runtime_state():
+    for key in (
+        "session_id", "chat", "cases", "active_id", "pending_choices",
+        "handled_pick", "pick_row", "pick_label", "sample_pick",
+    ):
+        st.session_state.pop(key, None)
+
+
+def _open_saved_session(session_id):
+    st.query_params["session"] = session_id
+    _reset_runtime_state()
+    st.rerun()
+
+
+def _new_chat():
+    st.query_params["session"] = uuid4().hex
+    _reset_runtime_state()
+    st.rerun()
+
+
+def _render_chat_sidebar():
+    with st.sidebar:
+        st.title("Chats")
+        if st.button("＋ New chat", type="primary", width="stretch"):
+            _new_chat()
+        st.divider()
+        session_files = sorted(
+            CHAT_SESSIONS_DIR.glob("*.json"),
+            key=lambda path: path.stat().st_mtime,
+            reverse=True,
+        )[:20]
+        if not session_files:
+            st.caption("Your recent chats will appear here.")
+            return
+        for path in session_files:
+            session_id = path.stem
+            try:
+                with path.open(encoding="utf-8") as saved:
+                    state = json.load(saved)
+                title = _session_title(state)
+            except (OSError, JSONDecodeError):
+                title = "Unreadable chat"
+            label = f"● {title}" if session_id == st.session_state.session_id else title
+            if st.button(label, key=f"chat-{session_id}", width="stretch"):
+                _open_saved_session(session_id)
+
+
+def _render_chat_switcher():
+    with st.popover("Chats", use_container_width=False):
+        st.markdown("### Recent chats")
+        if st.button("＋ New chat", key="popover-new-chat", type="primary", width="stretch"):
+            _new_chat()
+        session_files = sorted(
+            CHAT_SESSIONS_DIR.glob("*.json"),
+            key=lambda path: path.stat().st_mtime,
+            reverse=True,
+        )[:20]
+        if not session_files:
+            st.caption("No saved chats yet.")
+            return
+        for path in session_files:
+            session_id = path.stem
+            try:
+                with path.open(encoding="utf-8") as saved:
+                    state = json.load(saved)
+                title = _session_title(state)
+            except (OSError, JSONDecodeError):
+                title = "Unreadable chat"
+            label = f"● {title}" if session_id == st.session_state.session_id else title
+            if st.button(label, key=f"popover-chat-{session_id}", width="stretch"):
+                _open_saved_session(session_id)
+
+
 def _ensure_state():
+    if "session_id" not in st.session_state:
+        st.session_state.session_id = _get_session_id()
+    saved = _load_saved_state(st.session_state.session_id)
     if "chat" not in st.session_state:
-        st.session_state.chat = [_welcome_turn()]
-        st.session_state.cases = {}
-        st.session_state.active_id = None
-        st.session_state.pending_choices = None
+        st.session_state.chat = (saved or {}).get("chat") or [_welcome_turn()]
+        st.session_state.cases = (saved or {}).get("cases") or {}
+        st.session_state.active_id = (saved or {}).get("active_id")
+        st.session_state.pending_choices = (saved or {}).get("pending_choices")
     opening = st.session_state.chat[0]["events"][0].get("text", "")
     if opening.startswith("Choose a sample case"):
         st.session_state.chat[0] = _welcome_turn()
 
 
 def chat_page():
+    require_pipeline_outputs()
     if st.session_state.pop("do_clear", False):
+        if "session_id" not in st.session_state:
+            st.session_state.session_id = _get_session_id()
+        _delete_saved_state()
         for key in ("sample_pick", "chat", "handled_pick", "pick_row", "pick_label"):
             st.session_state.pop(key, None)
         st.session_state.cases = {}
         st.session_state.active_id = None
         st.session_state.pending_choices = None
     _ensure_state()
+    _render_chat_sidebar()
     if "pending_choices" not in st.session_state:
         st.session_state.pending_choices = None
 
+    _render_chat_switcher()
     st.title("Fraud reviewer")
     active = st.session_state.cases.get(st.session_state.active_id)
     if active:
@@ -537,6 +744,7 @@ def chat_page():
     if routed["action"] == "investigate":
         st.session_state.pending_choices = None
         _open_case(flagged.iloc[routed["row"]], store, thread, announce=True)
+        _save_state()
         return
     if routed["action"] == "clarify":
         choices = routed.get("choices") or []
@@ -553,6 +761,7 @@ def chat_page():
         with st.spinner("Thinking…"):
             reply = _answer(question, store)
     st.session_state.chat.append({"role": "assistant", **reply})
+    _save_state()
     with thread:
         render_turn(st.session_state.chat[-2], len(st.session_state.chat) - 2)
         render_turn(st.session_state.chat[-1], len(st.session_state.chat) - 1)
@@ -603,6 +812,7 @@ def _open_case(row, store, thread, announce):
             render_turn(st.session_state.chat[-1], len(st.session_state.chat) - 1)
     st.session_state.active_id = case_id
     st.session_state.handled_pick = case_id
+    _save_state()
 
 
 def _consume_pick(store):
@@ -612,6 +822,7 @@ def _consume_pick(store):
     st.session_state.pending_choices = None
     st.session_state.chat.append({"role": "user", "text": label})
     _open_case(get_flagged().iloc[int(row_index)], store, None, announce=True)
+    _save_state()
 
 
 def _answer(question, store):

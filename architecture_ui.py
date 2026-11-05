@@ -1,7 +1,7 @@
 """Architecture page: how a flagged transaction reaches a decision."""
 
 import streamlit as st
-import streamlit.components.v1 as components
+from urllib.parse import quote
 
 DIAGRAM = """
 <!DOCTYPE html>
@@ -72,4 +72,4 @@ DIAGRAM = """
 def architecture_page():
     st.title("Architecture")
     st.caption("Two stages. The reviewer only sees flagged transactions, and only the past of that one customer.")
-    components.html(DIAGRAM, height=980, scrolling=False)
+    st.iframe(f"data:text/html;charset=utf-8,{quote(DIAGRAM)}", height=980)

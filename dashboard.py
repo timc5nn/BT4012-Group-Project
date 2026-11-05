@@ -8,7 +8,7 @@ import streamlit as st
 from architecture_ui import architecture_page
 from reviewer_ui import apply_theme, chat_page
 
-st.set_page_config(page_title="Fraud reviewer", page_icon="▣", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Fraud reviewer", page_icon="▣", layout="wide", initial_sidebar_state="expanded")
 apply_theme()
 
 if "page" not in st.session_state:

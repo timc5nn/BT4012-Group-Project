@@ -182,3 +182,11 @@ def test_parse_decision_rejects_bad_values():
         parse_decision(json.dumps({**ANSWER, "decision": "maybe"}))
     with pytest.raises(ValueError):
         parse_decision(json.dumps({**ANSWER, "confidence": 3}))
+
+
+def test_parse_decision_accepts_qwen_evidence_objects():
+    response = json.dumps({
+        **ANSWER,
+        "evidence": [{"statement": "The amount was 22.50.", "amount": 22.5}],
+    })
+    assert parse_decision(response).evidence == ["The amount was 22.50."]
