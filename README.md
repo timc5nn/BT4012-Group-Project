@@ -6,6 +6,8 @@ This project uses the [Credit Card Transactions Fraud Detection Dataset](https:/
 
 The CSVs are too large for GitHub (143MB / 335MB) so they are **not** committed — `data/` is gitignored. Download the dataset from the link above and place both files in a local `data/` folder before running the notebooks.
 
+The one exception is `data/kyc_customers.csv` (the synthetic KYC table, 171KB), which is committed so that everyone uses identical profiles. You don't need to run `kyc.ipynb`. If you do re-run it, `git status` will show whether your output differs from the shared copy; don't commit a changed version without agreeing it with the group.
+
 ## Run order
 
 Each step writes files into `data/` that the next one reads.
@@ -13,7 +15,7 @@ Each step writes files into `data/` that the next one reads.
 | Step | Notebook | Writes |
 |---|---|---|
 | 1 | `eda.ipynb` | nothing (exploration only) |
-| 2 | `kyc.ipynb` | `data/kyc_customers.csv`, a synthetic KYC profile per customer |
+| 2 | `kyc.ipynb` | `data/kyc_customers.csv`, a synthetic KYC profile per customer (already committed; optional) |
 | 3 | `preprocessing.ipynb` | `data/processed/fraud{Train,Test}_features.csv` |
 | 4 | `supervised.ipynb` | nothing (logistic regression comparison) |
 | 5 | `xgboost.ipynb` | stage 1: model, thresholds, flagged cases and scores in `data/processed/` |

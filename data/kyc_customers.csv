@@ -1,0 +1,1000 @@
+cc_num,customer_id,account_open_date,onboarding_channel,residency_status,employment_status,source_of_funds,annual_income,income_band,declared_monthly_spend,declared_txn_per_month,credit_score,credit_limit,num_products,id_verification_method,address_verified,phone_verified,email_verified,pep_flag,sanctions_screening,kyc_risk_points,kyc_risk_rating,last_kyc_review_date,kyc_review_overdue
+60416207185,KYC-00001,2014-05-05,Branch,Citizen,Employed,Salary,66000,60–100k,1100,57,676,13000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-09-28,True
+60422928733,KYC-00002,2015-05-10,Branch,Citizen,Retired,Pension,17000,<30k,350,27,642,3000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-10-26,False
+60423098130,KYC-00003,2013-01-08,Online,Citizen,Employed,Salary,101000,100–150k,2900,74,626,16500,2,Document upload,True,True,True,False,Clear,0,Low,2016-06-01,False
+60427851591,KYC-00004,2017-08-06,Branch,Citizen,Self-employed,Business income,30000,30–60k,800,27,650,4500,1,Document (in person),True,True,True,False,Clear,1,Low,2017-08-06,False
+60487002085,KYC-00005,2013-06-09,Mobile app,Citizen,Self-employed,Business income,77000,60–100k,1800,40,698,19500,2,Document + biometric,True,True,True,False,Clear,1,Low,2018-02-22,False
+60490596305,KYC-00006,2004-09-06,Branch,Citizen,Self-employed,Business income,35000,30–60k,500,43,736,11500,4,Document (in person),True,False,True,False,Clear,2,Medium,2018-03-07,False
+60495593109,KYC-00007,2002-01-17,Branch,Citizen,Retired,Pension,21000,<30k,350,59,624,2500,2,Document (in person),True,False,False,False,Clear,1,Low,2016-02-17,False
+501802953619,KYC-00008,2010-11-24,Online,Citizen,Employed,Salary,57000,30–60k,1200,27,676,9000,2,Database check,True,True,True,False,Clear,1,Low,2017-05-20,False
+501818133297,KYC-00009,2019-08-05,Online,Citizen,Retired,Pension,36000,30–60k,950,114,716,5500,1,Database check,True,True,True,False,Clear,2,Medium,2019-08-05,False
+501828204849,KYC-00010,2007-09-02,Online,Citizen,Employed,Salary,29000,<30k,850,33,699,7500,2,Database check,True,False,True,False,Clear,2,Medium,2018-08-27,False
+501831082224,KYC-00011,2013-07-25,Branch,Citizen,Employed,Salary,37000,30–60k,550,69,691,4500,2,Document (in person),True,False,True,False,Clear,1,Low,2015-05-16,True
+501851115094,KYC-00012,2018-09-25,Branch,Citizen,Employed,Salary,32000,30–60k,850,40,642,5500,1,Document (in person),True,True,True,False,Clear,1,Low,2018-09-25,False
+501882822387,KYC-00013,2017-11-12,Online,Citizen,Employed,Salary,46000,30–60k,1150,29,714,11000,1,Database check,True,True,True,False,Clear,1,Low,2017-12-22,False
+501894933032,KYC-00014,2018-08-15,Branch,Citizen,Retired,Pension,21000,<30k,550,48,638,2000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-08-15,False
+501899453424,KYC-00015,2006-07-10,Branch,Citizen,Employed,Salary,50000,30–60k,700,60,694,7000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-09-02,False
+502012776709,KYC-00016,2015-08-14,Online,Citizen,Retired,Pension,30000,30–60k,1000,26,739,4500,1,Document upload,True,True,True,False,Clear,0,Low,2018-12-09,False
+502038091380,KYC-00017,2013-07-16,Branch,Permanent resident,Employed,Salary,65000,60–100k,1700,29,732,10000,1,Document (in person),True,True,True,False,Clear,0,Low,2015-10-07,True
+502049568400,KYC-00018,2016-03-01,Online,Citizen,Employed,Salary,97000,60–100k,2500,23,737,16000,2,Database check,True,True,True,False,Clear,1,Low,2016-03-01,False
+503848303379,KYC-00019,2016-10-11,Mobile app,Permanent resident,Employed,Salary,47000,30–60k,650,24,692,5500,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-12-29,False
+503851367360,KYC-00020,2019-12-13,Mobile app,Citizen,Employed,Salary,48000,30–60k,1550,37,706,11500,1,Document upload,True,True,True,False,Clear,1,Low,2019-12-13,False
+503874407318,KYC-00021,2009-10-15,Branch,Citizen,Employed,Salary,57000,30–60k,1000,96,673,9500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-10-13,True
+503886119844,KYC-00022,2019-10-03,Online,Citizen,Retired,Pension,38000,30–60k,550,47,751,11000,1,Document upload,True,True,True,False,Clear,1,Low,2019-10-03,False
+560881134780,KYC-00023,2016-07-03,Online,Citizen,Employed,Salary,62000,60–100k,1600,26,706,14000,2,Database check,True,True,True,False,Clear,1,Low,2018-09-29,False
+561942763351,KYC-00024,2010-07-28,Online,Citizen,Employed,Salary,47000,30–60k,1250,41,625,4000,2,Database check,False,True,True,False,Clear,3,Medium,2018-01-20,False
+565399283797,KYC-00025,2013-01-05,Mobile app,Citizen,Employed,Salary,18000,<30k,500,42,580,1000,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-10-09,True
+567868110212,KYC-00026,2017-08-06,Mobile app,Citizen,Self-employed,Business income,46000,30–60k,1450,49,600,4000,1,Document upload,True,False,True,False,Potential match – cleared,4,High,2018-05-14,False
+568279015842,KYC-00027,2016-05-16,Online,Citizen,Employed,Salary,63000,60–100k,1250,35,611,8000,1,Document upload,True,True,True,False,Clear,0,Low,2016-11-02,False
+570273151375,KYC-00028,2013-01-26,Branch,Citizen,Employed,Salary,45000,30–60k,1450,30,720,12500,4,Document (in person),True,True,True,False,Clear,0,Low,2016-10-06,False
+571314334723,KYC-00029,2008-03-09,Mobile app,Citizen,Employed,Salary,57000,30–60k,950,34,609,5500,3,Document + biometric,True,True,True,False,Clear,0,Low,2015-10-19,True
+571365235126,KYC-00030,2013-07-11,Mobile app,Citizen,Student,Allowance / part-time work,9000,<30k,250,45,534,1000,2,Document + biometric,True,True,True,False,Clear,0,Low,2015-11-14,True
+571465035400,KYC-00031,2016-12-04,Online,Citizen,Employed,Salary,55000,30–60k,1350,84,776,14000,2,Database check,True,True,True,False,Clear,1,Low,2016-12-04,False
+571844099986,KYC-00032,2013-11-24,Online,Citizen,Retired,Pension,55000,30–60k,1300,45,645,9000,1,Document upload,True,True,True,False,Clear,0,Low,2016-11-09,False
+573283817795,KYC-00033,2015-02-19,Mobile app,Citizen,Employed,Salary,36000,30–60k,950,55,654,5000,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-08-31,False
+573860193545,KYC-00034,2009-03-27,Branch,Citizen,Employed,Salary,39000,30–60k,800,31,622,6500,1,Document (in person),True,True,False,False,Clear,0,Low,2018-01-27,False
+577588686219,KYC-00035,2015-10-23,Mobile app,Citizen,Employed,Salary,39000,30–60k,850,23,727,6000,2,Document + biometric,True,False,True,False,Clear,1,Low,2017-05-03,False
+577891228931,KYC-00036,2017-08-18,Branch,Citizen,Employed,Salary,49000,30–60k,750,63,688,9500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-07-12,False
+580954173374,KYC-00037,1992-02-08,Online,Citizen,Employed,Salary,27000,<30k,600,29,655,2500,3,Database check,True,True,True,False,Clear,1,Low,2017-03-03,False
+581293083266,KYC-00038,2015-02-03,Mobile app,Citizen,Employed,Salary,40000,30–60k,650,37,641,5000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-02-22,False
+581508178315,KYC-00039,2015-08-07,Mobile app,Citizen,Employed,Salary,61000,60–100k,800,58,671,14500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-04-27,False
+581686439828,KYC-00040,2007-08-19,Branch,Citizen,Employed,Salary,44000,30–60k,1450,68,689,10000,2,Document (in person),True,True,False,False,Clear,0,Low,2018-12-21,False
+583699482621,KYC-00041,2014-08-21,Online,Citizen,Retired,Pension,25000,<30k,650,88,676,5000,2,Database check,True,True,True,False,Clear,1,Low,2015-06-12,True
+584673555952,KYC-00042,2005-01-29,Branch,Citizen,Retired,Pension,16000,<30k,500,33,754,5000,1,Document (in person),True,False,True,False,Clear,1,Low,2015-08-22,True
+586100864972,KYC-00043,2020-04-08,Mobile app,Citizen,Employed,Investments,182000,150k+,5550,41,751,41000,1,Document + biometric,True,True,True,False,Clear,1,Low,2020-04-08,False
+630412733309,KYC-00044,2000-07-19,Branch,Citizen,Employed,Salary,35000,30–60k,650,34,713,5500,3,Document (in person),True,True,False,False,Clear,0,Low,2017-12-06,False
+630423337322,KYC-00045,2017-03-09,Mobile app,Citizen,Employed,Salary,74000,60–100k,2150,72,703,14000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-05-14,False
+630424987505,KYC-00046,2012-05-22,Online,Citizen,Employed,Salary,56000,30–60k,1650,43,610,6500,2,Database check,True,True,True,False,Clear,1,Low,2017-08-11,False
+630425673344,KYC-00047,2009-05-17,Branch,Citizen,Employed,Salary,84000,60–100k,2000,57,583,6000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-23,False
+630441765090,KYC-00048,1996-04-28,Branch,Citizen,Employed,Investments,179000,150k+,4350,60,705,42000,4,Document (in person),True,True,True,False,Clear,0,Low,2015-04-26,True
+630451534402,KYC-00049,2009-07-01,Online,Citizen,Employed,Salary,53000,30–60k,1400,40,703,13000,2,Database check,True,True,True,False,Clear,1,Low,2016-03-24,False
+630469040731,KYC-00050,2010-06-12,Online,Permanent resident,Retired,Pension,19000,<30k,400,85,803,4000,3,Database check,True,True,True,False,Clear,1,Low,2016-04-19,False
+630471368021,KYC-00051,2012-02-26,Branch,Citizen,Employed,Salary,73000,60–100k,2150,31,719,15000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-01-27,False
+630484879808,KYC-00052,2012-05-13,Branch,Citizen,Employed,Salary,61000,60–100k,1500,68,741,17500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-16,True
+639023984367,KYC-00053,2017-05-18,Online,Citizen,Employed,Salary,32000,30–60k,850,45,631,3500,1,Document upload,False,True,True,False,Clear,2,Medium,2017-05-19,False
+639030014711,KYC-00054,2006-12-03,Online,Citizen,Self-employed,Business income,39000,30–60k,950,52,656,4000,3,Database check,True,False,False,False,Clear,3,Medium,2017-02-10,False
+639046421587,KYC-00055,2011-08-03,Branch,Citizen,Employed,Salary,48000,30–60k,1300,60,706,7500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-09-21,False
+639077309909,KYC-00056,2012-10-10,Branch,Visa holder,Employed,Salary,106000,100–150k,1450,41,657,20500,2,Document (in person),True,True,True,False,Clear,1,Low,2015-09-27,True
+639095706599,KYC-00057,2013-05-22,Mobile app,Citizen,Employed,Salary,79000,60–100k,1700,36,693,10500,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-05-24,True
+675909898057,KYC-00058,2013-03-16,Online,Citizen,Employed,Salary,41000,30–60k,900,42,725,7000,1,Document upload,True,True,True,False,Clear,0,Low,2015-08-13,True
+675945690716,KYC-00059,2018-06-09,Mobile app,Citizen,Self-employed,Business income,51000,30–60k,700,37,556,4000,1,Document + biometric,True,True,True,False,Clear,2,Medium,2018-06-09,False
+675961917837,KYC-00060,2005-05-21,Branch,Permanent resident,Employed,Salary,28000,<30k,400,10,664,4000,2,Document (in person),True,True,False,False,Clear,0,Low,2015-04-03,True
+675990301623,KYC-00061,2012-03-12,Online,Citizen,Employed,Salary,42000,30–60k,850,60,681,6000,3,Database check,True,True,True,False,Clear,1,Low,2017-09-10,False
+676102124465,KYC-00062,2015-05-04,Mobile app,Citizen,Employed,Salary,76000,60–100k,1700,67,768,13000,2,Document upload,True,True,True,False,Clear,0,Low,2018-01-25,False
+676118385837,KYC-00063,2011-04-01,Branch,Citizen,Retired,Pension,19000,<30k,550,84,702,5000,2,Document (in person),True,False,True,False,Clear,1,Low,2017-08-21,False
+676148621961,KYC-00064,2000-07-27,Branch,Citizen,Employed,Salary,62000,60–100k,1950,45,704,13500,5,Document (in person),True,True,True,False,Clear,0,Low,2018-06-17,False
+676173792455,KYC-00065,2018-03-09,Branch,Citizen,Employed,Salary,81000,60–100k,1200,36,601,6000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-03-09,False
+676179782773,KYC-00066,2018-11-05,Mobile app,Citizen,Self-employed,Business income,96000,60–100k,1400,38,680,21000,1,Document + biometric,True,True,True,False,Clear,2,Medium,2018-11-05,False
+676195318214,KYC-00067,2001-07-23,Branch,Permanent resident,Employed,Salary,50000,30–60k,1000,45,731,12000,4,Document (in person),True,True,False,False,Clear,0,Low,2016-07-05,False
+676234256292,KYC-00068,2018-01-18,Mobile app,Citizen,Employed,Salary,72000,60–100k,1700,26,654,12000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-01-18,False
+676245600876,KYC-00069,2014-10-11,Branch,Visa holder,Employed,Salary,86000,60–100k,1450,127,704,15000,2,Document (in person),True,True,True,False,Clear,1,Low,2017-09-08,False
+676248282243,KYC-00070,2013-12-06,Online,Citizen,Employed,Salary,86000,60–100k,1900,53,703,13500,2,Database check,True,True,True,False,Clear,1,Low,2016-09-12,False
+676275912597,KYC-00071,2007-12-04,Branch,Citizen,Self-employed,Business income,71000,60–100k,1250,33,633,6500,2,Document (in person),True,False,True,False,Clear,2,Medium,2018-06-25,False
+676281772837,KYC-00072,2010-09-14,Branch,Citizen,Retired,Pension,30000,30–60k,600,51,716,5000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-08-18,False
+676292294938,KYC-00073,2014-03-22,Mobile app,Citizen,Employed,Salary,26000,<30k,550,45,688,6000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-01-04,False
+676298633337,KYC-00074,2016-01-17,Online,Citizen,Employed,Salary,91000,60–100k,3000,36,630,10500,1,Database check,True,True,True,False,Clear,1,Low,2018-03-23,False
+676308307625,KYC-00075,2013-08-05,Branch,Citizen,Employed,Salary,70000,60–100k,1600,22,743,22500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-22,False
+676309913934,KYC-00076,2014-04-22,Mobile app,Citizen,Employed,Salary,26000,<30k,800,21,702,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-08-09,False
+676314217768,KYC-00077,2016-05-19,Branch,Citizen,Employed,Salary,46000,30–60k,1200,44,591,5500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-09-02,False
+676326610042,KYC-00078,2011-11-02,Branch,Citizen,Employed,Salary,40000,30–60k,1150,55,696,6000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-12-11,False
+676327197445,KYC-00079,2019-02-06,Online,Citizen,Retired,Pension,32000,30–60k,650,47,722,4500,1,Database check,True,True,True,False,Clear,2,Medium,2019-02-06,False
+676369110710,KYC-00080,2008-12-19,Online,Citizen,Employed,Salary,140000,100–150k,3050,95,792,50000,2,Database check,True,True,True,False,Clear,1,Low,2017-03-09,False
+676372984911,KYC-00081,2017-01-14,Online,Citizen,Employed,Salary,45000,30–60k,700,97,656,5500,2,Database check,True,True,True,False,Clear,1,Low,2017-12-10,False
+4006047418382,KYC-00082,2010-09-24,Online,Citizen,Employed,Salary,48000,30–60k,1400,42,682,7000,1,Database check,True,True,True,False,Clear,1,Low,2017-03-22,False
+4026222041577,KYC-00083,2017-01-07,Branch,Citizen,Employed,Salary,61000,60–100k,1650,64,719,10000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-01-07,False
+4066595222529,KYC-00084,2010-10-27,Mobile app,Citizen,Retired,Pension,13000,<30k,350,35,556,1000,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-12-16,False
+4076173495454,KYC-00085,2019-02-15,Mobile app,Visa holder,Student,Allowance / part-time work,8000,<30k,200,57,678,1000,1,Document + biometric,True,True,True,False,Clear,2,Medium,2019-02-15,False
+4079773899158,KYC-00086,2017-03-26,Online,Citizen,Employed,Salary,68000,60–100k,1200,25,669,15000,2,Document upload,True,True,True,False,Clear,0,Low,2017-03-26,False
+4103158249977,KYC-00087,2015-01-18,Mobile app,Permanent resident,Employed,Salary,63000,60–100k,1200,35,617,5000,2,Document + biometric,True,True,True,False,Clear,0,Low,2015-08-20,True
+4149635823017,KYC-00088,2010-10-30,Branch,Citizen,Employed,Salary,51000,30–60k,700,73,735,14000,1,Document (in person),True,True,True,False,Clear,0,Low,2015-04-18,True
+4158008602445,KYC-00089,2007-10-28,Branch,Citizen,Employed,Salary,73000,60–100k,2350,39,701,13000,2,Document (in person),True,False,True,False,Clear,1,Low,2017-11-22,False
+4169388510116,KYC-00090,2017-08-04,Branch,Citizen,Employed,Salary,25000,<30k,800,43,673,4000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-08-04,False
+4186530744674,KYC-00091,2004-12-04,Branch,Citizen,Employed,Salary,57000,30–60k,1450,24,723,12500,4,Document (in person),True,True,False,False,Clear,0,Low,2017-08-21,False
+4189814094741,KYC-00092,2016-02-03,Mobile app,Citizen,Student,Allowance / part-time work,12000,<30k,300,56,620,1500,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-02-03,False
+4195740185974,KYC-00093,2002-07-07,Branch,Citizen,Employed,Salary,120000,100–150k,2950,33,661,17000,4,Document (in person),True,True,True,False,Clear,0,Low,2018-10-08,False
+4198470814557,KYC-00094,2004-09-17,Branch,Citizen,Employed,Salary,166000,150k+,4000,50,686,25500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-07-06,False
+4220345354880,KYC-00095,2018-09-16,Online,Citizen,Employed,Salary,87000,60–100k,1350,23,737,13500,1,Document upload,True,True,True,False,Clear,1,Low,2018-09-16,False
+4239436242473,KYC-00096,2014-06-23,Mobile app,Citizen,Employed,Salary,64000,60–100k,1900,17,594,8000,1,Document + biometric,True,True,False,False,Clear,0,Low,2018-11-02,False
+4247921790666,KYC-00097,2018-03-27,Online,Citizen,Retired,Pension,37000,30–60k,1050,37,700,10000,1,Document upload,True,True,True,False,Clear,1,Low,2018-03-27,False
+4259996134423,KYC-00098,2006-03-17,Branch,Citizen,Employed,Salary,51000,30–60k,1200,37,656,8000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-07-01,False
+4260128500325,KYC-00099,2015-08-04,Online,Citizen,Student,Allowance / part-time work,9000,<30k,300,51,566,1000,2,Document upload,True,True,True,False,Clear,0,Low,2016-02-20,False
+4279161831637,KYC-00100,2010-04-25,Mobile app,Citizen,Employed,Salary,41000,30–60k,1150,31,693,7000,2,Document upload,True,True,True,False,Clear,0,Low,2015-07-17,True
+4294930380592,KYC-00101,2005-05-13,Branch,Citizen,Retired,Pension,16000,<30k,200,56,646,2000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-02-10,False
+4295296907373,KYC-00102,2020-06-16,Mobile app,Citizen,Employed,Salary,24000,<30k,350,49,608,1500,1,Document upload,True,True,True,False,Clear,1,Low,2020-06-16,False
+4306630852918,KYC-00103,2003-09-01,Branch,Citizen,Self-employed,Business income,39000,30–60k,1100,46,727,7500,2,Document (in person),True,True,False,False,Clear,1,Low,2018-07-22,False
+4383521454815,KYC-00104,2005-09-21,Branch,Citizen,Employed,Salary,69000,60–100k,2050,55,798,19000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-08-25,False
+4393520897625,KYC-00105,2008-12-14,Online,Citizen,Employed,Salary,50000,30–60k,1200,66,745,13500,4,Database check,True,True,True,False,Clear,1,Low,2017-11-26,False
+4396682467723,KYC-00106,2007-04-30,Branch,Citizen,Employed,Salary,101000,100–150k,1600,48,756,25500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-03-22,False
+4427805710168,KYC-00107,2018-07-02,Branch,Citizen,Employed,Salary,56000,30–60k,900,81,687,8500,1,Document (in person),True,True,True,False,Clear,1,Low,2018-07-02,False
+4440581794652,KYC-00108,2017-08-05,Online,Citizen,Employed,Salary,50000,30–60k,700,38,734,12500,1,Document upload,True,True,True,False,Clear,0,Low,2018-08-04,False
+4457486401506,KYC-00109,2019-04-28,Mobile app,Visa holder,Employed,Salary,41000,30–60k,900,36,715,6000,1,Document + biometric,True,True,True,False,Clear,2,Medium,2019-04-28,False
+4464457352619,KYC-00110,2017-06-23,Mobile app,Citizen,Employed,Salary,29000,<30k,850,18,627,4000,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-09-19,False
+4471568287204,KYC-00111,2011-08-16,Branch,Permanent resident,Retired,Pension,13000,<30k,200,50,629,2000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-09-22,False
+4476840372112,KYC-00112,2010-01-24,Mobile app,Citizen,Employed,Salary,59000,30–60k,1800,43,706,13000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-02-02,False
+4481131401752,KYC-00113,2008-12-29,Online,Citizen,Employed,Salary,66000,60–100k,2100,64,663,12500,2,Database check,True,True,True,False,Clear,1,Low,2017-05-30,False
+4500002361389,KYC-00114,2000-05-05,Branch,Citizen,Employed,Salary,68000,60–100k,1100,43,678,12500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-06-15,False
+4505383113689,KYC-00115,2015-08-03,Online,Citizen,Retired,Pension,12000,<30k,250,70,805,4500,1,Document upload,True,True,True,False,Clear,0,Low,2016-02-06,False
+4538566639857,KYC-00116,2008-08-14,Online,Citizen,Employed,Salary,57000,30–60k,800,35,688,9000,1,Database check,True,True,True,False,Clear,1,Low,2015-09-14,True
+4561546772499,KYC-00117,2016-01-08,Online,Citizen,Employed,Salary,54000,30–60k,950,59,654,5000,1,Database check,True,True,True,False,Clear,1,Low,2017-03-19,False
+4561892980175,KYC-00118,2006-04-19,Branch,Citizen,Employed,Salary,55000,30–60k,750,45,587,3000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-03-15,False
+4562827002127,KYC-00119,2013-05-15,Branch,Citizen,Employed,Salary,60000,60–100k,1250,33,763,20000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-10-06,False
+4585132874641,KYC-00120,2001-07-17,Online,Citizen,Employed,Salary,68000,60–100k,2050,37,635,9500,4,Database check,True,False,False,False,Clear,2,Medium,2018-11-02,False
+4586260469584,KYC-00121,2014-03-04,Branch,Citizen,Retired,Pension,45000,30–60k,950,33,703,10500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-05-13,False
+4593569795412,KYC-00122,2014-04-04,Branch,Citizen,Employed,Salary,34000,30–60k,450,30,565,2500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-09-14,False
+4598025465633,KYC-00123,2019-03-30,Branch,Citizen,Employed,Salary,113000,100–150k,2000,46,653,22500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-03-30,False
+4600155880464,KYC-00124,2003-01-20,Online,Citizen,Employed,Salary,60000,60–100k,1100,78,674,9500,5,Database check,True,True,True,False,Clear,1,Low,2016-03-24,False
+4601636330889,KYC-00125,2008-12-17,Mobile app,Citizen,Employed,Salary,29000,<30k,550,65,694,4000,2,Document + biometric,True,True,False,False,Clear,0,Low,2015-10-07,True
+4605902936394,KYC-00126,2011-01-13,Mobile app,Citizen,Employed,Salary,46000,30–60k,1150,33,637,5000,4,Document + biometric,True,True,True,False,Clear,0,Low,2015-06-10,True
+4613314721966,KYC-00127,2006-09-15,Branch,Citizen,Employed,Salary,105000,100–150k,2100,43,717,27000,1,Document (in person),True,True,True,False,Clear,0,Low,2015-09-14,True
+4623560839669,KYC-00128,2017-10-04,Mobile app,Citizen,Employed,Salary,27000,<30k,450,33,765,6500,1,Document upload,True,True,True,False,Clear,0,Low,2018-12-16,False
+4629125581019,KYC-00129,2019-11-13,Online,Citizen,Employed,Salary,95000,60–100k,2600,36,664,20000,1,Document upload,True,True,True,False,Clear,1,Low,2019-11-13,False
+4640395708703,KYC-00130,2016-01-22,Branch,Citizen,Retired,Pension,21000,<30k,600,72,772,4500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-06-05,False
+4642894980163,KYC-00131,2010-12-08,Online,Citizen,Employed,Salary,42000,30–60k,600,49,690,6000,2,Database check,True,False,True,False,Clear,2,Medium,2016-09-11,True
+4658117080136,KYC-00132,2008-06-12,Online,Citizen,Employed,Salary,62000,60–100k,1550,24,747,20500,1,Database check,True,True,True,False,Clear,1,Low,2016-05-31,False
+4681699462969,KYC-00133,1996-03-05,Branch,Citizen,Employed,Salary,69000,60–100k,1550,37,684,14500,4,Document (in person),True,True,True,False,Clear,0,Low,2017-01-03,False
+4683638447911,KYC-00134,2014-09-15,Branch,Citizen,Employed,Salary,67000,60–100k,900,62,713,15500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-10-03,False
+4687263141103,KYC-00135,2016-11-22,Mobile app,Citizen,Self-employed,Business income,55000,30–60k,1700,50,702,13500,1,Document + biometric,True,True,True,False,Clear,1,Low,2016-11-22,False
+4745996322265,KYC-00136,2017-01-14,Online,Citizen,Employed,Salary,32000,30–60k,550,32,636,5000,1,Document upload,True,True,True,False,Clear,0,Low,2017-01-14,False
+4748866581408,KYC-00137,2020-01-08,Online,Citizen,Retired,Pension,13000,<30k,150,39,716,3500,1,Document upload,True,True,True,False,Clear,1,Low,2020-01-08,False
+4755696071492,KYC-00138,2015-10-27,Online,Citizen,Employed,Salary,57000,30–60k,1100,33,681,8500,1,Document upload,True,True,True,False,Clear,0,Low,2015-10-27,True
+4760122961662,KYC-00139,2003-06-14,Branch,Citizen,Retired,Pension,15000,<30k,450,26,667,1500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-09-28,False
+4783226709001,KYC-00140,2010-10-12,Online,Citizen,Employed,Salary,30000,30–60k,500,45,719,8000,3,Database check,True,True,True,False,Clear,1,Low,2015-11-14,True
+4788103653396,KYC-00141,2016-01-09,Online,Citizen,Retired,Pension,40000,30–60k,1100,55,750,11000,1,Database check,True,True,True,False,Clear,1,Low,2016-01-09,False
+4806443445305,KYC-00142,2018-07-02,Online,Citizen,Student,Allowance / part-time work,8000,<30k,250,26,598,1000,1,Document upload,True,True,True,False,Clear,1,Low,2018-07-02,False
+4807552641361,KYC-00143,2014-11-12,Online,Citizen,Self-employed,Business income,51000,30–60k,850,54,727,16000,1,Document upload,True,True,True,False,Clear,1,Low,2018-10-31,False
+4809701904914,KYC-00144,2018-04-11,Mobile app,Citizen,Employed,Salary,41000,30–60k,700,45,657,8000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-04-11,False
+4844243189971,KYC-00145,2018-09-25,Mobile app,Citizen,Employed,Salary,71000,60–100k,1650,59,672,8500,1,Document + biometric,False,True,True,False,Clear,3,Medium,2018-09-25,False
+4862293128558,KYC-00146,2005-10-10,Branch,Citizen,Employed,Salary,72000,60–100k,1650,28,609,5500,5,Document (in person),True,True,False,False,Clear,0,Low,2018-04-29,False
+4883407061576,KYC-00147,2020-03-15,Online,Citizen,Retired,Pension,20000,<30k,600,34,663,3500,1,Document upload,True,True,True,False,Clear,1,Low,2020-03-15,False
+4900628639996,KYC-00148,2007-11-28,Branch,Citizen,Employed,Salary,45000,30–60k,1250,34,602,4000,2,Document (in person),True,True,False,False,Clear,0,Low,2015-09-23,True
+4917226033950,KYC-00149,2014-05-08,Branch,Citizen,Retired,Pension,17000,<30k,200,32,643,2500,4,Document (in person),True,True,True,False,Clear,0,Low,2015-10-07,True
+4957924165498,KYC-00150,2011-09-21,Online,Citizen,Self-employed,Business income,135000,100–150k,3800,17,715,39000,1,Database check,True,True,True,False,Clear,2,Medium,2018-11-07,False
+4975457191020,KYC-00151,2018-12-30,Branch,Citizen,Self-employed,Investments,195000,150k+,4650,35,759,50000,1,Document (in person),True,True,True,False,Clear,2,Medium,2018-12-30,False
+4981132848794,KYC-00152,2014-04-16,Branch,Citizen,Retired,Pension,16000,<30k,300,64,790,6000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-04,False
+4988304376504,KYC-00153,2007-03-01,Branch,Permanent resident,Retired,Pension,15000,<30k,200,57,666,2500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-27,True
+4990494243023,KYC-00154,2018-01-16,Online,Citizen,Employed,Salary,92000,60–100k,1700,77,775,16500,2,Document upload,True,True,True,False,Clear,1,Low,2018-01-16,False
+30011465039817,KYC-00155,2016-08-29,Online,Citizen,Employed,Salary,37000,30–60k,700,46,640,5500,1,Database check,True,True,True,False,Clear,1,Low,2018-11-10,False
+30026790933302,KYC-00156,2014-07-07,Branch,Citizen,Employed,Salary,86000,60–100k,1900,37,808,31500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-10-26,True
+30029052116970,KYC-00157,2004-01-07,Branch,Citizen,Employed,Salary,69000,60–100k,1500,40,695,16500,3,Document (in person),True,True,True,False,Clear,0,Low,2017-11-29,False
+30030380240193,KYC-00158,2011-11-17,Online,Citizen,Employed,Salary,81000,60–100k,1100,35,734,18500,1,Database check,True,True,True,False,Clear,1,Low,2017-11-16,False
+30033162392091,KYC-00159,2003-03-30,Online,Citizen,Employed,Salary,42000,30–60k,1400,30,633,4500,4,Database check,True,True,True,False,Clear,1,Low,2016-04-19,False
+30042378430132,KYC-00160,2006-09-04,Branch,Citizen,Employed,Salary,68000,60–100k,1400,46,648,12500,2,Document (in person),True,True,False,False,Potential match – cleared,2,Medium,2018-10-14,False
+30044330818990,KYC-00161,2015-02-23,Mobile app,Permanent resident,Employed,Salary,33000,30–60k,800,25,661,6000,2,Document upload,True,True,True,False,Clear,0,Low,2017-07-22,False
+30074693890476,KYC-00162,2011-10-08,Online,Citizen,Employed,Salary,33000,30–60k,700,39,638,3500,3,Database check,True,True,True,False,Clear,1,Low,2017-09-01,False
+30082025922891,KYC-00163,2009-04-03,Branch,Citizen,Retired,Pension,20000,<30k,600,51,677,2500,1,Document (in person),True,False,True,False,Clear,1,Low,2016-04-20,False
+30092964733035,KYC-00164,2013-08-15,Branch,Citizen,Employed,Salary,136000,100–150k,2100,25,702,21500,2,Document (in person),True,True,True,True,Clear,3,Medium,2018-04-27,False
+30103132002433,KYC-00165,2005-10-25,Branch,Citizen,Self-employed,Business income,33000,30–60k,1100,40,797,13000,2,Document (in person),True,True,True,False,Clear,1,Low,2017-04-05,False
+30118423745458,KYC-00166,2011-04-29,Mobile app,Citizen,Employed,Salary,48000,30–60k,1550,56,679,11000,4,Document + biometric,True,True,True,False,Clear,0,Low,2017-07-30,False
+30131826429364,KYC-00167,2012-04-21,Branch,Permanent resident,Self-employed,Business income,119000,100–150k,2450,47,774,23500,2,Document (in person),True,True,True,False,Clear,1,Low,2017-03-29,False
+30135235368675,KYC-00168,2010-11-27,Mobile app,Citizen,Employed,Salary,101000,100–150k,2850,107,735,26000,2,Document + biometric,True,True,False,False,Clear,0,Low,2016-12-08,False
+30143535920989,KYC-00169,2011-12-08,Branch,Permanent resident,Employed,Salary,73000,60–100k,1650,48,675,15000,2,Document (in person),True,True,True,False,Clear,0,Low,2018-11-23,False
+30143713661454,KYC-00170,1999-12-21,Branch,Citizen,Retired,Pension,11000,<30k,200,40,560,1000,3,Document (in person),True,True,True,False,Clear,0,Low,2018-04-05,False
+30150717898388,KYC-00171,2015-03-21,Online,Citizen,Employed,Salary,44000,30–60k,700,81,726,9000,1,Database check,True,True,True,False,Clear,1,Low,2017-11-23,False
+30153452207526,KYC-00172,2011-10-07,Online,Citizen,Employed,Salary,36000,30–60k,1100,66,679,7000,2,Database check,False,True,True,False,Clear,3,Medium,2018-07-09,False
+30175986190993,KYC-00173,2017-08-18,Branch,Citizen,Employed,Salary,68000,60–100k,1650,40,707,14500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-08-18,False
+30181367542315,KYC-00174,2016-11-07,Mobile app,Citizen,Retired,Pension,25000,<30k,700,33,683,6000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-02-19,False
+30197398657930,KYC-00175,2010-03-25,Branch,Visa holder,Employed,Salary,57000,30–60k,1200,52,692,13000,3,Document (in person),True,False,True,False,Clear,2,Medium,2016-09-27,True
+30199621383748,KYC-00176,2010-01-18,Online,Citizen,Employed,Salary,65000,60–100k,950,60,659,10500,1,Database check,True,True,True,False,Clear,1,Low,2018-12-05,False
+30230540139182,KYC-00177,2014-02-05,Online,Citizen,Employed,Salary,146000,100–150k,3900,41,658,30500,1,Database check,True,True,True,False,Clear,1,Low,2016-03-08,False
+30234966027947,KYC-00178,2009-03-12,Mobile app,Citizen,Employed,Salary,90000,60–100k,1550,50,624,10000,4,Document + biometric,True,True,False,False,Clear,0,Low,2018-02-21,False
+30235268718158,KYC-00179,2011-06-23,Branch,Citizen,Employed,Salary,56000,30–60k,1150,26,665,6500,4,Document (in person),True,True,True,False,Clear,0,Low,2016-04-04,False
+30235438713303,KYC-00180,2004-01-22,Branch,Citizen,Employed,Salary,31000,30–60k,1000,56,608,4500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-11-22,True
+30238755902988,KYC-00181,2013-12-22,Online,Citizen,Employed,Salary,42000,30–60k,1300,25,653,7500,2,Database check,True,False,True,False,Clear,2,Medium,2018-03-30,False
+30242921189660,KYC-00182,2006-08-30,Online,Citizen,Employed,Salary,40000,30–60k,600,87,607,4500,3,Database check,True,True,True,False,Clear,1,Low,2016-03-27,False
+30248898834493,KYC-00183,2011-02-07,Branch,Citizen,Employed,Salary,97000,60–100k,2700,46,646,18500,2,Document (in person),True,False,True,False,Clear,1,Low,2016-03-07,False
+30263540414123,KYC-00184,2018-06-09,Mobile app,Visa holder,Employed,Salary,93000,60–100k,1400,41,716,25000,1,Document + biometric,True,True,True,False,Clear,2,Medium,2018-06-09,False
+30266994494236,KYC-00185,2006-12-13,Branch,Citizen,Employed,Salary,79000,60–100k,2150,51,629,10500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-01-19,False
+30270432095985,KYC-00186,2010-07-06,Branch,Citizen,Employed,Salary,64000,60–100k,1150,73,774,18000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-10-29,False
+30273037698427,KYC-00187,2018-06-13,Branch,Citizen,Employed,Salary,35000,30–60k,600,83,634,6000,2,Document (in person),True,True,True,False,Clear,1,Low,2018-06-13,False
+30290551782700,KYC-00188,2013-01-07,Online,Citizen,Employed,Salary,72000,60–100k,2050,40,700,14500,3,Document upload,True,True,True,False,Clear,0,Low,2017-01-23,False
+30328384440870,KYC-00189,1999-01-07,Online,Citizen,Employed,Salary,20000,<30k,450,42,641,3000,5,Database check,True,False,True,False,Potential match – cleared,4,High,2018-10-20,False
+30343344410970,KYC-00190,2013-03-03,Branch,Citizen,Employed,Salary,34000,30–60k,450,53,675,3500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-06-01,False
+30344654314976,KYC-00191,2012-10-04,Branch,Citizen,Employed,Salary,70000,60–100k,1500,39,646,11000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-02-21,False
+30357372465631,KYC-00192,2010-11-12,Online,Visa holder,Self-employed,Business income,68000,60–100k,1000,45,654,9500,4,Database check,True,False,True,False,Clear,4,High,2018-08-07,False
+30360260465747,KYC-00193,2017-05-08,Online,Citizen,Employed,Salary,63000,60–100k,900,36,715,14000,1,Document upload,True,True,False,False,Clear,0,Low,2017-05-08,False
+30364087349027,KYC-00194,2015-04-04,Mobile app,Citizen,Self-employed,Business income,91000,60–100k,1800,17,633,12500,2,Document + biometric,True,True,True,False,Clear,1,Low,2018-10-16,False
+30371006069917,KYC-00195,2015-12-19,Online,Citizen,Employed,Salary,39000,30–60k,1000,65,744,7000,1,Database check,True,True,True,False,Clear,1,Low,2016-09-26,False
+30373802285317,KYC-00196,2002-09-24,Branch,Citizen,Employed,Salary,36000,30–60k,1100,30,797,13000,3,Document (in person),True,False,True,False,Clear,1,Low,2017-11-17,False
+30376238035123,KYC-00197,2014-09-27,Branch,Citizen,Retired,Pension,19000,<30k,400,20,668,2500,2,Document (in person),False,True,True,False,Clear,2,Medium,2017-03-14,False
+30404291151692,KYC-00198,2012-10-05,Online,Permanent resident,Self-employed,Business income,20000,<30k,500,53,680,3500,2,Document upload,True,True,True,False,Clear,1,Low,2015-06-26,True
+30407675418785,KYC-00199,2009-10-12,Mobile app,Citizen,Employed,Salary,23000,<30k,350,26,598,2500,4,Document + biometric,True,True,False,False,Clear,0,Low,2015-11-12,True
+30408301059761,KYC-00200,2013-06-22,Branch,Citizen,Employed,Salary,60000,60–100k,1450,36,714,11000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-01-10,False
+30427035050508,KYC-00201,2015-04-02,Mobile app,Citizen,Employed,Salary,53000,30–60k,1650,115,768,16000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-10-24,False
+30428204673351,KYC-00202,2004-11-09,Branch,Visa holder,Employed,Salary,46000,30–60k,1100,108,534,2500,4,Document (in person),True,True,True,False,Clear,1,Low,2017-10-23,False
+30434173205605,KYC-00203,2017-02-27,Mobile app,Citizen,Employed,Salary,21000,<30k,400,62,692,4000,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-01-14,False
+30442439074871,KYC-00204,2013-12-13,Mobile app,Citizen,Employed,Salary,26000,<30k,800,27,750,5000,2,Document + biometric,True,True,True,False,Clear,0,Low,2015-05-08,True
+30446018552504,KYC-00205,2011-08-16,Branch,Citizen,Employed,Salary,13000,<30k,350,41,623,1000,2,Document (in person),True,False,False,False,Clear,1,Low,2016-08-09,False
+30487648872433,KYC-00206,2014-10-19,Online,Citizen,Employed,Salary,42000,30–60k,650,40,664,5500,2,Database check,True,True,True,False,Clear,1,Low,2016-05-01,False
+30491348102802,KYC-00207,2006-11-15,Branch,Citizen,Retired,Pension,40000,30–60k,900,82,659,4000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-07-26,False
+30499715231997,KYC-00208,2019-05-09,Branch,Citizen,Retired,Pension,21000,<30k,350,75,678,3500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-05-09,False
+30501624614310,KYC-00209,2010-08-18,Online,Citizen,Self-employed,Business income,62000,60–100k,1150,66,682,11500,5,Database check,False,True,True,False,Clear,4,High,2018-06-06,False
+30510856607165,KYC-00210,2014-10-30,Branch,Citizen,Employed,Salary,96000,60–100k,1900,55,722,25500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-05-03,False
+30518196150127,KYC-00211,2016-09-15,Mobile app,Citizen,Self-employed,Business income,40000,30–60k,600,26,706,5000,1,Document + biometric,True,True,True,False,Clear,1,Low,2017-09-21,False
+30518206766474,KYC-00212,2010-06-11,Branch,Citizen,Employed,Salary,55000,30–60k,1000,42,716,10000,3,Document (in person),True,True,True,False,Clear,0,Low,2015-12-02,True
+30541100351706,KYC-00213,2008-09-11,Online,Citizen,Employed,Salary,45000,30–60k,1100,67,647,7000,3,Database check,True,True,True,False,Clear,1,Low,2015-12-04,True
+30546453310167,KYC-00214,2018-01-20,Mobile app,Citizen,Employed,Salary,65000,60–100k,1850,33,749,10000,2,Document + biometric,True,True,True,False,Clear,1,Low,2018-01-20,False
+30551643947183,KYC-00215,2018-11-05,Online,Citizen,Employed,Salary,64000,60–100k,1000,76,699,10500,1,Database check,False,True,True,False,Clear,4,High,2018-11-05,False
+30560609640617,KYC-00216,2017-01-02,Branch,Citizen,Employed,Salary,44000,30–60k,1350,39,736,14000,3,Document (in person),True,True,True,False,Clear,0,Low,2017-11-24,False
+30561214688470,KYC-00217,2017-10-22,Online,Citizen,Employed,Salary,45000,30–60k,700,25,610,3000,1,Document upload,True,True,True,False,Clear,0,Low,2017-10-22,False
+30570197515105,KYC-00218,2016-01-22,Branch,Citizen,Retired,Pension,34000,30–60k,900,112,736,9500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-08-04,False
+30596478689301,KYC-00219,2013-04-08,Online,Citizen,Employed,Salary,83000,60–100k,1450,41,656,13500,2,Database check,True,True,True,False,Clear,1,Low,2015-05-08,True
+36078114201167,KYC-00220,2016-11-07,Mobile app,Citizen,Retired,Pension,21000,<30k,700,46,682,3500,1,Document upload,True,True,True,False,Clear,0,Low,2016-11-07,False
+36153880429415,KYC-00221,2008-07-14,Online,Citizen,Employed,Salary,94000,60–100k,1350,80,757,32000,1,Database check,True,False,True,False,Clear,2,Medium,2017-11-28,False
+36192615525683,KYC-00222,2017-05-24,Online,Citizen,Employed,Salary,32000,30–60k,750,54,707,8000,1,Document upload,True,True,True,False,Clear,0,Low,2018-01-10,False
+36360452125889,KYC-00223,2015-05-22,Online,Citizen,Employed,Salary,29000,<30k,450,33,725,4500,1,Database check,False,True,True,False,Clear,3,Medium,2018-02-05,False
+36485887555770,KYC-00224,2018-07-02,Online,Citizen,Student,Allowance / part-time work,9000,<30k,300,73,622,1000,1,Database check,True,True,True,False,Clear,2,Medium,2018-07-02,False
+36581538659449,KYC-00225,2009-01-27,Branch,Citizen,Employed,Salary,30000,30–60k,950,32,636,3000,5,Document (in person),True,True,True,False,Clear,0,Low,2016-12-16,False
+36721445180895,KYC-00226,2007-04-12,Branch,Citizen,Employed,Salary,48000,30–60k,850,82,645,5000,3,Document (in person),True,True,True,False,Clear,0,Low,2015-04-20,True
+36722699017270,KYC-00227,2006-07-14,Branch,Citizen,Employed,Salary,52000,30–60k,1150,55,539,2500,1,Document (in person),True,False,True,False,Clear,1,Low,2016-06-25,False
+36890292963032,KYC-00228,2012-03-29,Online,Citizen,Retired,Pension,25000,<30k,400,47,721,4500,3,Database check,True,True,True,False,Clear,1,Low,2016-04-12,False
+36913587729122,KYC-00229,2015-02-18,Branch,Citizen,Employed,Salary,67000,60–100k,900,44,714,10000,4,Document (in person),True,True,True,False,Clear,0,Low,2016-03-07,False
+38014427445058,KYC-00230,2017-11-21,Mobile app,Citizen,Retired,Pension,15000,<30k,500,22,731,3000,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-08-05,False
+38052002992326,KYC-00231,2013-09-10,Online,Citizen,Employed,Salary,51000,30–60k,1450,67,738,11000,1,Document upload,False,True,True,False,Clear,2,Medium,2018-09-24,False
+38057513087029,KYC-00232,2015-03-12,Mobile app,Permanent resident,Student,Allowance / part-time work,21000,<30k,300,45,717,6000,1,Document + biometric,True,True,False,False,Clear,0,Low,2017-03-26,False
+38199021865320,KYC-00233,2014-08-09,Branch,Citizen,Employed,Salary,130000,100–150k,2300,30,632,21500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-10-29,False
+38295635583927,KYC-00234,2012-03-06,Mobile app,Citizen,Self-employed,Business income,42000,30–60k,1350,60,677,8500,2,Document + biometric,True,True,True,False,Clear,1,Low,2017-07-07,False
+38530489946071,KYC-00235,2013-04-25,Branch,Citizen,Self-employed,Business income,19000,<30k,500,53,539,1000,3,Document (in person),True,True,True,False,Clear,1,Low,2015-04-09,True
+38534201672254,KYC-00236,2019-05-07,Mobile app,Citizen,Retired,Pension,17000,<30k,300,27,733,3000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-05-07,False
+38544312728630,KYC-00237,2017-06-08,Online,Citizen,Employed,Salary,47000,30–60k,1300,47,591,4500,2,Document upload,True,True,True,False,Clear,0,Low,2017-06-08,False
+38580485618059,KYC-00238,2010-12-13,Mobile app,Citizen,Self-employed,Business income,85000,60–100k,1800,83,731,12000,2,Document + biometric,True,True,True,False,Clear,1,Low,2017-07-12,False
+38588538868506,KYC-00239,2017-02-06,Branch,Citizen,Employed,Salary,38000,30–60k,800,24,716,10000,2,Document (in person),True,True,True,False,Clear,0,Low,2018-04-20,False
+38797410705641,KYC-00240,2010-09-14,Online,Permanent resident,Employed,Salary,54000,30–60k,950,79,730,17000,4,Database check,True,True,True,False,Clear,1,Low,2018-12-19,False
+38817501916673,KYC-00241,2015-08-08,Mobile app,Citizen,Employed,Salary,50000,30–60k,900,42,716,7500,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-08-26,False
+38859492057661,KYC-00242,2015-02-22,Branch,Citizen,Employed,Salary,61000,60–100k,1050,29,557,4500,5,Document (in person),True,True,True,False,Clear,0,Low,2016-03-01,False
+38947654498698,KYC-00243,2004-05-23,Online,Citizen,Employed,Salary,65000,60–100k,1150,25,729,13000,3,Database check,True,True,False,False,Clear,1,Low,2018-10-22,False
+180011453250192,KYC-00244,2015-09-01,Online,Citizen,Employed,Salary,33000,30–60k,800,66,777,11000,1,Document upload,True,True,True,False,Clear,0,Low,2017-11-15,False
+180014262259255,KYC-00245,2015-09-21,Mobile app,Citizen,Employed,Salary,29000,<30k,850,58,700,7500,2,Document + biometric,True,True,False,False,Clear,0,Low,2016-07-21,False
+180017442990269,KYC-00246,2012-06-30,Mobile app,Citizen,Retired,Pension,24000,<30k,500,34,733,7500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-03-06,False
+180018375329178,KYC-00247,2012-10-22,Online,Citizen,Employed,Salary,53000,30–60k,1700,59,705,13000,2,Database check,True,True,True,False,Clear,1,Low,2015-06-25,True
+180020605265701,KYC-00248,2019-11-03,Online,Citizen,Student,Allowance / part-time work,14000,<30k,300,43,647,2000,1,Database check,True,True,True,False,Clear,2,Medium,2019-11-03,False
+180031190491743,KYC-00249,2015-02-05,Online,Citizen,Self-employed,Business income,20000,<30k,300,38,676,4000,1,Document upload,True,True,True,False,Clear,1,Low,2018-07-04,False
+180036456789979,KYC-00250,2017-11-30,Mobile app,Citizen,Self-employed,Business income,95000,60–100k,1300,35,661,15000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-04-03,False
+180038493344495,KYC-00251,2019-02-22,Mobile app,Citizen,Employed,Salary,28000,<30k,650,48,729,7500,1,Document + biometric,False,True,True,False,Clear,3,Medium,2019-02-22,False
+180040027502291,KYC-00252,2015-09-11,Mobile app,Citizen,Employed,Salary,129000,100–150k,3400,87,728,34000,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-01-02,False
+180040131978916,KYC-00253,2019-04-13,Branch,Citizen,Employed,Salary,26000,<30k,450,74,603,3000,1,Document (in person),True,True,True,False,Clear,1,Low,2019-04-13,False
+180042946491150,KYC-00254,2015-05-26,Branch,Citizen,Employed,Salary,85000,60–100k,2800,68,639,8000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-09-18,False
+180046165512893,KYC-00255,2010-09-21,Online,Citizen,Employed,Salary,184000,150k+,5650,35,633,19500,2,Database check,True,True,False,False,Clear,1,Low,2017-04-14,False
+180046617132290,KYC-00256,2015-07-15,Online,Citizen,Retired,Pension,16000,<30k,350,17,683,2500,2,Database check,True,True,True,False,Clear,1,Low,2018-06-09,False
+180046765320457,KYC-00257,2009-01-28,Online,Citizen,Self-employed,Business income,72000,60–100k,2050,57,683,18000,1,Database check,True,True,True,False,Clear,2,Medium,2017-10-15,False
+180047222886866,KYC-00258,2015-07-29,Branch,Citizen,Employed,Salary,25000,<30k,700,28,626,3000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-07-19,False
+180048185037117,KYC-00259,2010-01-08,Branch,Permanent resident,Employed,Salary,77000,60–100k,1800,49,739,19500,5,Document (in person),True,True,True,False,Clear,0,Low,2017-03-26,False
+180049032966888,KYC-00260,2009-03-03,Mobile app,Citizen,Employed,Salary,19000,<30k,250,40,608,1500,5,Document + biometric,True,False,False,False,Clear,1,Low,2015-07-03,True
+180052752563109,KYC-00261,2019-12-10,Online,Citizen,Employed,Salary,107000,100–150k,2750,21,712,30000,1,Database check,True,True,True,False,Clear,2,Medium,2019-12-10,False
+180056173248083,KYC-00262,2015-11-18,Branch,Citizen,Employed,Salary,68000,60–100k,1850,44,644,11500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-06-27,False
+180058696935600,KYC-00263,2018-07-02,Online,Citizen,Employed,Salary,27000,<30k,650,25,550,3000,1,Database check,True,True,True,False,Clear,2,Medium,2018-07-02,False
+180064817343047,KYC-00264,1998-11-30,Branch,Citizen,Employed,Salary,52000,30–60k,1350,55,712,8500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-11-03,False
+180065479077096,KYC-00265,2008-11-24,Branch,Citizen,Self-employed,Business income,108000,100–150k,3250,69,747,31000,2,Document (in person),True,False,False,False,Clear,2,Medium,2017-02-21,False
+180067151859700,KYC-00266,2010-01-19,Branch,Citizen,Self-employed,Business income,50000,30–60k,1250,30,652,10500,3,Document (in person),True,True,True,False,Clear,1,Low,2016-09-28,False
+180067784565096,KYC-00267,2007-12-04,Branch,Citizen,Self-employed,Business income,26000,<30k,700,57,665,3500,2,Document (in person),True,True,False,False,Clear,1,Low,2018-12-06,False
+180068353086472,KYC-00268,2012-10-14,Branch,Citizen,Employed,Salary,43000,30–60k,950,34,663,5500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-10-27,True
+180069253480336,KYC-00269,2009-07-27,Online,Citizen,Employed,Salary,78000,60–100k,1950,38,597,10000,3,Database check,True,True,True,False,Clear,1,Low,2017-04-03,False
+180072527505094,KYC-00270,2015-02-04,Mobile app,Citizen,Employed,Salary,52000,30–60k,1150,48,594,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-03-18,False
+180081032825079,KYC-00271,2015-01-10,Online,Citizen,Employed,Salary,36000,30–60k,600,85,646,5500,1,Document upload,True,True,True,False,Clear,0,Low,2017-12-07,False
+180084576295055,KYC-00272,2010-08-06,Branch,Citizen,Employed,Salary,90000,60–100k,2250,69,732,16000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-06-17,False
+180084695172649,KYC-00273,2010-12-07,Branch,Citizen,Employed,Salary,36000,30–60k,550,67,522,1500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-03-03,False
+180094419304907,KYC-00274,2013-08-08,Mobile app,Citizen,Employed,Salary,35000,30–60k,900,66,730,10000,2,Document upload,True,True,False,False,Clear,0,Low,2018-10-28,False
+180094608895855,KYC-00275,2001-09-08,Branch,Citizen,Employed,Salary,58000,30–60k,1350,58,608,4500,4,Document (in person),True,True,True,False,Clear,0,Low,2018-12-06,False
+180097223252063,KYC-00276,2019-12-27,Online,Citizen,Retired,Pension,33000,30–60k,900,35,687,6000,1,Database check,True,True,True,False,Clear,2,Medium,2019-12-27,False
+180098888332620,KYC-00277,2020-04-06,Online,Citizen,Self-employed,Business income,44000,30–60k,1200,37,766,10000,1,Document upload,True,True,True,False,Clear,2,Medium,2020-04-06,False
+213102873001603,KYC-00278,2017-07-05,Mobile app,Citizen,Employed,Salary,47000,30–60k,900,48,670,9500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-07-05,False
+213107169859697,KYC-00279,2014-02-14,Online,Permanent resident,Employed,Salary,44000,30–60k,950,43,627,4000,1,Database check,True,True,True,False,Clear,1,Low,2017-04-27,False
+213112402583773,KYC-00280,2010-11-19,Online,Citizen,Employed,Salary,69000,60–100k,950,55,632,8500,1,Database check,True,True,True,False,Clear,1,Low,2016-06-15,False
+213113028819344,KYC-00281,2017-09-16,Branch,Citizen,Employed,Salary,56000,30–60k,1700,55,762,20000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-12-13,False
+213113338379864,KYC-00282,2014-10-10,Branch,Citizen,Employed,Salary,29000,<30k,700,50,719,8000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-10-23,True
+213114122496591,KYC-00283,1999-04-20,Branch,Citizen,Employed,Salary,68000,60–100k,850,38,597,7000,4,Document (in person),True,True,False,False,Clear,0,Low,2016-06-29,False
+213120463918358,KYC-00284,2014-12-02,Branch,Citizen,Employed,Salary,26000,<30k,450,20,698,4000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-08,False
+213124978348176,KYC-00285,2014-06-28,Online,Citizen,Self-employed,Business income,58000,30–60k,1850,33,769,10500,3,Document upload,True,True,True,False,Clear,1,Low,2016-08-30,False
+213125815021702,KYC-00286,2014-09-28,Online,Permanent resident,Retired,Pension,24000,<30k,550,40,698,5000,2,Database check,True,True,True,False,Clear,1,Low,2018-12-24,False
+213126662687660,KYC-00287,2002-06-23,Branch,Citizen,Employed,Salary,63000,60–100k,900,27,681,11000,3,Document (in person),True,True,True,False,Clear,0,Low,2017-06-18,False
+213136802746375,KYC-00288,2016-01-17,Online,Citizen,Employed,Salary,64000,60–100k,1000,55,754,17500,1,Database check,True,True,True,False,Clear,1,Low,2016-01-17,False
+213141712584544,KYC-00289,2015-11-27,Mobile app,Citizen,Employed,Salary,42000,30–60k,700,81,632,6500,1,Document upload,True,True,True,False,Clear,0,Low,2017-10-06,False
+213148039875802,KYC-00290,2012-11-30,Online,Citizen,Employed,Salary,74000,60–100k,1300,80,751,11500,1,Database check,True,True,True,False,Clear,1,Low,2016-09-23,False
+213153151785052,KYC-00291,2016-05-17,Mobile app,Citizen,Self-employed,Business income,41000,30–60k,650,41,662,5000,1,Document + biometric,False,True,True,False,Clear,3,Medium,2016-11-02,True
+213154573301411,KYC-00292,2008-12-12,Online,Citizen,Employed,Salary,39000,30–60k,650,89,709,11000,4,Database check,True,False,True,False,Clear,2,Medium,2016-09-18,True
+213155997615567,KYC-00293,2009-04-09,Mobile app,Citizen,Self-employed,Business income,37000,30–60k,1200,31,800,13000,3,Document + biometric,False,True,True,False,Clear,3,Medium,2018-08-08,False
+213156747557083,KYC-00294,2017-12-05,Online,Citizen,Employed,Salary,48000,30–60k,600,48,722,7500,1,Document upload,True,True,True,False,Clear,0,Low,2017-12-05,False
+213157767990030,KYC-00295,2012-01-20,Branch,Citizen,Employed,Salary,30000,30–60k,750,24,790,10000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-08-20,False
+213161231269724,KYC-00296,2017-06-25,Online,Citizen,Employed,Salary,67000,60–100k,2100,55,747,11500,1,Database check,True,True,True,False,Clear,1,Low,2018-10-07,False
+213161293389774,KYC-00297,2009-11-03,Online,Citizen,Self-employed,Business income,81000,60–100k,2300,56,675,12500,2,Database check,True,True,True,False,Clear,2,Medium,2018-08-11,False
+213161869125933,KYC-00298,2010-03-01,Online,Citizen,Employed,Salary,64000,60–100k,2100,38,689,8500,2,Database check,True,True,True,False,Clear,1,Low,2018-06-16,False
+213163860545705,KYC-00299,2014-09-24,Mobile app,Citizen,Employed,Salary,47000,30–60k,1100,80,694,9500,2,Document + biometric,True,True,True,False,Clear,0,Low,2015-09-06,True
+213173753804333,KYC-00300,2011-12-02,Online,Visa holder,Employed,Salary,82000,60–100k,2700,76,691,15500,3,Database check,False,False,True,False,Clear,5,High,2018-08-31,False
+213174467670432,KYC-00301,2012-09-02,Online,Citizen,Employed,Salary,32000,30–60k,550,48,676,6500,2,Database check,False,True,True,False,Clear,3,Medium,2016-08-06,True
+213175487106448,KYC-00302,2008-02-03,Online,Citizen,Employed,Salary,57000,30–60k,850,35,765,19000,4,Database check,True,True,False,False,Clear,1,Low,2018-01-03,False
+213178765398315,KYC-00303,2011-09-11,Online,Citizen,Employed,Salary,20000,<30k,450,33,580,1500,1,Database check,True,False,True,False,Clear,2,Medium,2016-07-30,True
+213178850083780,KYC-00304,2004-02-05,Branch,Citizen,Employed,Salary,71000,60–100k,1400,38,665,11500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-09-26,False
+213180742685905,KYC-00305,2012-08-26,Online,Citizen,Employed,Salary,42000,30–60k,550,54,676,4500,1,Database check,True,True,True,False,Clear,1,Low,2017-11-08,False
+213186334552049,KYC-00306,2010-05-05,Online,Citizen,Employed,Salary,119000,100–150k,1750,58,706,21500,1,Database check,True,False,True,False,Clear,2,Medium,2017-04-24,False
+213186551511454,KYC-00307,2016-05-18,Mobile app,Citizen,Employed,Salary,41000,30–60k,1150,90,668,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-05-18,False
+213186880359195,KYC-00308,2014-08-22,Online,Citizen,Employed,Salary,31000,30–60k,850,79,723,6000,2,Database check,True,True,True,False,Clear,1,Low,2016-06-21,False
+213191402330021,KYC-00309,2018-07-02,Online,Citizen,Student,Allowance / part-time work,10000,<30k,200,52,532,1000,1,Database check,True,True,True,False,Clear,2,Medium,2018-07-02,False
+213193596103206,KYC-00310,2016-09-25,Mobile app,Citizen,Employed,Salary,51000,30–60k,900,92,683,8000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-10-20,False
+213195754007681,KYC-00311,2014-07-25,Online,Citizen,Self-employed,Business income,121000,100–150k,3550,73,710,18000,2,Document upload,True,True,True,False,Clear,1,Low,2018-09-10,False
+213198837352314,KYC-00312,2009-02-02,Online,Citizen,Self-employed,Business income,33000,30–60k,550,47,662,7000,3,Database check,True,True,True,False,Clear,2,Medium,2017-12-02,False
+213199865312311,KYC-00313,1993-04-28,Branch,Citizen,Retired,Pension,34000,30–60k,850,33,713,8500,3,Document (in person),True,True,True,False,Clear,0,Low,2018-06-20,False
+340103199302564,KYC-00314,2013-08-25,Mobile app,Citizen,Retired,Pension,18000,<30k,450,95,737,4000,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-11-30,True
+340187018810220,KYC-00315,2008-12-13,Branch,Citizen,Employed,Salary,59000,30–60k,1500,62,642,9500,2,Document (in person),True,False,False,False,Clear,1,Low,2015-04-23,True
+340214844585279,KYC-00316,2020-02-24,Branch,Citizen,Retired,Pension,22000,<30k,550,51,539,1500,1,Document (in person),True,True,True,False,Clear,1,Low,2020-02-24,False
+340951438290556,KYC-00317,1999-09-21,Branch,Citizen,Employed,Salary,88000,60–100k,1350,43,797,18000,2,Document (in person),True,True,False,False,Clear,0,Low,2015-12-10,True
+340953839692349,KYC-00318,2012-01-17,Online,Citizen,Employed,Salary,103000,100–150k,2000,33,748,29500,1,Document upload,True,True,True,False,Clear,0,Low,2015-10-07,True
+341283058448499,KYC-00319,2000-05-25,Branch,Citizen,Retired,Pension,39000,30–60k,950,36,845,12500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-07-11,False
+341542810616333,KYC-00320,2014-05-10,Branch,Citizen,Self-employed,Business income,49000,30–60k,900,47,675,8500,2,Document (in person),True,True,True,False,Clear,1,Low,2018-03-08,False
+341546199006537,KYC-00321,2015-03-23,Branch,Citizen,Retired,Pension,19000,<30k,450,48,687,3500,4,Document (in person),True,True,True,False,Clear,0,Low,2016-10-24,False
+342035762534413,KYC-00322,2017-06-18,Online,Citizen,Student,Allowance / part-time work,11000,<30k,250,45,465,1000,1,Database check,True,True,True,False,Clear,1,Low,2017-06-18,False
+342319985983023,KYC-00323,2017-11-20,Mobile app,Citizen,Employed,Salary,23000,<30k,650,66,600,2000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-11-20,False
+342351256941125,KYC-00324,2008-06-07,Online,Citizen,Employed,Salary,47000,30–60k,900,48,567,3000,2,Database check,True,False,True,False,Clear,2,Medium,2017-04-20,False
+342360239917375,KYC-00325,2009-09-12,Online,Citizen,Employed,Salary,64000,60–100k,1200,33,682,7000,1,Database check,True,True,True,False,Clear,1,Low,2016-11-20,False
+342952484382519,KYC-00326,2015-01-16,Mobile app,Citizen,Self-employed,Business income,8000,<30k,200,71,588,1000,2,Document upload,True,True,True,False,Clear,1,Low,2018-06-14,False
+343464013864032,KYC-00327,2014-05-01,Branch,Permanent resident,Self-employed,Business income,37000,30–60k,1100,47,719,8500,1,Document (in person),True,True,True,False,Clear,1,Low,2015-10-01,True
+343472729187663,KYC-00328,2013-04-01,Branch,Citizen,Self-employed,Business income,58000,30–60k,1700,53,679,14000,1,Document (in person),True,True,True,False,Clear,1,Low,2016-09-05,False
+343668971234893,KYC-00329,2016-07-20,Online,Citizen,Employed,Salary,69000,60–100k,1650,46,647,12500,1,Database check,True,True,True,False,Clear,1,Low,2018-03-30,False
+343746486082492,KYC-00330,2017-10-06,Online,Citizen,Employed,Salary,67000,60–100k,950,102,641,13000,1,Database check,True,True,True,False,Clear,1,Low,2018-09-19,False
+343819048608995,KYC-00331,2013-01-23,Branch,Citizen,Employed,Salary,51000,30–60k,900,22,608,6000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-23,True
+344342339068828,KYC-00332,2014-12-07,Online,Citizen,Employed,Salary,61000,60–100k,900,37,706,14500,1,Database check,True,True,True,False,Clear,1,Low,2017-06-14,False
+344709867813900,KYC-00333,2017-10-16,Mobile app,Citizen,Self-employed,Business income,64000,60–100k,1450,32,718,17000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-01-08,False
+345060451158891,KYC-00334,2006-04-02,Branch,Permanent resident,Employed,Salary,38000,30–60k,1000,22,715,7000,5,Document (in person),True,True,False,False,Clear,0,Low,2018-10-19,False
+345225948700767,KYC-00335,2018-12-13,Online,Citizen,Retired,Pension,24000,<30k,450,49,706,5500,1,Document upload,True,True,True,False,Clear,1,Low,2018-12-13,False
+345389171551808,KYC-00336,2009-01-16,Mobile app,Citizen,Employed,Salary,33000,30–60k,900,101,597,2000,3,Document + biometric,True,True,False,False,Clear,0,Low,2017-12-08,False
+345832460465610,KYC-00337,2012-01-15,Online,Citizen,Employed,Salary,80000,60–100k,2350,74,717,21000,2,Document upload,True,True,True,False,Clear,0,Low,2018-05-11,False
+345933964507467,KYC-00338,2003-03-19,Branch,Citizen,Employed,Salary,49000,30–60k,650,56,683,7000,1,Document (in person),True,True,True,False,Clear,0,Low,2015-09-02,True
+346208242862904,KYC-00339,2015-08-12,Online,Citizen,Employed,Salary,110000,100–150k,3300,62,736,28000,1,Database check,True,True,True,False,Clear,1,Low,2018-05-17,False
+346243940647414,KYC-00340,2001-01-07,Branch,Citizen,Employed,Salary,82000,60–100k,2550,42,718,20500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-10-26,False
+346273234529002,KYC-00341,2017-02-10,Online,Citizen,Employed,Salary,46000,30–60k,650,42,638,4500,1,Document upload,True,True,True,False,Clear,0,Low,2017-02-10,False
+347073228412010,KYC-00342,2016-09-22,Online,Citizen,Employed,Salary,36000,30–60k,850,39,589,3000,1,Database check,True,True,True,False,Clear,1,Low,2018-12-20,False
+347399333635231,KYC-00343,2019-10-04,Mobile app,Citizen,Employed,Salary,100000,100–150k,2050,25,684,24000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-10-04,False
+347612609554823,KYC-00344,2013-12-27,Online,Permanent resident,Student,Allowance / part-time work,8000,<30k,100,57,661,1000,2,Document upload,True,True,True,False,Clear,0,Low,2015-12-29,True
+348253506557335,KYC-00345,2001-10-02,Branch,Citizen,Retired,Pension,23000,<30k,550,81,612,3000,2,Document (in person),True,True,False,False,Clear,0,Low,2017-07-01,False
+348379466427142,KYC-00346,2017-03-03,Mobile app,Citizen,Employed,Salary,23000,<30k,650,33,697,3500,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-01-05,False
+348789608637806,KYC-00347,2005-09-19,Branch,Citizen,Retired,Pension,23000,<30k,600,33,701,6000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-12-16,False
+349612764943496,KYC-00348,2005-10-04,Branch,Citizen,Employed,Salary,24000,<30k,350,41,656,2500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-02-24,False
+349813394357327,KYC-00349,2019-05-28,Online,Citizen,Employed,Salary,94000,60–100k,2950,51,807,36500,1,Document upload,True,True,True,False,Clear,1,Low,2019-05-28,False
+370348764075623,KYC-00350,2015-09-18,Mobile app,Citizen,Employed,Salary,25000,<30k,550,31,683,4500,1,Document upload,True,True,True,False,Clear,0,Low,2015-10-22,True
+370612217861404,KYC-00351,2003-05-25,Branch,Citizen,Employed,Salary,23000,<30k,350,49,708,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-01-19,False
+370818583810103,KYC-00352,2002-04-05,Online,Permanent resident,Employed,Salary,67000,60–100k,1500,33,748,21500,3,Database check,True,True,True,False,Clear,1,Low,2018-12-10,False
+370877495212014,KYC-00353,2016-11-09,Online,Visa holder,Employed,Salary,68000,60–100k,2000,50,658,11500,1,Document upload,True,True,True,False,Clear,1,Low,2018-11-19,False
+371009169330125,KYC-00354,2018-07-02,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,150,39,606,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-27,False
+371034293500716,KYC-00355,1997-07-18,Online,Citizen,Employed,Salary,43000,30–60k,950,27,674,5000,1,Database check,True,True,False,False,Clear,1,Low,2016-12-17,False
+371226440126102,KYC-00356,2012-06-10,Branch,Citizen,Self-employed,Business income,108000,100–150k,3450,30,734,15500,2,Document (in person),True,True,True,False,Clear,1,Low,2016-08-21,False
+371284100299909,KYC-00357,2016-09-21,Online,Citizen,Employed,Salary,42000,30–60k,1250,57,612,6000,2,Document upload,True,True,True,False,Clear,0,Low,2017-10-28,False
+371284424780634,KYC-00358,2010-11-20,Online,Citizen,Retired,Pension,64000,60–100k,1900,48,678,15500,2,Database check,False,True,True,False,Clear,3,Medium,2018-09-24,False
+371683116218417,KYC-00359,2012-06-27,Branch,Citizen,Retired,Pension,29000,<30k,600,35,686,6000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-09-15,False
+371985236239474,KYC-00360,2013-11-16,Online,Citizen,Retired,Pension,20000,<30k,550,21,673,4000,1,Database check,True,True,True,False,Clear,1,Low,2018-11-07,False
+372246459334925,KYC-00361,2009-11-19,Branch,Citizen,Employed,Salary,56000,30–60k,900,55,690,14500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-11-16,False
+372382441451095,KYC-00362,2009-09-29,Online,Citizen,Employed,Salary,102000,100–150k,3150,31,748,24000,3,Database check,False,True,False,False,Clear,3,Medium,2016-08-01,True
+372509258176510,KYC-00363,2006-08-07,Branch,Citizen,Employed,Salary,51000,30–60k,1300,52,630,6000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-01-20,False
+372520049757633,KYC-00364,2018-02-19,Online,Citizen,Student,Allowance / part-time work,10000,<30k,200,25,619,1500,1,Document upload,True,True,True,False,Clear,1,Low,2018-02-19,False
+372965408103277,KYC-00365,2020-06-03,Branch,Citizen,Employed,Salary,38000,30–60k,850,28,682,5500,1,Document (in person),True,True,True,False,Clear,1,Low,2020-06-03,False
+373043435942726,KYC-00366,2011-02-14,Branch,Citizen,Employed,Salary,36000,30–60k,1100,53,630,3500,5,Document (in person),True,True,True,False,Clear,0,Low,2017-02-07,False
+373213026644490,KYC-00367,2011-12-30,Branch,Citizen,Employed,Salary,55000,30–60k,1300,32,688,9500,2,Document (in person),False,True,True,False,Clear,2,Medium,2017-09-21,False
+373905417449658,KYC-00368,2016-07-29,Mobile app,Citizen,Self-employed,Business income,67000,60–100k,1500,44,668,7000,1,Document + biometric,True,True,True,False,Clear,1,Low,2016-07-29,False
+374125201044065,KYC-00369,2010-02-17,Online,Permanent resident,Employed,Salary,28000,<30k,750,31,674,3500,2,Database check,True,True,True,False,Clear,1,Low,2016-09-07,False
+374238209524200,KYC-00370,2017-08-28,Online,Citizen,Retired,Pension,26000,<30k,700,18,722,5500,2,Database check,True,True,True,False,Clear,1,Low,2017-08-28,False
+374497717543058,KYC-00371,2004-11-23,Branch,Citizen,Retired,Pension,17000,<30k,400,40,626,3000,2,Document (in person),True,False,True,False,Clear,1,Low,2018-05-25,False
+374656033243756,KYC-00372,2005-11-29,Branch,Citizen,Self-employed,Business income,39000,30–60k,1200,71,633,4500,3,Document (in person),True,True,True,False,Clear,1,Low,2016-12-27,False
+374821819075109,KYC-00373,2016-10-03,Branch,Citizen,Retired,Pension,12000,<30k,200,23,584,1000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-11-02,False
+374930071163758,KYC-00374,2014-09-01,Online,Citizen,Employed,Salary,39000,30–60k,1050,38,708,9500,1,Database check,True,True,True,False,Clear,1,Low,2016-08-22,False
+375082648741747,KYC-00375,2009-01-26,Online,Citizen,Employed,Salary,41000,30–60k,950,54,685,4500,1,Database check,True,False,True,False,Clear,2,Medium,2018-05-15,False
+375237305371366,KYC-00376,2016-02-23,Mobile app,Citizen,Retired,Pension,25000,<30k,850,67,600,3000,2,Document upload,True,True,True,False,Clear,0,Low,2017-02-27,False
+375248307838179,KYC-00377,2004-04-28,Branch,Citizen,Employed,Salary,20000,<30k,300,71,593,2000,2,Document (in person),False,True,False,False,Clear,2,Medium,2017-12-31,False
+375534208663984,KYC-00378,2011-07-15,Mobile app,Citizen,Self-employed,Business income,10000,<30k,150,41,590,1000,2,Document + biometric,True,True,True,False,Clear,1,Low,2017-06-07,False
+375623337201129,KYC-00379,2019-05-15,Branch,Citizen,Employed,Salary,72000,60–100k,1150,53,761,12500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-05-15,False
+375767678113375,KYC-00380,2012-08-19,Branch,Citizen,Employed,Salary,59000,30–60k,1250,59,666,12000,2,Document (in person),True,True,True,False,Clear,0,Low,2018-04-06,False
+375848982312810,KYC-00381,2010-02-05,Online,Citizen,Retired,Pension,22000,<30k,600,31,776,8000,1,Database check,True,True,True,False,Clear,1,Low,2017-03-12,False
+375904527651269,KYC-00382,2003-10-15,Online,Citizen,Retired,Pension,19000,<30k,600,67,591,2500,2,Database check,True,False,True,False,Clear,2,Medium,2018-07-30,False
+375974680629816,KYC-00383,1992-10-09,Branch,Citizen,Employed,Salary,59000,30–60k,1300,29,658,12000,5,Document (in person),True,True,True,False,Clear,0,Low,2018-10-09,False
+376012912828093,KYC-00384,2014-08-15,Online,Visa holder,Employed,Salary,27000,<30k,450,79,673,4000,2,Database check,True,True,True,False,Clear,2,Medium,2018-01-15,False
+376028110684021,KYC-00385,2003-12-06,Branch,Citizen,Employed,Salary,66000,60–100k,1550,43,714,17500,4,Document (in person),True,True,True,False,Clear,0,Low,2017-01-22,False
+376262134119629,KYC-00386,2007-10-25,Branch,Citizen,Employed,Salary,53000,30–60k,1000,21,652,5500,3,Document (in person),True,True,True,False,Clear,0,Low,2018-05-02,False
+376445266762684,KYC-00387,2012-08-14,Mobile app,Citizen,Employed,Salary,35000,30–60k,700,53,681,5000,1,Document upload,True,True,True,False,Clear,0,Low,2017-02-13,False
+376656886990758,KYC-00388,2007-01-12,Branch,Citizen,Employed,Salary,25000,<30k,600,47,612,2000,3,Document (in person),False,True,True,False,Clear,2,Medium,2016-07-16,True
+376944481517097,KYC-00389,2004-05-28,Branch,Citizen,Employed,Salary,85000,60–100k,2100,36,673,12000,3,Document (in person),True,True,False,False,Clear,0,Low,2018-04-21,False
+377026671291680,KYC-00390,2006-07-07,Branch,Permanent resident,Employed,Salary,43000,30–60k,850,27,595,3500,2,Document (in person),False,True,True,False,Clear,2,Medium,2017-03-25,False
+377113842678100,KYC-00391,2009-12-28,Branch,Citizen,Employed,Salary,65000,60–100k,1250,44,752,10500,1,Document (in person),True,True,False,False,Clear,0,Low,2018-05-20,False
+377234009633447,KYC-00392,2006-09-16,Branch,Permanent resident,Employed,Salary,68000,60–100k,1750,71,712,18000,5,Document (in person),True,True,True,False,Clear,0,Low,2015-12-01,True
+377264520876399,KYC-00393,1995-06-11,Branch,Permanent resident,Employed,Salary,97000,60–100k,2550,53,744,31500,1,Document (in person),True,False,True,False,Clear,1,Low,2018-11-15,False
+377550167323848,KYC-00394,2013-11-22,Branch,Citizen,Employed,Salary,122000,100–150k,2500,31,711,17000,3,Document (in person),True,True,True,False,Clear,0,Low,2018-01-15,False
+377654590313960,KYC-00395,2018-11-28,Mobile app,Citizen,Employed,Salary,73000,60–100k,1350,38,802,28500,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-11-28,False
+377834944388609,KYC-00396,2000-04-27,Branch,Citizen,Employed,Salary,55000,30–60k,1500,26,690,11500,3,Document (in person),True,False,False,False,Clear,1,Low,2016-07-24,False
+377895991033232,KYC-00397,2014-07-02,Online,Citizen,Employed,Salary,72000,60–100k,950,50,714,19500,2,Database check,True,True,True,False,Clear,1,Low,2018-12-08,False
+377993105397617,KYC-00398,2010-11-06,Branch,Citizen,Employed,Salary,135000,100–150k,2700,85,700,21000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-04-22,False
+378006354724784,KYC-00399,2010-12-29,Online,Citizen,Self-employed,Business income,40000,30–60k,800,26,576,4000,3,Database check,True,True,True,False,Clear,2,Medium,2017-06-18,False
+378262805520186,KYC-00400,2015-08-03,Mobile app,Citizen,Retired,Pension,16000,<30k,500,51,682,2500,1,Document upload,True,True,True,False,Clear,0,Low,2016-08-06,False
+378278619832195,KYC-00401,2005-04-17,Branch,Citizen,Employed,Salary,114000,100–150k,3000,61,767,19500,2,Document (in person),True,True,False,False,Clear,0,Low,2018-01-26,False
+378858024506425,KYC-00402,2000-04-08,Branch,Citizen,Retired,Pension,34000,30–60k,500,31,754,11000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-10-20,False
+378904938837132,KYC-00403,2004-06-29,Branch,Visa holder,Employed,Salary,43000,30–60k,1450,37,638,4500,1,Document (in person),True,True,False,False,Clear,1,Low,2015-05-08,True
+379141394109214,KYC-00404,2010-10-18,Branch,Citizen,Employed,Salary,70000,60–100k,1550,37,590,7000,4,Document (in person),True,True,True,False,Clear,0,Low,2016-07-23,False
+379897244598068,KYC-00405,2009-02-26,Online,Citizen,Retired,Pension,37000,30–60k,950,68,682,9500,3,Database check,True,True,True,False,Clear,1,Low,2017-01-06,False
+2222001896600109,KYC-00406,2014-08-23,Branch,Citizen,Employed,Salary,47000,30–60k,750,67,572,4500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-18,True
+2222157926772399,KYC-00407,2016-09-08,Mobile app,Citizen,Employed,Salary,49000,30–60k,850,67,638,6500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-09-08,False
+2224100459250597,KYC-00408,2012-05-13,Branch,Citizen,Employed,Salary,126000,100–150k,3350,34,628,15000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-09-06,True
+2227671554547514,KYC-00409,2016-04-21,Online,Citizen,Employed,Salary,62000,60–100k,1200,34,733,13500,1,Document upload,True,False,True,False,Clear,1,Low,2017-07-05,False
+2229378226512508,KYC-00410,2007-09-21,Branch,Citizen,Employed,Salary,23000,<30k,350,34,624,2500,3,Document (in person),True,False,True,False,Clear,1,Low,2017-11-18,False
+2229824890647120,KYC-00411,2004-08-29,Online,Citizen,Employed,Salary,50000,30–60k,900,36,703,11500,4,Database check,True,False,True,False,Clear,2,Medium,2017-03-11,False
+2231186809828225,KYC-00412,2009-11-19,Online,Citizen,Employed,Salary,79000,60–100k,1900,77,731,20000,5,Database check,True,True,True,False,Clear,1,Low,2017-09-25,False
+2233882705243596,KYC-00413,2010-10-08,Online,Citizen,Self-employed,Business income,40000,30–60k,950,29,649,4500,1,Database check,False,True,True,False,Clear,4,High,2018-06-29,False
+2235335206132667,KYC-00414,2016-04-21,Mobile app,Citizen,Employed,Salary,86000,60–100k,1400,22,684,21500,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-12-16,False
+2235613922823698,KYC-00415,2007-11-25,Branch,Citizen,Employed,Salary,32000,30–60k,1000,47,629,3000,2,Document (in person),True,True,False,False,Clear,0,Low,2015-06-15,True
+2242176657877538,KYC-00416,2019-12-29,Branch,Citizen,Employed,Salary,38000,30–60k,550,33,743,7000,1,Document (in person),True,True,True,False,Clear,1,Low,2019-12-29,False
+2242542703101233,KYC-00417,2014-04-10,Mobile app,Citizen,Student,Allowance / part-time work,21000,<30k,300,42,673,4500,1,Document + biometric,True,True,False,False,Clear,0,Low,2017-03-23,False
+2248348993063230,KYC-00418,2001-08-03,Branch,Citizen,Employed,Salary,68000,60–100k,900,24,755,11000,3,Document (in person),True,True,False,False,Clear,0,Low,2016-11-23,False
+2248735346244816,KYC-00419,1999-11-15,Online,Citizen,Employed,Salary,57000,30–60k,1100,61,637,7000,2,Database check,True,True,True,False,Clear,1,Low,2018-11-22,False
+2252055259910912,KYC-00420,2018-10-19,Mobile app,Citizen,Employed,Salary,26000,<30k,600,77,744,5000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-10-19,False
+2254799658404120,KYC-00421,2014-07-01,Branch,Citizen,Employed,Salary,35000,30–60k,750,43,686,8000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-16,False
+2254917871818484,KYC-00422,2017-08-09,Branch,Citizen,Self-employed,Business income,32000,30–60k,750,42,709,7500,2,Document (in person),True,True,True,False,Clear,1,Low,2017-11-24,False
+2256234701263057,KYC-00423,2013-12-09,Online,Citizen,Retired,Pension,20000,<30k,300,44,709,4500,2,Document upload,True,True,True,False,Clear,0,Low,2017-11-21,False
+2260801330657968,KYC-00424,2009-10-12,Branch,Citizen,Retired,Pension,15000,<30k,250,39,628,2000,5,Document (in person),True,True,True,False,Clear,0,Low,2018-10-08,False
+2264937662466770,KYC-00425,2013-10-16,Branch,Citizen,Student,Allowance / part-time work,11000,<30k,250,60,629,1000,1,Document (in person),True,True,True,False,Clear,0,Low,2015-11-06,True
+2266735643685262,KYC-00426,2016-10-04,Branch,Citizen,Employed,Salary,104000,100–150k,1500,96,611,14500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-26,False
+2268221587779419,KYC-00427,2014-08-01,Branch,Citizen,Employed,Salary,40000,30–60k,500,58,649,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-11-26,False
+2269768987945882,KYC-00428,2011-06-22,Online,Citizen,Employed,Salary,35000,30–60k,950,108,585,3000,3,Database check,True,True,True,False,Clear,1,Low,2017-08-19,False
+2274911989136158,KYC-00429,2017-01-08,Mobile app,Citizen,Retired,Pension,29000,<30k,850,53,763,9500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-08-27,False
+2280870154157385,KYC-00430,2007-03-15,Online,Citizen,Self-employed,Business income,26000,<30k,650,34,674,3000,1,Database check,True,True,True,False,Clear,2,Medium,2018-12-08,False
+2283743876903625,KYC-00431,2015-12-27,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,150,37,712,2000,1,Document upload,False,True,True,False,Clear,2,Medium,2018-05-16,False
+2284059275940012,KYC-00432,2015-09-01,Mobile app,Citizen,Employed,Salary,36000,30–60k,1150,51,607,4000,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-09-01,True
+2285066385084291,KYC-00433,2006-02-14,Branch,Citizen,Self-employed,Business income,43000,30–60k,700,54,728,10500,2,Document (in person),True,True,True,False,Clear,1,Low,2018-01-16,False
+2286236465059468,KYC-00434,2012-12-20,Branch,Citizen,Self-employed,Business income,76000,60–100k,2350,40,700,19000,2,Document (in person),True,True,True,False,Clear,1,Low,2018-05-18,False
+2287277963630565,KYC-00435,2019-05-14,Mobile app,Citizen,Retired,Pension,21000,<30k,600,36,645,2500,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-05-14,False
+2288748891690227,KYC-00436,2006-12-14,Branch,Citizen,Employed,Salary,60000,60–100k,1450,44,644,9500,5,Document (in person),True,True,True,False,Clear,0,Low,2016-07-04,False
+2288813824604479,KYC-00437,2014-12-06,Branch,Visa holder,Employed,Salary,37000,30–60k,1000,79,634,3000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-10-17,False
+2291163933867244,KYC-00438,2015-11-13,Online,Citizen,Employed,Salary,85000,60–100k,2200,46,685,14000,1,Document upload,True,True,True,False,Clear,0,Low,2018-08-30,False
+2295963260374698,KYC-00439,2018-11-16,Branch,Citizen,Retired,Pension,39000,30–60k,1050,40,674,7000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-11-16,False
+2296006538441789,KYC-00440,2017-08-31,Mobile app,Citizen,Self-employed,Business income,13000,<30k,350,59,630,1500,1,Document + biometric,True,True,True,False,Clear,1,Low,2017-12-15,False
+2297447006766555,KYC-00441,2013-01-05,Branch,Citizen,Employed,Salary,66000,60–100k,1400,43,695,9500,3,Document (in person),True,True,True,False,Clear,0,Low,2017-11-23,False
+2305336922781618,KYC-00442,2010-05-28,Branch,Citizen,Self-employed,Business income,26000,<30k,850,53,725,5000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-11-20,False
+2318062975163331,KYC-00443,2003-07-10,Branch,Citizen,Retired,Pension,16000,<30k,200,59,677,3000,4,Document (in person),True,True,False,False,Clear,0,Low,2018-02-11,False
+2348245054386329,KYC-00444,2010-04-06,Online,Citizen,Retired,Pension,28000,<30k,400,41,694,3500,1,Database check,True,True,True,False,Clear,1,Low,2015-07-14,True
+2356276337669917,KYC-00445,2016-01-21,Online,Citizen,Employed,Salary,52000,30–60k,800,41,663,8500,1,Database check,True,True,True,False,Clear,1,Low,2017-12-20,False
+2358122155477959,KYC-00446,2012-09-14,Branch,Citizen,Retired,Pension,17000,<30k,400,28,631,2500,2,Document (in person),True,False,True,False,Clear,1,Low,2016-09-11,False
+2383461948823908,KYC-00447,2012-04-14,Mobile app,Citizen,Employed,Salary,53000,30–60k,1400,64,749,10000,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-08-13,True
+2450829271795901,KYC-00448,2018-05-15,Mobile app,Citizen,Employed,Salary,47000,30–60k,600,43,695,8500,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-10-13,False
+2454076758463217,KYC-00449,2016-07-12,Mobile app,Citizen,Employed,Salary,38000,30–60k,1200,79,719,10500,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-07-02,False
+2475085306462014,KYC-00450,2011-10-12,Mobile app,Citizen,Employed,Salary,20000,<30k,450,44,776,7500,3,Document upload,True,True,True,False,Clear,0,Low,2018-05-27,False
+2512312531485080,KYC-00451,2014-09-23,Online,Citizen,Employed,Salary,39000,30–60k,950,56,718,9500,3,Database check,True,True,True,False,Clear,1,Low,2016-11-26,False
+2576709887791552,KYC-00452,2011-06-02,Online,Citizen,Employed,Salary,59000,30–60k,1750,31,643,6500,2,Database check,True,True,True,False,Clear,1,Low,2017-01-16,False
+2610529083834453,KYC-00453,2015-03-31,Mobile app,Citizen,Self-employed,Business income,16000,<30k,400,38,725,4000,1,Document + biometric,False,True,True,False,Clear,3,Medium,2018-01-20,False
+2657850734909997,KYC-00454,2009-04-14,Mobile app,Citizen,Retired,Pension,27000,<30k,700,51,636,5000,5,Document + biometric,True,True,True,False,Clear,0,Low,2017-05-03,False
+2703186189652095,KYC-00455,2011-07-03,Online,Citizen,Employed,Salary,63000,60–100k,900,41,591,7000,3,Database check,True,True,True,False,Clear,1,Low,2018-05-29,False
+2706977570537524,KYC-00456,2018-06-22,Online,Citizen,Employed,Salary,56000,30–60k,1650,82,617,6500,1,Document upload,False,True,False,False,Clear,3,Medium,2018-08-15,False
+2712209726293386,KYC-00457,2013-04-08,Online,Citizen,Employed,Salary,53000,30–60k,1300,57,603,7000,3,Database check,False,True,True,False,Clear,3,Medium,2017-06-20,False
+2713913904780408,KYC-00458,2009-10-14,Branch,Citizen,Employed,Salary,52000,30–60k,800,25,747,10000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-05-11,False
+2714019737356678,KYC-00459,2016-02-24,Mobile app,Citizen,Employed,Salary,70000,60–100k,1650,40,599,9500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-08-16,False
+2716017661090253,KYC-00460,2019-05-05,Mobile app,Citizen,Retired,Pension,35000,30–60k,800,22,666,6500,1,Document upload,True,True,True,False,Clear,1,Low,2019-05-05,False
+2719496466799416,KYC-00461,2014-09-06,Online,Citizen,Retired,Pension,27000,<30k,500,32,754,4500,3,Document upload,True,True,True,False,Clear,0,Low,2015-05-22,True
+2720012583106919,KYC-00462,2015-12-11,Online,Citizen,Employed,Salary,32000,30–60k,950,45,632,4500,2,Database check,True,True,True,False,Clear,1,Low,2015-12-11,True
+2720433095629877,KYC-00463,2015-11-20,Mobile app,Citizen,Self-employed,Business income,35000,30–60k,550,69,570,2500,3,Document upload,True,True,True,False,Clear,1,Low,2017-03-17,False
+2720830304681674,KYC-00464,2013-07-06,Branch,Citizen,Employed,Salary,35000,30–60k,850,36,579,2000,1,Document (in person),True,False,True,False,Clear,1,Low,2017-05-07,False
+2720894374956739,KYC-00465,2011-11-24,Branch,Citizen,Retired,Pension,24000,<30k,500,46,702,3500,3,Document (in person),True,True,True,False,Clear,0,Low,2018-02-24,False
+3500165543009955,KYC-00466,2012-05-18,Branch,Citizen,Self-employed,Business income,55000,30–60k,1650,55,620,8500,1,Document (in person),True,True,True,False,Clear,1,Low,2016-07-02,False
+3500969075198072,KYC-00467,2017-05-30,Mobile app,Citizen,Student,Allowance / part-time work,9000,<30k,150,53,593,1000,1,Document upload,True,True,True,False,Clear,0,Low,2017-09-02,False
+3501285649323933,KYC-00468,2019-08-25,Online,Citizen,Employed,Salary,63000,60–100k,1700,67,640,12000,1,Document upload,True,True,True,False,Clear,1,Low,2019-08-25,False
+3501365119557234,KYC-00469,2014-07-22,Online,Citizen,Retired,Pension,30000,30–60k,800,29,714,5500,2,Database check,True,True,True,False,Clear,1,Low,2017-12-20,False
+3501509250702469,KYC-00470,2007-01-14,Online,Citizen,Employed,Salary,70000,60–100k,1450,51,582,6500,3,Database check,True,True,True,False,Clear,1,Low,2016-10-22,False
+3501942333500073,KYC-00471,2017-11-29,Mobile app,Citizen,Employed,Salary,34000,30–60k,500,34,644,4500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-11-29,False
+3502088871723054,KYC-00472,2016-11-02,Online,Citizen,Employed,Salary,34000,30–60k,450,77,704,8500,1,Database check,True,True,True,False,Clear,1,Low,2017-03-19,False
+3502377050801561,KYC-00473,2016-05-16,Mobile app,Citizen,Retired,Pension,28000,<30k,950,55,685,3000,2,Document upload,True,True,False,False,Clear,0,Low,2016-05-16,False
+3504178999463051,KYC-00474,2010-07-23,Online,Citizen,Self-employed,Business income,145000,100–150k,4050,50,704,30500,2,Database check,True,True,True,False,Clear,2,Medium,2017-02-23,False
+3506040590383211,KYC-00475,2007-03-09,Branch,Permanent resident,Employed,Salary,39000,30–60k,550,48,702,8500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-05-03,False
+3506042666828517,KYC-00476,1999-09-05,Branch,Citizen,Employed,Salary,28000,<30k,500,18,673,5000,3,Document (in person),False,True,True,False,Clear,2,Medium,2018-04-18,False
+3506592072985012,KYC-00477,2018-07-02,Mobile app,Citizen,Student,Allowance / part-time work,25000,<30k,300,36,595,3000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-02,False
+3508104404056005,KYC-00478,2009-04-10,Mobile app,Citizen,Self-employed,Business income,93000,60–100k,2650,42,618,14000,2,Document + biometric,True,True,True,False,Clear,1,Low,2016-11-09,False
+3511058278399773,KYC-00479,1999-07-15,Branch,Citizen,Self-employed,Business income,82000,60–100k,2200,74,740,25000,3,Document (in person),True,True,True,False,Clear,1,Low,2018-07-11,False
+3511378610369890,KYC-00480,2012-11-12,Online,Citizen,Employed,Salary,78000,60–100k,2000,40,630,7500,3,Document upload,True,True,True,False,Clear,0,Low,2015-04-12,True
+3512365128314616,KYC-00481,2016-11-18,Mobile app,Citizen,Employed,Salary,26000,<30k,700,32,656,3500,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-08-06,False
+3513285035244624,KYC-00482,2007-06-25,Branch,Citizen,Retired,Pension,13000,<30k,250,25,631,2000,5,Document (in person),True,True,False,False,Clear,0,Low,2016-09-11,False
+3513506355699497,KYC-00483,2012-02-11,Online,Citizen,Employed,Salary,103000,100–150k,2550,91,709,21500,1,Database check,True,True,True,False,Clear,1,Low,2016-05-09,False
+3513618443244549,KYC-00484,2015-03-14,Mobile app,Citizen,Employed,Salary,50000,30–60k,750,49,653,4500,1,Document upload,True,True,True,False,Clear,0,Low,2017-06-16,False
+3514865930894695,KYC-00485,2006-08-12,Branch,Citizen,Employed,Salary,90000,60–100k,1850,34,798,21500,5,Document (in person),True,True,True,False,Clear,0,Low,2017-12-14,False
+3514897282719543,KYC-00486,2013-11-17,Branch,Citizen,Employed,Salary,90000,60–100k,1250,121,726,14000,3,Document (in person),True,True,True,False,Clear,0,Low,2018-09-03,False
+3517527805128735,KYC-00487,2014-01-12,Online,Citizen,Employed,Salary,43000,30–60k,900,40,693,9500,2,Document upload,True,True,True,False,Clear,0,Low,2018-10-15,False
+3517814635263522,KYC-00488,2000-06-14,Branch,Citizen,Retired,Pension,31000,30–60k,650,59,706,5500,5,Document (in person),True,False,False,False,Clear,1,Low,2015-05-20,True
+3518234918950662,KYC-00489,2016-08-15,Branch,Citizen,Employed,Salary,57000,30–60k,950,45,630,5500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-01-14,False
+3518669219150142,KYC-00490,2014-11-12,Branch,Citizen,Employed,Salary,56000,30–60k,1850,39,599,6500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-07-25,True
+3518758680062249,KYC-00491,2013-12-24,Branch,Citizen,Self-employed,Business income,50000,30–60k,1100,40,727,15000,2,Document (in person),True,True,True,False,Clear,1,Low,2016-03-09,False
+3519232971341141,KYC-00492,2010-11-13,Branch,Citizen,Employed,Salary,41000,30–60k,1250,52,752,14000,3,Document (in person),True,True,True,False,Clear,0,Low,2015-06-14,True
+3519607465576254,KYC-00493,2014-01-01,Online,Citizen,Retired,Pension,19000,<30k,400,41,594,2000,1,Document upload,True,True,True,False,Clear,0,Low,2016-11-20,False
+3520550088202337,KYC-00494,2018-07-02,Online,Citizen,Student,Allowance / part-time work,8000,<30k,200,31,558,1000,1,Database check,False,True,True,False,Clear,4,High,2018-07-02,False
+3521260686633367,KYC-00495,2018-12-04,Mobile app,Visa holder,Employed,Salary,25000,<30k,450,23,569,1500,1,Document upload,True,True,True,False,Clear,2,Medium,2018-12-04,False
+3521417320836166,KYC-00496,2009-04-19,Branch,Citizen,Employed,Salary,54000,30–60k,1400,78,656,11000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-09-21,False
+3521815216091574,KYC-00497,2012-09-20,Branch,Citizen,Employed,Salary,97000,60–100k,1850,51,648,16000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-11-01,False
+3523843138706408,KYC-00498,2015-04-01,Branch,Citizen,Employed,Salary,53000,30–60k,1200,42,739,15500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-08-01,False
+3523898249167098,KYC-00499,2015-05-12,Mobile app,Citizen,Employed,Salary,45000,30–60k,1350,49,640,8500,1,Document + biometric,True,True,False,False,Clear,0,Low,2016-04-24,False
+3524485462198080,KYC-00500,2019-07-13,Branch,Citizen,Retired,Pension,20000,<30k,500,54,637,2500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-07-13,False
+3524574586339330,KYC-00501,2011-01-31,Online,Citizen,Employed,Salary,28000,<30k,900,47,639,3500,2,Database check,True,False,True,False,Clear,2,Medium,2017-01-15,False
+3525590521269779,KYC-00502,2008-03-26,Branch,Citizen,Self-employed,Business income,44000,30–60k,800,53,695,10000,3,Document (in person),True,True,True,False,Clear,1,Low,2017-01-10,False
+3525668150756629,KYC-00503,2008-08-12,Online,Citizen,Employed,Salary,44000,30–60k,650,27,679,5000,5,Database check,True,True,True,False,Clear,1,Low,2015-10-31,True
+3526826139003047,KYC-00504,2012-05-10,Online,Citizen,Employed,Salary,68000,60–100k,950,33,635,9500,2,Document upload,True,True,True,False,Clear,0,Low,2016-08-31,False
+3527063666782582,KYC-00505,2016-05-06,Online,Citizen,Employed,Salary,43000,30–60k,900,96,577,4500,3,Document upload,True,True,True,False,Clear,0,Low,2018-08-26,False
+3527536963490470,KYC-00506,2015-12-24,Mobile app,Citizen,Employed,Salary,58000,30–60k,1800,27,623,7500,2,Document + biometric,True,True,False,False,Clear,0,Low,2017-01-01,False
+3528040995648998,KYC-00507,2019-08-13,Branch,Citizen,Employed,Salary,56000,30–60k,1000,38,674,6500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-08-13,False
+3528231451607350,KYC-00508,2015-09-14,Branch,Citizen,Retired,Pension,13000,<30k,200,47,663,2000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-06-20,False
+3528407217576457,KYC-00509,2005-10-21,Branch,Citizen,Employed,Salary,33000,30–60k,1050,32,741,10500,5,Document (in person),True,True,False,False,Clear,0,Low,2015-09-02,True
+3529597810116815,KYC-00510,2004-12-16,Branch,Citizen,Employed,Salary,29000,<30k,550,42,593,3500,3,Document (in person),True,True,True,False,Clear,0,Low,2017-05-06,False
+3529597930342630,KYC-00511,2009-11-26,Online,Citizen,Employed,Salary,54000,30–60k,1000,29,614,6000,4,Database check,True,True,False,False,Clear,1,Low,2018-05-02,False
+3529788038921264,KYC-00512,2019-07-13,Mobile app,Citizen,Retired,Pension,46000,30–60k,1350,65,630,6500,1,Document upload,True,True,True,False,Clear,1,Low,2019-07-13,False
+3530503964418806,KYC-00513,1999-09-01,Branch,Citizen,Self-employed,Business income,61000,60–100k,950,77,685,7500,5,Document (in person),True,True,True,False,Clear,1,Low,2017-11-27,False
+3531129874770000,KYC-00514,2005-09-05,Online,Citizen,Employed,Salary,193000,150k+,3900,36,684,44000,2,Database check,True,False,True,False,Clear,2,Medium,2016-10-27,True
+3531606252458308,KYC-00515,2005-06-23,Branch,Citizen,Self-employed,Business income,40000,30–60k,1050,29,722,5500,3,Document (in person),True,True,False,False,Clear,1,Low,2016-05-01,False
+3533012926413100,KYC-00516,2012-05-23,Online,Citizen,Employed,Salary,41000,30–60k,550,55,744,8000,1,Database check,True,True,True,False,Clear,1,Low,2018-04-15,False
+3533177016567295,KYC-00517,2013-11-23,Online,Permanent resident,Employed,Salary,23000,<30k,450,39,655,3500,1,Database check,True,True,True,False,Clear,1,Low,2015-11-25,True
+3533742182628021,KYC-00518,2015-06-04,Branch,Citizen,Employed,Salary,82000,60–100k,2650,59,655,15000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-01-21,False
+3533800906065217,KYC-00519,2017-06-06,Online,Citizen,Retired,Pension,18000,<30k,450,22,706,2500,1,Database check,True,True,True,False,Clear,1,Low,2017-06-06,False
+3534093764340240,KYC-00520,2015-08-04,Mobile app,Permanent resident,Employed,Salary,40000,30–60k,1200,33,682,10000,1,Document upload,True,True,True,False,Clear,0,Low,2018-10-24,False
+3534330126107879,KYC-00521,2009-12-19,Online,Citizen,Employed,Salary,42000,30–60k,1100,38,695,11000,1,Database check,True,True,True,False,Clear,1,Low,2017-03-02,False
+3534718226968689,KYC-00522,2008-07-26,Online,Citizen,Employed,Salary,34000,30–60k,550,87,651,7000,4,Database check,True,False,True,False,Clear,2,Medium,2017-06-23,False
+3535211949888417,KYC-00523,2019-05-18,Online,Citizen,Self-employed,Business income,71000,60–100k,2250,31,683,12500,1,Document upload,True,True,True,False,Clear,2,Medium,2019-05-18,False
+3535808924394848,KYC-00524,2013-11-07,Branch,Citizen,Employed,Salary,19000,<30k,400,27,671,3500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-09-17,False
+3536818734263520,KYC-00525,2017-02-16,Branch,Permanent resident,Self-employed,Business income,38000,30–60k,1250,52,706,8500,2,Document (in person),True,True,True,False,Clear,1,Low,2017-02-16,False
+3536918668124647,KYC-00526,2013-09-20,Online,Citizen,Employed,Salary,43000,30–60k,1100,70,790,10000,3,Document upload,True,True,True,False,Clear,0,Low,2016-10-28,False
+3537797820923602,KYC-00527,2010-08-22,Mobile app,Permanent resident,Employed,Salary,55000,30–60k,850,66,786,21500,1,Document upload,True,True,True,False,Clear,0,Low,2017-03-09,False
+3538520143479972,KYC-00528,2015-01-25,Mobile app,Citizen,Employed,Salary,45000,30–60k,850,40,731,12500,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-10-25,False
+3540017235499519,KYC-00529,2014-04-13,Mobile app,Citizen,Employed,Salary,70000,60–100k,2200,45,650,13000,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-12-09,False
+3540075240003197,KYC-00530,2006-11-16,Online,Citizen,Employed,Salary,60000,60–100k,1650,64,656,9500,2,Database check,True,True,True,False,Clear,1,Low,2016-06-04,False
+3540210836308425,KYC-00531,2010-06-19,Branch,Citizen,Employed,Salary,43000,30–60k,800,48,672,9000,1,Document (in person),True,False,True,False,Clear,1,Low,2017-10-30,False
+3540416671210051,KYC-00532,2019-09-24,Online,Citizen,Retired,Pension,28000,<30k,450,62,658,4000,1,Document upload,True,True,True,False,Clear,1,Low,2019-09-24,False
+3540862542587229,KYC-00533,2010-03-13,Online,Citizen,Retired,Pension,32000,30–60k,750,52,722,5500,3,Database check,False,True,True,False,Clear,3,Medium,2017-01-12,False
+3541160328600277,KYC-00534,2018-07-02,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,150,61,590,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-02,False
+3541554378551366,KYC-00535,2013-11-15,Online,Citizen,Retired,Pension,8000,<30k,100,56,625,1000,3,Database check,False,True,True,False,Clear,3,Medium,2018-12-01,False
+3541687240161491,KYC-00536,2007-10-25,Online,Citizen,Employed,Salary,61000,60–100k,1650,31,850,19500,1,Database check,True,True,True,False,Clear,1,Low,2018-12-06,False
+3542162746848552,KYC-00537,2016-05-02,Mobile app,Citizen,Employed,Salary,65000,60–100k,1900,51,692,16500,1,Document + biometric,True,True,True,False,Potential match – cleared,2,Medium,2018-10-06,False
+3542826960473004,KYC-00538,2019-05-24,Online,Citizen,Self-employed,Business income,69000,60–100k,1600,34,704,12000,1,Document upload,True,False,True,False,Clear,3,Medium,2019-05-24,False
+3543299015720986,KYC-00539,2015-12-14,Mobile app,Citizen,Employed,Salary,57000,30–60k,900,40,642,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-05-14,False
+3543591270174051,KYC-00540,2015-08-02,Mobile app,Citizen,Employed,Salary,21000,<30k,400,62,616,2500,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-11-08,True
+3543885983111461,KYC-00541,2011-05-29,Branch,Citizen,Retired,Pension,25000,<30k,450,66,794,5000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-03-30,False
+3544606805704278,KYC-00542,2016-06-13,Mobile app,Citizen,Retired,Pension,51000,30–60k,1100,46,725,10000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-09-14,False
+3545109339866548,KYC-00543,2017-03-04,Mobile app,Citizen,Employed,Salary,21000,<30k,300,51,600,2500,3,Document + biometric,True,True,True,False,Clear,0,Low,2017-07-24,False
+3545578418030657,KYC-00544,2017-10-03,Branch,Citizen,Employed,Salary,35000,30–60k,1100,53,671,6500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-10-03,False
+3546436741611231,KYC-00545,2019-10-08,Mobile app,Citizen,Retired,Pension,44000,30–60k,1300,27,828,14000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-10-08,False
+3546674063249004,KYC-00546,2014-10-15,Online,Citizen,Employed,Salary,46000,30–60k,750,48,591,5000,2,Document upload,True,True,True,False,Clear,0,Low,2016-05-13,False
+3546897637165774,KYC-00547,2012-08-30,Branch,Citizen,Employed,Salary,55000,30–60k,1100,67,617,9000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-03-03,False
+3547336099599450,KYC-00548,2018-08-26,Branch,Citizen,Employed,Salary,97000,60–100k,3200,22,723,13000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-08-26,False
+3547560454237873,KYC-00549,2008-12-30,Branch,Citizen,Employed,Salary,94000,60–100k,2900,106,608,14000,2,Document (in person),True,False,True,False,Clear,1,Low,2018-12-08,False
+3547574373318979,KYC-00550,2015-05-06,Branch,Citizen,Employed,Salary,70000,60–100k,1600,47,707,18500,3,Document (in person),True,True,True,False,Clear,0,Low,2018-05-23,False
+3548710338694745,KYC-00551,2019-03-11,Online,Citizen,Employed,Salary,34000,30–60k,1050,46,580,3000,1,Document upload,False,True,True,False,Clear,3,Medium,2019-03-11,False
+3549202406645667,KYC-00552,2013-12-19,Branch,Citizen,Retired,Pension,14000,<30k,200,31,769,3500,5,Document (in person),True,True,True,False,Clear,0,Low,2018-07-31,False
+3550412175018089,KYC-00553,2020-04-19,Branch,Citizen,Employed,Salary,96000,60–100k,2350,31,771,24000,1,Document (in person),True,True,True,False,Clear,1,Low,2020-04-19,False
+3550554389581384,KYC-00554,2012-03-10,Mobile app,Citizen,Employed,Salary,46000,30–60k,1200,47,639,7500,3,Document + biometric,True,False,True,False,Clear,1,Low,2018-10-22,False
+3551217896304745,KYC-00555,2015-04-14,Mobile app,Citizen,Employed,Salary,43000,30–60k,1000,74,627,6500,1,Document upload,True,True,True,False,Clear,0,Low,2016-07-16,False
+3551512895305309,KYC-00556,2008-05-04,Branch,Citizen,Retired,Pension,17000,<30k,300,26,663,4000,2,Document (in person),True,True,False,False,Clear,0,Low,2016-04-20,False
+3552581383553463,KYC-00557,2011-07-05,Branch,Citizen,Employed,Salary,48000,30–60k,600,31,643,9000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-05-24,True
+3553629419254918,KYC-00558,2010-03-16,Online,Citizen,Self-employed,Business income,17000,<30k,250,52,497,1500,2,Database check,True,True,True,False,Clear,2,Medium,2017-06-20,False
+3554421171166228,KYC-00559,2019-08-15,Online,Citizen,Retired,Pension,31000,30–60k,1050,63,771,10500,1,Document upload,True,True,True,False,Clear,1,Low,2019-08-15,False
+3554818239968984,KYC-00560,2006-12-17,Branch,Citizen,Employed,Salary,73000,60–100k,1800,19,686,17000,4,Document (in person),False,True,False,False,Clear,2,Medium,2017-03-19,False
+3554849923339851,KYC-00561,2000-05-25,Branch,Citizen,Retired,Pension,15000,<30k,400,53,640,3000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-10-02,False
+3556613125071656,KYC-00562,2017-12-26,Branch,Citizen,Student,Allowance / part-time work,13000,<30k,250,52,550,1500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-12-26,False
+3557442674264531,KYC-00563,2018-07-02,Mobile app,Permanent resident,Student,Allowance / part-time work,8000,<30k,250,90,581,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-02,False
+3558652751678952,KYC-00564,2017-01-18,Mobile app,Citizen,Retired,Pension,13000,<30k,400,40,590,1500,1,Document + biometric,True,True,True,False,Potential match – cleared,2,Medium,2017-11-01,False
+3558881852140592,KYC-00565,2011-03-28,Online,Citizen,Employed,Salary,110000,100–150k,1950,49,650,11500,3,Database check,True,True,True,False,Clear,1,Low,2017-07-04,False
+3559160581764413,KYC-00566,2014-01-12,Branch,Citizen,Employed,Salary,70000,60–100k,900,42,674,15500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-04-01,False
+3559679414981506,KYC-00567,2012-01-29,Online,Citizen,Employed,Salary,44000,30–60k,650,28,691,9500,1,Database check,True,True,True,False,Clear,1,Low,2018-03-23,False
+3559723917628303,KYC-00568,2011-12-15,Online,Citizen,Employed,Salary,104000,100–150k,1500,39,709,28500,2,Database check,True,True,True,False,Clear,1,Low,2015-09-09,True
+3560246577314524,KYC-00569,2016-11-15,Branch,Citizen,Retired,Pension,27000,<30k,400,58,752,8000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-04-19,False
+3560318482131952,KYC-00570,2010-11-17,Branch,Citizen,Employed,Salary,36000,30–60k,800,37,577,3000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-03-24,False
+3560336828629935,KYC-00571,2016-11-02,Online,Citizen,Retired,Pension,35000,30–60k,1050,42,682,5000,1,Document upload,True,True,True,False,Clear,0,Low,2018-06-03,False
+3560697798177746,KYC-00572,2017-04-28,Online,Citizen,Employed,Salary,82000,60–100k,2350,77,768,17500,1,Database check,True,True,True,False,Clear,1,Low,2017-04-28,False
+3560725013359375,KYC-00573,2004-07-22,Online,Citizen,Employed,Salary,65000,60–100k,2150,83,648,6000,5,Database check,True,True,True,False,Clear,1,Low,2015-05-04,True
+3560797065840735,KYC-00574,2007-12-17,Branch,Citizen,Employed,Salary,40000,30–60k,800,51,563,4000,3,Document (in person),True,True,False,False,Clear,0,Low,2016-06-19,False
+3561212938177173,KYC-00575,2006-08-06,Online,Citizen,Employed,Salary,43000,30–60k,1100,53,604,4000,1,Database check,False,True,True,False,Clear,3,Medium,2018-07-27,False
+3561963695236764,KYC-00576,2014-08-22,Online,Citizen,Employed,Salary,28000,<30k,450,61,571,2500,1,Database check,True,True,True,False,Clear,1,Low,2018-08-25,False
+3562264947797243,KYC-00577,2008-01-19,Branch,Citizen,Employed,Salary,31000,30–60k,600,63,685,8000,3,Document (in person),True,True,False,False,Clear,0,Low,2018-03-30,False
+3562679455732797,KYC-00578,1997-04-14,Branch,Citizen,Employed,Salary,71000,60–100k,1400,31,594,7000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-07-12,False
+3562793934111141,KYC-00579,2019-09-12,Mobile app,Citizen,Employed,Salary,35000,30–60k,900,48,722,10500,1,Document + biometric,True,True,False,False,Clear,1,Low,2019-09-12,False
+3563837241599446,KYC-00580,2010-04-03,Branch,Citizen,Employed,Salary,82000,60–100k,1700,41,563,5500,2,Document (in person),True,True,True,False,Clear,0,Low,2017-03-28,False
+3564182536169293,KYC-00581,2015-12-27,Branch,Citizen,Employed,Salary,104000,100–150k,1750,28,662,12500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-12-27,True
+3564839259330465,KYC-00582,2016-05-12,Online,Citizen,Employed,Salary,23000,<30k,450,45,742,7000,1,Database check,True,True,True,False,Clear,1,Low,2018-03-08,False
+3565196229855512,KYC-00583,2008-05-05,Branch,Citizen,Retired,Pension,25000,<30k,650,64,673,3500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-04-09,False
+3565414434959494,KYC-00584,2012-06-06,Branch,Citizen,Employed,Salary,106000,100–150k,2850,19,784,18500,2,Document (in person),True,True,True,False,Clear,0,Low,2017-04-04,False
+3565423334076143,KYC-00585,2012-08-30,Online,Citizen,Retired,Pension,45000,30–60k,1250,37,744,6500,2,Document upload,True,True,True,False,Clear,0,Low,2018-04-20,False
+3565943051129759,KYC-00586,2000-12-29,Branch,Citizen,Employed,Salary,49000,30–60k,1550,42,626,7000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-11-06,False
+3565996340207976,KYC-00587,2017-07-05,Mobile app,Citizen,Employed,Salary,36000,30–60k,500,56,674,7500,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-07-05,False
+3566094707272327,KYC-00588,2014-11-17,Branch,Citizen,Employed,Salary,44000,30–60k,1350,13,672,9000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-08-21,False
+3566373869538620,KYC-00589,2009-01-17,Online,Citizen,Employed,Salary,79000,60–100k,2100,37,673,18500,3,Database check,True,True,True,False,Clear,1,Low,2015-04-19,True
+3566875419572867,KYC-00590,2009-01-30,Online,Citizen,Employed,Salary,36000,30–60k,1000,48,524,2500,2,Database check,True,True,True,False,Clear,1,Low,2018-12-12,False
+3567527758368741,KYC-00591,1991-02-07,Online,Citizen,Employed,Salary,63000,60–100k,1850,42,659,11000,3,Database check,True,False,False,False,Clear,2,Medium,2017-03-01,False
+3567697931646329,KYC-00592,2016-07-28,Mobile app,Permanent resident,Student,Allowance / part-time work,25000,<30k,800,34,635,4500,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-07-28,False
+3567879740649740,KYC-00593,2017-03-04,Online,Citizen,Employed,Salary,20000,<30k,450,34,731,6000,2,Database check,True,True,True,False,Clear,1,Low,2017-03-04,False
+3568255211412877,KYC-00594,2012-11-23,Branch,Citizen,Employed,Salary,81000,60–100k,1450,53,675,13500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-03-02,False
+3568736585751727,KYC-00595,2012-05-05,Online,Citizen,Employed,Salary,55000,30–60k,1600,32,749,11500,2,Document upload,False,True,True,False,Clear,2,Medium,2018-11-17,False
+3572976568630035,KYC-00596,2017-09-24,Online,Citizen,Employed,Salary,55000,30–60k,1700,49,716,15500,1,Database check,True,True,False,False,Clear,1,Low,2018-09-24,False
+3573030041201292,KYC-00597,2014-05-04,Branch,Citizen,Employed,Salary,47000,30–60k,1150,35,570,3500,1,Document (in person),True,True,False,False,Clear,0,Low,2018-02-12,False
+3573386445588324,KYC-00598,2013-06-23,Online,Citizen,Employed,Salary,53000,30–60k,1100,47,724,15000,3,Database check,True,True,True,False,Clear,1,Low,2018-07-18,False
+3575540972310993,KYC-00599,2018-07-02,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,100,53,620,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-02,False
+3575789281659026,KYC-00600,2007-07-17,Branch,Citizen,Employed,Salary,80000,60–100k,1750,35,569,4500,5,Document (in person),True,True,True,False,Clear,0,Low,2017-07-17,False
+3576021480694169,KYC-00601,2018-07-02,Mobile app,Visa holder,Student,Allowance / part-time work,17000,<30k,450,48,588,1500,1,Document + biometric,True,True,True,False,Clear,2,Medium,2018-07-02,False
+3576144910346950,KYC-00602,2018-02-03,Online,Citizen,Employed,Salary,138000,100–150k,4150,30,669,18500,1,Database check,True,True,True,False,Clear,2,Medium,2018-02-03,False
+3576207763781753,KYC-00603,2019-11-24,Online,Citizen,Retired,Pension,21000,<30k,500,100,711,3000,1,Database check,True,True,True,False,Clear,2,Medium,2019-11-24,False
+3576281490078437,KYC-00604,2011-08-03,Online,Citizen,Employed,Salary,28000,<30k,650,42,638,3500,2,Database check,True,True,True,False,Clear,1,Low,2018-07-26,False
+3576431665303017,KYC-00605,1999-10-24,Online,Citizen,Employed,Salary,29000,<30k,400,30,785,6000,3,Database check,True,True,True,False,Clear,1,Low,2015-08-16,True
+3576511691045060,KYC-00606,2015-09-18,Online,Citizen,Employed,Salary,46000,30–60k,950,19,664,10000,1,Database check,True,True,True,False,Clear,1,Low,2015-12-06,True
+3577578023716568,KYC-00607,2015-12-11,Online,Citizen,Employed,Salary,136000,100–150k,3600,40,667,17000,1,Database check,True,True,True,False,Clear,1,Low,2016-09-15,False
+3577596616955856,KYC-00608,2004-04-27,Branch,Permanent resident,Retired,Pension,20000,<30k,650,22,667,2500,3,Document (in person),True,True,True,False,Clear,0,Low,2018-06-22,False
+3577663406369449,KYC-00609,2015-12-27,Mobile app,Citizen,Employed,Salary,57000,30–60k,850,37,779,21000,1,Document + biometric,True,True,True,False,Clear,0,Low,2015-12-27,True
+3577794103155425,KYC-00610,2012-11-11,Branch,Citizen,Employed,Salary,48000,30–60k,1200,73,676,9500,3,Document (in person),True,False,True,False,Clear,1,Low,2017-11-11,False
+3579200383632826,KYC-00611,2000-01-15,Branch,Citizen,Employed,Salary,83000,60–100k,2550,32,648,8000,1,Document (in person),True,False,True,False,Clear,1,Low,2016-08-12,False
+3581130339108561,KYC-00612,2014-04-14,Branch,Citizen,Employed,Salary,101000,100–150k,3000,31,697,26000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-26,True
+3582402971899057,KYC-00613,2014-05-01,Branch,Citizen,Employed,Salary,71000,60–100k,1250,73,629,12500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-03-27,False
+3582754887089201,KYC-00614,2014-05-21,Online,Citizen,Employed,Salary,47000,30–60k,1100,48,716,9500,1,Database check,True,True,True,False,Clear,1,Low,2018-05-06,False
+3583093681934489,KYC-00615,2004-08-21,Branch,Citizen,Employed,Salary,67000,60–100k,900,62,735,10000,5,Document (in person),True,True,True,False,Clear,0,Low,2017-10-30,False
+3583293909206278,KYC-00616,2015-05-17,Mobile app,Citizen,Employed,Salary,93000,60–100k,3000,67,609,12000,1,Document upload,True,True,True,False,Clear,0,Low,2015-10-03,True
+3583635130604947,KYC-00617,2015-08-23,Mobile app,Visa holder,Employed,Salary,174000,150k+,4150,45,748,50000,2,Document upload,True,True,True,False,Clear,1,Low,2015-11-22,True
+3583793405872580,KYC-00618,2006-02-03,Branch,Citizen,Self-employed,Business income,55000,30–60k,1400,114,666,11500,3,Document (in person),True,True,True,False,Clear,1,Low,2018-08-25,False
+3585052663373890,KYC-00619,2008-09-27,Online,Citizen,Employed,Salary,41000,30–60k,1200,37,691,10000,4,Database check,True,True,True,False,Clear,1,Low,2016-02-07,False
+3585740823295298,KYC-00620,2016-10-01,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,150,48,548,1000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-07-27,False
+3586008444788268,KYC-00621,2016-09-10,Branch,Permanent resident,Employed,Salary,36000,30–60k,1000,69,648,7500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-12-24,False
+3586955669388457,KYC-00622,2012-12-07,Online,Citizen,Employed,Salary,22000,<30k,450,59,630,2500,1,Database check,False,True,False,False,Clear,3,Medium,2018-11-27,False
+3587044315915002,KYC-00623,2004-11-01,Branch,Permanent resident,Employed,Salary,69000,60–100k,2050,41,652,8000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-05-03,True
+3587960728692500,KYC-00624,2015-01-02,Online,Citizen,Student,Allowance / part-time work,12000,<30k,350,36,608,1000,1,Database check,True,True,True,False,Clear,1,Low,2018-09-09,False
+3588001568691267,KYC-00625,2019-12-27,Branch,Citizen,Student,Allowance / part-time work,13000,<30k,300,54,461,1000,1,Document (in person),True,True,True,False,Clear,1,Low,2019-12-27,False
+3589255887819806,KYC-00626,2017-02-22,Branch,Visa holder,Employed,Salary,43000,30–60k,950,18,652,4500,1,Document (in person),True,True,True,False,Clear,1,Low,2018-03-27,False
+3589289942931264,KYC-00627,2018-09-28,Mobile app,Citizen,Self-employed,Business income,34000,30–60k,700,67,708,8500,1,Document + biometric,False,True,True,False,Clear,4,High,2018-09-28,False
+3590736522064285,KYC-00628,2002-05-25,Branch,Citizen,Employed,Salary,78000,60–100k,1500,87,774,13000,4,Document (in person),True,True,False,False,Clear,0,Low,2017-06-11,False
+3590946339258737,KYC-00629,2019-12-08,Mobile app,Citizen,Student,Allowance / part-time work,10000,<30k,150,54,620,1500,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-12-08,False
+3591919803438423,KYC-00630,2008-04-16,Online,Citizen,Self-employed,Business income,19000,<30k,500,41,576,1000,1,Database check,True,True,True,False,Clear,2,Medium,2016-09-03,True
+3592325941359225,KYC-00631,2017-09-04,Branch,Citizen,Retired,Pension,18000,<30k,250,30,706,5000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-09-04,False
+3592931352252641,KYC-00632,2017-09-28,Branch,Citizen,Retired,Pension,23000,<30k,450,74,674,5500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-04-03,False
+3593118134380341,KYC-00633,2009-09-15,Branch,Citizen,Self-employed,Business income,44000,30–60k,1100,18,730,8500,4,Document (in person),True,True,True,False,Clear,1,Low,2016-06-19,False
+3593399694467427,KYC-00634,2017-09-14,Mobile app,Citizen,Employed,Salary,50000,30–60k,1000,17,660,6500,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-04-28,False
+3595111028444131,KYC-00635,2018-04-17,Online,Citizen,Employed,Salary,76000,60–100k,1350,25,633,10000,1,Database check,True,True,True,False,Clear,2,Medium,2018-04-17,False
+3595192916105588,KYC-00636,2016-03-03,Online,Citizen,Employed,Salary,52000,30–60k,750,48,575,4000,2,Database check,False,True,True,False,Clear,3,Medium,2018-04-16,False
+3596217206093829,KYC-00637,2015-08-21,Mobile app,Citizen,Employed,Salary,25000,<30k,600,50,569,2000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-02-07,False
+3596357274378601,KYC-00638,2007-10-29,Branch,Citizen,Employed,Salary,19000,<30k,450,41,716,5500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-07-19,False
+3597337756918966,KYC-00639,2011-01-20,Branch,Citizen,Employed,Salary,117000,100–150k,3200,42,666,26000,4,Document (in person),True,True,True,False,Clear,0,Low,2017-08-30,False
+3597926034019603,KYC-00640,2013-01-29,Online,Citizen,Employed,Salary,38000,30–60k,1100,65,691,5500,3,Document upload,True,True,True,False,Clear,0,Low,2018-11-17,False
+3597980945245815,KYC-00641,2005-07-06,Branch,Permanent resident,Employed,Salary,101000,100–150k,3050,30,651,14500,2,Document (in person),True,False,True,False,Clear,1,Low,2018-07-01,False
+3598014571045296,KYC-00642,2012-11-26,Branch,Citizen,Employed,Salary,61000,60–100k,1850,109,722,16500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-01-06,False
+3598215285024754,KYC-00643,2010-03-06,Online,Citizen,Employed,Salary,74000,60–100k,2000,54,689,14000,3,Database check,True,False,True,False,Clear,2,Medium,2017-03-13,False
+3598304579370089,KYC-00644,2015-04-09,Mobile app,Citizen,Employed,Salary,51000,30–60k,1550,28,641,8000,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-01-07,False
+3598634130286287,KYC-00645,2015-03-26,Online,Citizen,Student,Allowance / part-time work,8000,<30k,150,37,622,1000,1,Database check,True,True,True,False,Clear,1,Low,2015-08-17,True
+3598895972308782,KYC-00646,2011-12-21,Branch,Citizen,Employed,Salary,41000,30–60k,1000,32,625,7000,3,Document (in person),True,True,True,False,Clear,0,Low,2018-10-27,False
+3599237318576484,KYC-00647,2005-11-06,Online,Citizen,Retired,Pension,31000,30–60k,700,35,743,8000,2,Database check,True,True,False,False,Clear,1,Low,2016-06-11,False
+4003771737807706,KYC-00648,2015-01-28,Mobile app,Citizen,Self-employed,Business income,51000,30–60k,1100,56,732,12000,1,Document + biometric,True,True,True,True,Clear,4,High,2018-09-08,False
+4003989662068504,KYC-00649,2014-01-08,Online,Citizen,Employed,Salary,28000,<30k,650,61,635,2500,2,Document upload,True,True,True,False,Clear,0,Low,2017-09-11,False
+4005676619255478,KYC-00650,2013-06-15,Branch,Citizen,Employed,Salary,42000,30–60k,1250,36,772,13500,3,Document (in person),True,True,True,False,Clear,0,Low,2017-01-08,False
+4010002218955876,KYC-00651,2016-01-31,Online,Citizen,Employed,Salary,50000,30–60k,1200,28,680,7000,2,Database check,False,True,True,False,Clear,3,Medium,2017-05-02,False
+4025612008285111,KYC-00652,2013-06-17,Online,Citizen,Retired,Pension,40000,30–60k,750,32,715,12000,2,Database check,False,True,True,False,Clear,3,Medium,2018-11-16,False
+4048508450704760,KYC-00653,2015-08-14,Online,Citizen,Employed,Salary,53000,30–60k,1550,58,605,5000,2,Document upload,True,True,True,False,Clear,0,Low,2018-05-21,False
+4060579726528237,KYC-00654,2014-05-18,Branch,Citizen,Retired,Pension,20000,<30k,600,75,661,4000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-11-21,False
+4067137330196900,KYC-00655,2006-12-06,Branch,Citizen,Employed,Salary,32000,30–60k,1000,57,655,3500,2,Document (in person),True,True,False,False,Clear,0,Low,2016-10-15,False
+4069975342931683,KYC-00656,2002-09-30,Branch,Citizen,Employed,Salary,42000,30–60k,900,43,657,8000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-10-19,False
+4070511711385545,KYC-00657,2011-05-10,Branch,Citizen,Employed,Salary,69000,60–100k,1600,31,726,21500,2,Document (in person),False,False,True,False,Clear,3,Medium,2016-08-11,True
+4087542780207162,KYC-00658,2019-12-14,Mobile app,Citizen,Employed,Salary,50000,30–60k,1350,60,720,13500,1,Document upload,True,True,True,False,Clear,1,Low,2019-12-14,False
+4099707841315751,KYC-00659,1997-05-17,Branch,Citizen,Employed,Salary,38000,30–60k,1050,85,676,5000,3,Document (in person),True,True,False,False,Clear,0,Low,2018-05-21,False
+4104312520615374,KYC-00660,2015-09-11,Online,Citizen,Employed,Salary,49000,30–60k,850,39,569,2500,3,Database check,True,True,True,False,Clear,1,Low,2016-01-21,False
+4116554952971686,KYC-00661,1987-08-31,Branch,Citizen,Retired,Pension,25000,<30k,600,54,674,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-11-18,False
+4119762878330989,KYC-00662,2004-10-21,Branch,Citizen,Retired,Pension,19000,<30k,600,40,606,1500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-06-04,True
+4124536010991657,KYC-00663,2009-03-09,Branch,Citizen,Employed,Salary,62000,60–100k,1450,16,712,9500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-08-26,False
+4128027264554082,KYC-00664,2015-12-13,Branch,Citizen,Retired,Pension,61000,60–100k,1350,28,768,11500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-12-13,True
+4129767952109660,KYC-00665,2014-08-17,Online,Citizen,Employed,Salary,66000,60–100k,1200,46,708,18000,2,Document upload,True,True,True,False,Clear,0,Low,2016-12-12,False
+4134456652433447,KYC-00666,2015-01-09,Online,Permanent resident,Self-employed,Business income,79000,60–100k,2600,45,752,16000,2,Document upload,True,True,True,False,Clear,1,Low,2018-09-02,False
+4147608975828480,KYC-00667,2007-07-12,Online,Citizen,Retired,Pension,17000,<30k,300,43,620,2000,3,Database check,True,True,True,False,Clear,1,Low,2018-01-29,False
+4149238353975790,KYC-00668,2012-06-22,Mobile app,Citizen,Employed,Salary,44000,30–60k,1050,36,737,14000,4,Document + biometric,True,True,True,False,Clear,0,Low,2018-08-25,False
+4155021259183870,KYC-00669,2016-02-27,Mobile app,Citizen,Employed,Salary,79000,60–100k,1450,53,781,17500,1,Document upload,True,True,True,False,Clear,0,Low,2017-10-05,False
+4157213332670159,KYC-00670,2006-05-12,Branch,Citizen,Employed,Salary,82000,60–100k,2650,52,672,16500,4,Document (in person),True,True,False,False,Clear,0,Low,2017-02-08,False
+4158758517677931,KYC-00671,2013-01-14,Mobile app,Citizen,Student,Allowance / part-time work,23000,<30k,650,41,571,1500,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-11-04,False
+4158945090781624,KYC-00672,1996-01-04,Branch,Citizen,Employed,Salary,90000,60–100k,2450,80,734,22500,3,Document (in person),True,True,True,False,Clear,0,Low,2018-06-01,False
+4168696938629925,KYC-00673,2018-10-12,Mobile app,Permanent resident,Student,Allowance / part-time work,8000,<30k,100,32,508,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-10-12,False
+4169759661243568,KYC-00674,2013-05-08,Branch,Citizen,Employed,Salary,42000,30–60k,1350,69,584,4500,1,Document (in person),False,True,False,False,Clear,2,Medium,2018-05-11,False
+4170689372027579,KYC-00675,2015-07-13,Mobile app,Citizen,Employed,Salary,39000,30–60k,500,104,670,6500,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-08-31,False
+4171397999167005,KYC-00676,2000-02-01,Branch,Permanent resident,Retired,Pension,24000,<30k,750,55,685,4000,3,Document (in person),True,True,True,False,Clear,0,Low,2018-09-06,False
+4173950183554608,KYC-00677,2016-11-20,Mobile app,Citizen,Employed,Salary,39000,30–60k,600,24,652,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-09-18,False
+4178097073221156,KYC-00678,2012-04-27,Branch,Citizen,Employed,Salary,46000,30–60k,1550,28,590,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-11-25,False
+4179719215697782,KYC-00679,2013-10-20,Branch,Citizen,Employed,Salary,69000,60–100k,1050,38,784,14500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-03-09,False
+4191109180926792,KYC-00680,2012-08-16,Branch,Citizen,Employed,Salary,61000,60–100k,1400,79,693,11000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-12-11,True
+4195832462863385,KYC-00681,1999-04-22,Branch,Citizen,Retired,Pension,18000,<30k,250,49,665,3000,5,Document (in person),True,True,True,False,Clear,0,Low,2016-08-23,False
+4204237326785494,KYC-00682,2014-01-09,Branch,Citizen,Self-employed,Business income,18000,<30k,550,41,529,1000,2,Document (in person),False,False,True,False,Clear,4,High,2018-01-20,False
+4225628813173670,KYC-00683,2019-05-02,Branch,Permanent resident,Employed,Salary,86000,60–100k,2450,67,716,13500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-05-02,False
+4228411452607671,KYC-00684,2017-12-02,Mobile app,Citizen,Employed,Salary,27000,<30k,750,25,680,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-12-02,False
+4229733778084049,KYC-00685,2014-11-26,Online,Permanent resident,Employed,Salary,32000,30–60k,900,42,652,4000,1,Document upload,True,True,True,False,Clear,0,Low,2017-06-24,False
+4239552724014407,KYC-00686,2005-09-18,Branch,Citizen,Retired,Pension,15000,<30k,300,46,787,5500,4,Document (in person),True,True,True,False,Clear,0,Low,2018-10-10,False
+4254074738931278,KYC-00687,2012-03-06,Online,Citizen,Employed,Salary,33000,30–60k,800,51,727,8000,2,Document upload,True,True,True,False,Clear,0,Low,2015-09-19,True
+4260059589824237,KYC-00688,2003-11-02,Branch,Citizen,Retired,Pension,23000,<30k,450,31,738,5500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-07-07,False
+4265776278887457,KYC-00689,2006-10-26,Branch,Citizen,Employed,Salary,40000,30–60k,950,15,671,7000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-25,True
+4266200684857219,KYC-00690,2006-02-27,Branch,Citizen,Employed,Salary,45000,30–60k,600,42,668,7500,4,Document (in person),True,True,False,False,Clear,0,Low,2017-05-13,False
+4277232699798846,KYC-00691,2016-04-26,Online,Citizen,Employed,Salary,33000,30–60k,450,42,654,7000,1,Document upload,True,True,True,False,Clear,0,Low,2016-05-09,False
+4294040533480516,KYC-00692,2015-06-18,Mobile app,Citizen,Employed,Salary,57000,30–60k,1600,25,619,9000,2,Document + biometric,True,True,False,False,Clear,0,Low,2018-01-09,False
+4302475216404898,KYC-00693,2001-04-25,Online,Citizen,Employed,Salary,81000,60–100k,2550,39,728,13000,3,Database check,True,True,True,False,Clear,1,Low,2017-09-17,False
+4302480582202074,KYC-00694,2017-01-16,Mobile app,Citizen,Student,Allowance / part-time work,10000,<30k,250,43,587,1000,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-01-16,False
+4306586894261180,KYC-00695,2013-05-03,Mobile app,Citizen,Employed,Salary,29000,<30k,700,24,619,2500,2,Document + biometric,True,True,True,False,Clear,0,Low,2015-06-16,True
+4308156300921054,KYC-00696,2008-02-05,Branch,Citizen,Self-employed,Business income,102000,100–150k,3000,18,635,14500,2,Document (in person),True,True,True,False,Clear,1,Low,2018-08-13,False
+4318414072191879,KYC-00697,2019-05-18,Online,Citizen,Employed,Salary,67000,60–100k,1850,54,712,15500,1,Database check,True,True,True,False,Clear,2,Medium,2019-05-18,False
+4328928491302401,KYC-00698,1999-05-06,Branch,Citizen,Employed,Salary,65000,60–100k,900,34,624,7500,3,Document (in person),True,True,False,False,Clear,0,Low,2016-10-29,False
+4334230547694630,KYC-00699,2003-12-31,Online,Citizen,Employed,Salary,46000,30–60k,1500,28,642,8500,2,Database check,True,True,True,False,Clear,1,Low,2016-08-13,False
+4335531783520911,KYC-00700,2016-05-19,Online,Citizen,Employed,Salary,53000,30–60k,1200,52,724,10000,2,Document upload,True,True,True,False,Clear,0,Low,2016-05-19,False
+4342532437704183,KYC-00701,2012-02-16,Mobile app,Citizen,Self-employed,Business income,19000,<30k,600,73,616,2000,3,Document + biometric,True,True,True,False,Clear,1,Low,2018-08-13,False
+4344955088481397,KYC-00702,2017-02-05,Mobile app,Citizen,Employed,Salary,61000,60–100k,900,89,678,7000,2,Document + biometric,True,True,True,False,Clear,0,Low,2017-02-05,False
+4348786085525522,KYC-00703,2011-11-14,Online,Permanent resident,Employed,Salary,51000,30–60k,1300,75,708,8000,1,Database check,True,True,True,False,Clear,1,Low,2016-09-11,False
+4364010865167176,KYC-00704,2016-04-05,Mobile app,Citizen,Employed,Salary,28000,<30k,350,77,622,2500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-04-03,False
+4365382885912355,KYC-00705,2014-12-13,Mobile app,Citizen,Employed,Salary,48000,30–60k,800,29,729,9000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-03-05,False
+4377338765909719,KYC-00706,2014-01-18,Branch,Citizen,Self-employed,Business income,39000,30–60k,1250,48,681,9000,2,Document (in person),True,True,True,False,Clear,1,Low,2017-04-27,False
+4378993458389626,KYC-00707,2017-10-24,Mobile app,Citizen,Student,Allowance / part-time work,13000,<30k,250,34,691,2000,1,Document upload,True,True,True,False,Clear,0,Low,2018-09-03,False
+4384910379661778,KYC-00708,2009-04-25,Online,Citizen,Retired,Pension,77000,60–100k,1500,96,677,9500,1,Database check,True,True,True,False,Clear,1,Low,2017-08-16,False
+4412720572684931,KYC-00709,2014-09-12,Branch,Citizen,Employed,Salary,75000,60–100k,1000,30,750,12000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-04-10,False
+4417677808209716,KYC-00710,2020-02-06,Mobile app,Citizen,Employed,Salary,41000,30–60k,750,80,588,2500,1,Document + biometric,True,True,True,False,Clear,1,Low,2020-02-06,False
+4423489490781412,KYC-00711,2015-01-20,Online,Citizen,Employed,Salary,65000,60–100k,1000,20,728,13500,2,Document upload,True,True,True,False,Clear,0,Low,2018-05-02,False
+4424338559877976,KYC-00712,2010-08-05,Online,Citizen,Employed,Salary,21000,<30k,550,69,660,4000,2,Database check,False,True,True,False,Clear,3,Medium,2018-12-02,False
+4425161475596168,KYC-00713,2016-09-02,Branch,Citizen,Employed,Salary,69000,60–100k,2300,52,798,23000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-09-08,False
+4428154703770710,KYC-00714,2002-06-20,Branch,Citizen,Retired,Pension,37000,30–60k,500,35,724,8500,5,Document (in person),True,True,True,False,Clear,0,Low,2017-11-20,False
+4430881574719618,KYC-00715,2009-08-26,Online,Citizen,Retired,Pension,60000,60–100k,850,43,720,15500,2,Database check,False,True,True,False,Clear,3,Medium,2017-10-19,False
+4433091568498503,KYC-00716,2018-11-08,Mobile app,Citizen,Retired,Pension,44000,30–60k,850,45,735,12000,1,Document upload,True,True,True,False,Clear,1,Low,2018-11-08,False
+4446368897795790,KYC-00717,2018-07-27,Mobile app,Citizen,Employed,Salary,73000,60–100k,2100,32,697,11000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-27,False
+4449530933957323,KYC-00718,2016-10-20,Online,Citizen,Employed,Salary,27000,<30k,800,48,574,2000,1,Document upload,True,True,True,False,Clear,0,Low,2016-10-20,False
+4450831335606294,KYC-00719,2016-02-24,Mobile app,Citizen,Employed,Salary,39000,30–60k,1100,64,640,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-10-05,False
+4451438912406400,KYC-00720,2017-09-10,Online,Citizen,Employed,Salary,47000,30–60k,1550,38,724,7000,1,Database check,False,True,True,False,Clear,3,Medium,2018-11-01,False
+4451952084362894,KYC-00721,2009-02-09,Online,Citizen,Employed,Salary,52000,30–60k,1500,62,669,7500,2,Database check,True,True,True,False,Clear,1,Low,2018-09-06,False
+4452366298769043,KYC-00722,2007-08-01,Branch,Citizen,Employed,Salary,21000,<30k,550,43,671,4500,1,Document (in person),True,False,True,False,Clear,1,Low,2017-02-11,False
+4474324669797121,KYC-00723,2015-03-11,Mobile app,Citizen,Retired,Pension,46000,30–60k,1450,57,747,7500,1,Document upload,True,True,True,False,Clear,0,Low,2018-09-27,False
+4482427013979020,KYC-00724,2016-01-11,Mobile app,Citizen,Retired,Pension,30000,30–60k,800,74,624,2500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-09-24,False
+4488941175228467,KYC-00725,2010-04-25,Branch,Citizen,Self-employed,Business income,30000,30–60k,800,44,661,4500,2,Document (in person),True,True,True,False,Clear,1,Low,2018-04-20,False
+4492491748959010,KYC-00726,2018-03-06,Mobile app,Citizen,Self-employed,Business income,37000,30–60k,1100,35,676,5500,1,Document + biometric,True,True,True,False,Clear,2,Medium,2018-10-24,False
+4492677353108006,KYC-00727,2002-12-24,Branch,Citizen,Retired,Pension,15000,<30k,200,30,619,1500,2,Document (in person),True,True,True,False,Clear,0,Low,2017-09-15,False
+4501449508569485,KYC-00728,2015-06-03,Mobile app,Citizen,Employed,Salary,39000,30–60k,1000,69,632,5000,1,Document upload,True,True,True,False,Clear,0,Low,2016-01-20,False
+4509142395811241,KYC-00729,2017-10-29,Branch,Citizen,Retired,Pension,31000,30–60k,950,49,716,7000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-10-29,False
+4509922033272157,KYC-00730,2009-07-25,Online,Citizen,Employed,Salary,214000,150k+,5150,48,760,36500,5,Database check,True,True,True,False,Clear,1,Low,2016-02-15,False
+4514242065619750,KYC-00731,2014-10-02,Online,Permanent resident,Employed,Salary,48000,30–60k,950,43,585,5500,1,Document upload,True,True,True,False,Clear,0,Low,2015-06-27,True
+4518350514020532,KYC-00732,2014-02-19,Branch,Citizen,Employed,Salary,24000,<30k,400,92,571,2000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-05-02,False
+4550599031376731,KYC-00733,2013-03-22,Branch,Citizen,Employed,Salary,71000,60–100k,1250,22,647,13500,3,Document (in person),True,True,False,False,Clear,0,Low,2018-05-25,False
+4555104582813474,KYC-00734,2000-02-19,Branch,Citizen,Employed,Salary,42000,30–60k,1000,37,673,10000,4,Document (in person),True,True,True,False,Clear,0,Low,2017-08-25,False
+4561368699336875,KYC-00735,2006-11-01,Online,Citizen,Employed,Salary,33000,30–60k,550,31,634,3000,4,Database check,True,True,True,False,Clear,1,Low,2018-08-07,False
+4570636521433188,KYC-00736,2016-04-25,Online,Citizen,Employed,Salary,31000,30–60k,400,22,517,3000,2,Document upload,True,True,True,False,Clear,0,Low,2016-04-25,False
+4575255480814133,KYC-00737,2019-12-26,Mobile app,Citizen,Employed,Salary,28000,<30k,750,72,673,6000,1,Document + biometric,False,True,True,False,Clear,3,Medium,2019-12-26,False
+4586810168620942,KYC-00738,2015-07-05,Branch,Citizen,Student,Allowance / part-time work,9000,<30k,250,37,558,1000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-11-14,False
+4587577161160601,KYC-00739,2012-08-01,Online,Citizen,Employed,Salary,28000,<30k,900,95,657,2500,2,Database check,True,True,False,False,Clear,1,Low,2018-02-27,False
+4599285557366057,KYC-00740,2015-11-18,Mobile app,Citizen,Student,Allowance / part-time work,10000,<30k,150,26,582,1000,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-03-23,False
+4607072969078276,KYC-00741,2016-12-19,Mobile app,Citizen,Employed,Salary,61000,60–100k,1450,57,609,5500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-12-19,False
+4610050989831291,KYC-00742,2007-07-08,Branch,Citizen,Employed,Salary,43000,30–60k,800,36,705,8500,3,Document (in person),True,False,False,False,Clear,1,Low,2018-06-30,False
+4610064888664703,KYC-00743,2014-05-21,Online,Citizen,Student,Allowance / part-time work,11000,<30k,300,33,710,2500,4,Database check,True,True,True,False,Clear,1,Low,2018-05-24,False
+4629451965224809,KYC-00744,2016-11-17,Online,Citizen,Employed,Salary,55000,30–60k,700,26,635,5500,2,Document upload,True,True,True,False,Clear,0,Low,2016-11-17,False
+4633065159406313,KYC-00745,2013-11-28,Online,Citizen,Employed,Salary,72000,60–100k,1700,45,594,9000,3,Document upload,True,True,True,False,Clear,0,Low,2015-12-07,True
+4634955908138648,KYC-00746,2015-08-05,Online,Citizen,Employed,Salary,64000,60–100k,1500,31,635,6000,1,Database check,True,False,True,False,Clear,2,Medium,2017-10-18,False
+4635330563105903,KYC-00747,2003-12-26,Online,Citizen,Employed,Salary,30000,30–60k,1000,36,709,6500,3,Database check,True,True,True,False,Clear,1,Low,2015-08-13,True
+4642255475285942,KYC-00748,2012-07-25,Branch,Citizen,Employed,Salary,44000,30–60k,650,46,711,12000,4,Document (in person),True,True,True,False,Clear,0,Low,2017-05-04,False
+4651007077623147,KYC-00749,2013-10-01,Branch,Citizen,Employed,Salary,32000,30–60k,600,42,709,8000,2,Document (in person),True,True,True,False,Clear,0,Low,2016-04-23,False
+4653879239169997,KYC-00750,2017-06-05,Branch,Citizen,Employed,Salary,20000,<30k,650,41,625,2500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-06-05,False
+4657269323674365,KYC-00751,2013-03-12,Branch,Permanent resident,Retired,Pension,24000,<30k,500,62,607,2500,1,Document (in person),True,True,True,False,Clear,0,Low,2017-03-26,False
+4658490815480264,KYC-00752,2011-04-27,Branch,Citizen,Retired,Pension,12000,<30k,300,98,542,1000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-11-25,False
+4669558618943766,KYC-00753,2004-02-20,Branch,Citizen,Employed,Salary,51000,30–60k,1550,76,649,6500,5,Document (in person),True,True,True,False,Clear,0,Low,2018-04-11,False
+4670613943676271,KYC-00754,2007-09-23,Online,Citizen,Retired,Pension,67000,60–100k,1950,36,734,16500,4,Database check,True,True,True,False,Clear,1,Low,2016-10-14,False
+4671727014157745,KYC-00755,2017-04-26,Mobile app,Citizen,Employed,Salary,38000,30–60k,1050,45,627,3000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-11-01,False
+4681601008538160,KYC-00756,2005-02-12,Branch,Citizen,Employed,Salary,76000,60–100k,1100,57,688,17500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-07-26,False
+4682744518117239,KYC-00757,2011-01-03,Branch,Citizen,Employed,Salary,41000,30–60k,600,70,789,13000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-05-11,False
+4683520018489354,KYC-00758,2017-08-19,Branch,Citizen,Employed,Salary,59000,30–60k,1450,44,585,4000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-08-19,False
+4698163635895795,KYC-00759,2014-04-06,Online,Citizen,Employed,Salary,34000,30–60k,500,40,663,7500,3,Database check,True,True,True,False,Clear,1,Low,2017-06-15,False
+4707867759656333,KYC-00760,2011-01-12,Branch,Citizen,Employed,Salary,26000,<30k,500,68,616,3500,3,Document (in person),True,True,True,False,Clear,0,Low,2017-11-21,False
+4708992452821239,KYC-00761,2014-07-02,Branch,Citizen,Retired,Pension,14000,<30k,300,57,781,4500,4,Document (in person),True,True,True,False,Clear,0,Low,2015-11-27,True
+4710792708725663,KYC-00762,2007-04-27,Branch,Citizen,Employed,Salary,22000,<30k,350,71,612,3000,1,Document (in person),True,False,False,False,Clear,1,Low,2018-04-07,False
+4713464490314802,KYC-00763,2011-06-30,Online,Citizen,Self-employed,Business income,32000,30–60k,700,67,656,5500,2,Database check,True,True,True,False,Clear,2,Medium,2017-11-18,False
+4716561796955522,KYC-00764,2011-08-02,Branch,Citizen,Employed,Salary,64000,60–100k,800,62,710,17000,3,Document (in person),True,True,True,False,Clear,0,Low,2017-02-10,False
+4725673654161314,KYC-00765,2013-03-25,Online,Citizen,Employed,Salary,67000,60–100k,1050,50,747,16000,2,Document upload,True,True,True,False,Clear,0,Low,2015-11-29,True
+4727244663135968,KYC-00766,2009-04-06,Mobile app,Citizen,Employed,Salary,31000,30–60k,750,60,581,2500,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-11-11,False
+4734310647841293,KYC-00767,2007-12-21,Branch,Citizen,Employed,Salary,31000,30–60k,550,57,595,4000,3,Document (in person),True,True,True,False,Clear,0,Low,2016-11-29,False
+4740713119940984,KYC-00768,2007-02-25,Branch,Permanent resident,Employed,Salary,74000,60–100k,1050,41,697,18500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-07-09,False
+4764202053279782,KYC-00769,2016-04-22,Mobile app,Citizen,Employed,Salary,49000,30–60k,800,111,694,10500,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-04-08,False
+4767265376804500,KYC-00770,2015-10-20,Mobile app,Citizen,Employed,Salary,29000,<30k,750,47,585,2000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-02-23,False
+4777065439639721,KYC-00771,2005-04-23,Branch,Visa holder,Employed,Salary,35000,30–60k,1000,47,724,8500,3,Document (in person),True,True,True,False,Clear,1,Low,2017-12-06,False
+4789911625179723,KYC-00772,2015-05-10,Online,Citizen,Employed,Salary,35000,30–60k,950,36,768,10500,1,Document upload,True,True,True,False,Clear,0,Low,2016-02-11,False
+4800395067176717,KYC-00773,2015-10-19,Online,Citizen,Retired,Pension,34000,30–60k,650,25,775,12000,1,Database check,True,True,True,False,Clear,1,Low,2018-04-04,False
+4822367783500458,KYC-00774,2017-05-05,Online,Citizen,Employed,Salary,31000,30–60k,400,46,657,3000,1,Database check,True,True,True,False,Clear,1,Low,2017-05-05,False
+4824023901222438,KYC-00775,2016-01-15,Online,Citizen,Retired,Pension,11000,<30k,150,28,643,2000,1,Document upload,True,True,True,False,Clear,0,Low,2016-01-15,False
+4826655832045236,KYC-00776,2017-05-11,Branch,Citizen,Self-employed,Business income,47000,30–60k,650,50,690,6500,2,Document (in person),True,True,True,False,Clear,1,Low,2018-02-10,False
+4836998673805450,KYC-00777,2001-10-23,Online,Citizen,Employed,Salary,41000,30–60k,1350,49,617,4000,2,Database check,True,True,True,False,Clear,1,Low,2018-03-02,False
+4839043708100390,KYC-00778,2017-08-26,Mobile app,Permanent resident,Employed,Salary,31000,30–60k,1000,80,772,9000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-10-07,False
+4839615922685395,KYC-00779,2012-05-03,Online,Citizen,Employed,Salary,36000,30–60k,1000,36,691,6500,1,Document upload,True,True,True,False,Clear,0,Low,2017-09-30,False
+4841313716651064,KYC-00780,2012-10-16,Branch,Citizen,Employed,Salary,20000,<30k,550,43,683,3000,4,Document (in person),True,True,True,False,Clear,0,Low,2018-07-11,False
+4859525594182537,KYC-00781,2015-12-18,Online,Citizen,Self-employed,Business income,13000,<30k,250,64,643,1000,1,Document upload,True,True,True,False,Clear,1,Low,2018-05-15,False
+4873783502705038,KYC-00782,2008-04-20,Online,Citizen,Employed,Salary,74000,60–100k,1600,43,759,15000,4,Database check,True,True,True,False,Clear,1,Low,2017-04-20,False
+4874006077381178,KYC-00783,2014-11-03,Mobile app,Citizen,Employed,Salary,37000,30–60k,750,57,603,3500,1,Document upload,True,True,True,False,Clear,0,Low,2016-09-17,False
+4874017206859125,KYC-00784,2012-09-11,Mobile app,Visa holder,Employed,Salary,26000,<30k,500,60,691,3500,4,Document + biometric,True,True,True,False,Clear,1,Low,2018-10-21,False
+4878364946692291,KYC-00785,2010-07-03,Branch,Citizen,Retired,Pension,38000,30–60k,900,64,657,6000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-05-28,False
+4879265611163287,KYC-00786,2014-05-23,Online,Citizen,Employed,Salary,29000,<30k,950,48,645,4000,1,Document upload,True,True,True,False,Clear,0,Low,2018-12-26,False
+4893092478075970,KYC-00787,2019-08-24,Branch,Citizen,Employed,Salary,54000,30–60k,1300,23,546,2500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-08-24,False
+4904681492230012,KYC-00788,2015-11-23,Mobile app,Citizen,Employed,Salary,50000,30–60k,1600,45,661,7000,2,Document + biometric,True,True,True,False,Clear,0,Low,2016-01-07,False
+4908846471916297,KYC-00789,2010-07-24,Branch,Citizen,Employed,Salary,29000,<30k,900,47,626,5000,3,Document (in person),True,True,True,False,Clear,0,Low,2017-07-14,False
+4914700582394237,KYC-00790,2005-05-20,Branch,Citizen,Employed,Salary,51000,30–60k,1000,35,660,9000,2,Document (in person),True,True,False,False,Clear,0,Low,2017-09-10,False
+4917187576956394,KYC-00791,2000-03-18,Branch,Citizen,Retired,Pension,22000,<30k,550,47,691,4500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-03-07,False
+4922710831011201,KYC-00792,2017-05-31,Mobile app,Citizen,Retired,Pension,28000,<30k,900,46,657,5000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-05-31,False
+4926376199189801,KYC-00793,2012-05-13,Branch,Citizen,Employed,Salary,31000,30–60k,800,41,667,3000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-11-25,False
+4933461930348832,KYC-00794,2013-05-21,Online,Citizen,Employed,Salary,108000,100–150k,3600,74,719,26500,2,Document upload,True,True,True,False,Clear,0,Low,2015-11-12,True
+4935858973307492,KYC-00795,2004-09-14,Branch,Citizen,Employed,Salary,44000,30–60k,1150,33,673,6500,2,Document (in person),True,True,False,False,Clear,0,Low,2017-11-03,False
+4939976756738216,KYC-00796,2013-03-28,Online,Citizen,Employed,Salary,48000,30–60k,700,25,687,9500,1,Database check,True,True,True,False,Clear,1,Low,2017-02-27,False
+4951647200979051,KYC-00797,2006-10-15,Online,Citizen,Employed,Salary,56000,30–60k,900,57,740,9000,1,Database check,True,True,True,False,Clear,1,Low,2015-06-07,True
+4952583804639909,KYC-00798,2017-10-27,Online,Citizen,Employed,Salary,46000,30–60k,1250,36,709,9500,1,Database check,True,True,True,False,Clear,1,Low,2017-10-27,False
+4961003488432306,KYC-00799,2004-04-01,Branch,Citizen,Employed,Salary,68000,60–100k,2100,35,743,16000,5,Document (in person),True,True,False,False,Clear,0,Low,2017-07-21,False
+4969856774088583,KYC-00800,2015-05-28,Branch,Citizen,Employed,Salary,49000,30–60k,1500,34,765,9500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-08-19,False
+4972228199573984,KYC-00801,2014-02-06,Online,Citizen,Employed,Salary,46000,30–60k,1250,47,788,16000,1,Document upload,False,True,True,False,Clear,2,Medium,2016-09-04,True
+4979422371139333,KYC-00802,2011-08-04,Online,Citizen,Retired,Pension,20000,<30k,600,72,651,3000,1,Database check,False,False,True,False,Clear,4,High,2017-12-22,True
+4986925034905735,KYC-00803,2010-01-02,Branch,Citizen,Employed,Salary,29000,<30k,500,41,612,2500,3,Document (in person),True,True,True,False,Clear,0,Low,2015-07-29,True
+4996263498048679,KYC-00804,2009-08-04,Online,Citizen,Employed,Salary,39000,30–60k,1250,54,681,7500,1,Database check,True,True,True,False,Clear,1,Low,2018-11-05,False
+4997733566924489,KYC-00805,2015-03-05,Branch,Citizen,Employed,Salary,85000,60–100k,1050,32,652,8500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-03-23,False
+4998109455173950,KYC-00806,2013-08-22,Online,Citizen,Employed,Salary,42000,30–60k,1000,76,752,10000,2,Document upload,True,True,True,False,Clear,0,Low,2017-04-08,False
+5104807169438134,KYC-00807,2015-08-08,Mobile app,Citizen,Employed,Salary,54000,30–60k,1350,32,684,6500,1,Document upload,True,True,True,False,Clear,0,Low,2017-04-16,False
+5127412150261034,KYC-00808,2009-02-03,Branch,Citizen,Employed,Salary,36000,30–60k,650,52,588,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-07-28,False
+5130484058948421,KYC-00809,2014-01-21,Online,Citizen,Employed,Salary,35000,30–60k,700,38,590,2500,3,Document upload,True,True,True,False,Clear,0,Low,2016-06-23,False
+5144043920225212,KYC-00810,2018-08-17,Mobile app,Permanent resident,Student,Allowance / part-time work,17000,<30k,450,35,680,3500,1,Document + biometric,False,True,True,False,Clear,3,Medium,2018-08-17,False
+5152054598359927,KYC-00811,2009-05-09,Branch,Citizen,Self-employed,Investments,160000,150k+,4250,31,755,48000,3,Document (in person),True,True,True,False,Clear,1,Low,2015-11-19,True
+5154903938030655,KYC-00812,2016-04-02,Online,Citizen,Employed,Salary,31000,30–60k,400,30,658,6000,1,Database check,True,True,True,False,Clear,1,Low,2016-05-19,False
+5289285402893489,KYC-00813,2010-08-07,Online,Citizen,Employed,Salary,31000,30–60k,950,46,673,7500,4,Database check,True,True,True,False,Clear,1,Low,2017-02-17,False
+5301645381939419,KYC-00814,2018-06-24,Branch,Citizen,Retired,Pension,20000,<30k,300,60,576,1500,1,Document (in person),True,True,True,False,Clear,1,Low,2018-06-24,False
+5359543825610251,KYC-00815,2017-12-24,Mobile app,Permanent resident,Employed,Salary,108000,100–150k,2850,64,761,17500,1,Document upload,True,True,True,False,Clear,0,Low,2017-12-24,False
+5388659976630693,KYC-00816,2017-06-12,Online,Citizen,Employed,Salary,76000,60–100k,1600,32,718,19500,1,Database check,True,True,True,False,Clear,1,Low,2017-06-12,False
+5410056176712193,KYC-00817,2018-09-14,Online,Citizen,Employed,Salary,38000,30–60k,1250,76,668,9000,2,Document upload,True,True,True,False,Clear,1,Low,2018-12-31,False
+5456712664803820,KYC-00818,2015-12-25,Mobile app,Citizen,Self-employed,Business income,76000,60–100k,1750,38,709,19500,1,Document + biometric,True,True,True,False,Clear,1,Low,2017-09-27,False
+5456776410929288,KYC-00819,2015-05-11,Online,Citizen,Employed,Salary,32000,30–60k,1050,21,649,4500,2,Document upload,False,True,False,False,Clear,2,Medium,2016-07-17,True
+5501083170975659,KYC-00820,2013-04-26,Online,Citizen,Self-employed,Business income,85000,60–100k,2500,38,802,18500,3,Database check,True,True,True,False,Clear,2,Medium,2018-08-02,False
+5540636818935089,KYC-00821,2016-12-16,Mobile app,Citizen,Employed,Salary,92000,60–100k,1850,55,689,16000,1,Document upload,True,True,True,False,Clear,0,Low,2017-10-27,False
+5559857416065248,KYC-00822,2012-01-31,Online,Citizen,Retired,Pension,22000,<30k,400,26,712,4000,1,Database check,True,True,True,False,Clear,1,Low,2017-04-08,False
+5580563567307107,KYC-00823,2015-10-18,Online,Citizen,Employed,Salary,37000,30–60k,700,58,721,6500,1,Database check,True,True,True,False,Clear,1,Low,2015-10-18,True
+5596347693144598,KYC-00824,2016-06-29,Online,Citizen,Retired,Pension,20000,<30k,500,64,654,3500,1,Database check,True,True,True,False,Clear,1,Low,2017-05-01,False
+6011099828110011,KYC-00825,2019-05-05,Mobile app,Permanent resident,Retired,Pension,28000,<30k,400,43,776,7000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-05-05,False
+6011104316292105,KYC-00826,2011-02-01,Online,Citizen,Employed,Salary,52000,30–60k,1350,42,561,2500,2,Database check,True,True,True,False,Clear,1,Low,2017-05-28,False
+6011109736646996,KYC-00827,2015-10-23,Online,Citizen,Employed,Salary,37000,30–60k,700,65,708,5000,1,Database check,True,True,True,False,Clear,1,Low,2018-06-21,False
+6011148190095209,KYC-00828,2009-10-03,Online,Citizen,Employed,Salary,36000,30–60k,700,14,617,3000,1,Database check,True,True,True,False,Clear,1,Low,2016-09-06,False
+6011149206456997,KYC-00829,2009-03-04,Branch,Citizen,Employed,Salary,14000,<30k,400,29,599,1000,4,Document (in person),True,True,True,False,Clear,0,Low,2017-01-06,False
+6011197122270059,KYC-00830,2012-04-08,Branch,Permanent resident,Employed,Salary,60000,60–100k,1800,34,548,4500,2,Document (in person),True,True,True,False,Clear,0,Low,2017-08-30,False
+6011231546538393,KYC-00831,2013-04-17,Online,Citizen,Employed,Salary,109000,100–150k,1850,40,566,10000,3,Document upload,True,True,True,False,Clear,0,Low,2017-03-19,False
+6011252220172077,KYC-00832,2018-07-02,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,150,42,562,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-07-02,False
+6011305591981276,KYC-00833,2013-01-31,Online,Citizen,Employed,Salary,58000,30–60k,1000,32,797,23500,1,Document upload,True,True,True,False,Clear,0,Low,2018-10-06,False
+6011329966782895,KYC-00834,2013-09-29,Branch,Citizen,Employed,Salary,32000,30–60k,700,63,607,3500,2,Document (in person),True,True,False,False,Clear,0,Low,2018-04-08,False
+6011348830550197,KYC-00835,2010-12-12,Branch,Citizen,Employed,Salary,60000,60–100k,1150,34,735,18000,2,Document (in person),True,True,False,False,Clear,0,Low,2018-08-25,False
+6011360759745864,KYC-00836,2014-05-25,Online,Citizen,Retired,Pension,12000,<30k,350,84,596,1500,1,Database check,True,True,True,False,Clear,1,Low,2016-04-03,False
+6011366578560244,KYC-00837,2016-08-19,Online,Citizen,Employed,Salary,23000,<30k,500,42,584,1500,2,Document upload,True,True,True,False,Clear,0,Low,2016-08-19,False
+6011367958204270,KYC-00838,2018-08-25,Online,Citizen,Employed,Salary,25000,<30k,550,34,677,6000,1,Document upload,True,True,True,False,Clear,1,Low,2018-08-25,False
+6011381817520024,KYC-00839,2015-12-25,Online,Citizen,Employed,Salary,34000,30–60k,800,66,615,4500,1,Database check,True,True,True,False,Clear,1,Low,2018-06-17,False
+6011382886333463,KYC-00840,2015-06-10,Mobile app,Citizen,Retired,Pension,52000,30–60k,1400,61,684,9500,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-10-15,False
+6011388901471808,KYC-00841,2018-01-18,Mobile app,Citizen,Employed,Salary,55000,30–60k,1550,39,685,6500,2,Document + biometric,True,True,True,False,Clear,1,Low,2018-01-28,False
+6011393492413821,KYC-00842,2006-08-14,Branch,Citizen,Employed,Salary,67000,60–100k,1750,52,701,13500,5,Document (in person),True,False,True,False,Clear,1,Low,2017-11-19,False
+6011399591920186,KYC-00843,2012-01-30,Branch,Citizen,Employed,Salary,48000,30–60k,1250,63,683,8500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-02-17,False
+6011438889172900,KYC-00844,2011-04-08,Online,Citizen,Employed,Salary,43000,30–60k,750,55,679,10000,2,Database check,True,True,True,False,Clear,1,Low,2015-10-26,True
+6011477612335392,KYC-00845,2012-12-01,Branch,Citizen,Retired,Pension,20000,<30k,650,40,640,3500,2,Document (in person),True,True,False,False,Clear,0,Low,2016-12-22,False
+6011492816282597,KYC-00846,2012-06-27,Mobile app,Citizen,Employed,Salary,49000,30–60k,750,27,634,8500,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-12-24,False
+6011504998544485,KYC-00847,2014-07-02,Branch,Citizen,Employed,Salary,85000,60–100k,2450,36,685,10000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-04-07,False
+6011518448009279,KYC-00848,2019-11-07,Online,Citizen,Retired,Pension,14000,<30k,250,65,720,4000,1,Document upload,True,True,True,False,Clear,1,Low,2019-11-07,False
+6011542681743618,KYC-00849,2011-11-08,Branch,Citizen,Employed,Salary,71000,60–100k,1950,59,698,14000,2,Document (in person),True,True,True,False,Clear,0,Low,2015-04-10,True
+6011552879910390,KYC-00850,2009-12-27,Online,Citizen,Employed,Salary,28000,<30k,450,50,526,2000,2,Database check,True,True,True,False,Clear,1,Low,2016-11-18,False
+6011581063717667,KYC-00851,2007-10-07,Branch,Citizen,Employed,Salary,36000,30–60k,850,31,713,7500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-03-31,False
+6011603272871604,KYC-00852,2012-03-22,Branch,Citizen,Self-employed,Business income,31000,30–60k,800,48,717,7500,3,Document (in person),True,True,True,False,Clear,1,Low,2016-07-04,False
+6011626928491360,KYC-00853,2017-09-17,Mobile app,Citizen,Employed,Salary,43000,30–60k,1050,58,600,3000,1,Document upload,True,True,True,False,Clear,0,Low,2017-09-17,False
+6011652924285713,KYC-00854,2008-11-08,Online,Citizen,Self-employed,Business income,55000,30–60k,1650,31,697,8000,3,Database check,True,True,False,False,Clear,2,Medium,2018-01-26,False
+6011679934075347,KYC-00855,2010-01-20,Mobile app,Permanent resident,Employed,Salary,41000,30–60k,800,50,745,6000,2,Document upload,True,True,True,False,Clear,0,Low,2015-11-22,True
+6011681934117244,KYC-00856,2015-03-30,Mobile app,Citizen,Employed,Salary,34000,30–60k,750,53,752,9500,1,Document upload,True,True,True,False,Clear,0,Low,2015-12-04,True
+6011693194885790,KYC-00857,2013-12-03,Branch,Citizen,Self-employed,Business income,144000,100–150k,3450,34,754,44000,2,Document (in person),True,True,True,False,Clear,1,Low,2016-04-10,False
+6011706277606006,KYC-00858,2005-01-10,Branch,Citizen,Retired,Pension,32000,30–60k,950,40,716,5500,4,Document (in person),True,True,True,False,Clear,0,Low,2016-07-20,False
+6011724471098086,KYC-00859,2017-04-16,Online,Visa holder,Employed,Salary,86000,60–100k,2000,86,693,13500,1,Database check,True,True,True,False,Clear,2,Medium,2017-04-16,False
+6011732631674654,KYC-00860,2018-05-09,Branch,Citizen,Employed,Salary,53000,30–60k,750,66,687,7000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-05-09,False
+6011826317034777,KYC-00861,2019-01-26,Mobile app,Citizen,Employed,Salary,23000,<30k,750,21,619,3000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-01-26,False
+6011860238257910,KYC-00862,2011-12-22,Branch,Citizen,Retired,Pension,30000,30–60k,550,36,614,4000,3,Document (in person),True,False,True,False,Clear,1,Low,2017-12-18,False
+6011893664860915,KYC-00863,1993-07-30,Online,Citizen,Employed,Salary,72000,60–100k,1600,26,706,17500,4,Database check,True,True,True,False,Clear,1,Low,2016-09-11,False
+6011917798331152,KYC-00864,2013-02-13,Online,Citizen,Employed,Salary,67000,60–100k,1750,29,644,12000,3,Document upload,True,True,True,False,Clear,0,Low,2017-05-05,False
+6011934240159560,KYC-00865,2007-02-22,Branch,Citizen,Employed,Salary,40000,30–60k,850,41,632,4000,1,Document (in person),True,True,False,False,Clear,0,Low,2017-08-28,False
+6011935564104173,KYC-00866,2019-10-02,Online,Citizen,Retired,Pension,66000,60–100k,1500,49,690,17000,1,Database check,True,True,True,False,Clear,2,Medium,2019-10-02,False
+6011948324228984,KYC-00867,2009-08-21,Online,Citizen,Employed,Salary,24000,<30k,350,67,750,8000,2,Database check,True,True,True,False,Clear,1,Low,2015-07-11,True
+6011975266774121,KYC-00868,2013-05-03,Online,Citizen,Retired,Pension,12000,<30k,300,66,670,2500,1,Document upload,True,True,True,False,Clear,0,Low,2016-07-11,False
+6011999606625827,KYC-00869,2016-03-31,Mobile app,Citizen,Employed,Salary,51000,30–60k,1200,24,720,11500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-03-31,False
+6500249000784905,KYC-00870,2019-06-30,Mobile app,Citizen,Employed,Salary,86000,60–100k,2700,41,626,11000,1,Document upload,True,True,True,False,Clear,1,Low,2019-06-30,False
+6501313409525696,KYC-00871,2014-08-12,Online,Citizen,Self-employed,Business income,33000,30–60k,500,31,661,4500,2,Database check,True,True,True,False,Clear,2,Medium,2017-02-06,False
+6502195877055606,KYC-00872,2006-03-18,Branch,Citizen,Employed,Salary,84000,60–100k,1450,49,633,8500,5,Document (in person),True,True,True,False,Clear,0,Low,2017-03-15,False
+6506116513503136,KYC-00873,2009-12-19,Mobile app,Citizen,Employed,Salary,67000,60–100k,1150,73,654,10000,1,Document + biometric,True,False,True,False,Potential match – cleared,3,Medium,2017-10-19,False
+6506982560413523,KYC-00874,2016-11-13,Online,Citizen,Employed,Salary,57000,30–60k,1500,49,726,9500,1,Database check,True,True,True,False,Clear,1,Low,2016-11-13,False
+6511349151405438,KYC-00875,2015-04-05,Online,Citizen,Retired,Pension,17000,<30k,300,61,675,3500,3,Database check,True,True,True,False,Clear,1,Low,2016-05-17,False
+6515067575568369,KYC-00876,2015-12-01,Online,Citizen,Employed,Salary,28000,<30k,850,38,615,2500,1,Database check,True,True,True,False,Clear,1,Low,2018-07-28,False
+6517217825320610,KYC-00877,2014-06-03,Branch,Citizen,Employed,Salary,28000,<30k,400,22,712,5500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-04-18,True
+6517779374888867,KYC-00878,2019-05-02,Online,Citizen,Employed,Salary,60000,60–100k,1150,65,621,8500,1,Document upload,False,True,True,False,Clear,3,Medium,2019-05-02,False
+6523180720198790,KYC-00879,2008-06-10,Mobile app,Citizen,Employed,Salary,52000,30–60k,1000,42,594,4500,3,Document upload,True,True,True,False,Clear,0,Low,2016-05-27,False
+6524376634971418,KYC-00880,2018-07-15,Online,Citizen,Employed,Salary,148000,100–150k,1900,79,801,50000,1,Database check,True,True,True,False,Clear,2,Medium,2018-07-15,False
+6526448584969862,KYC-00881,2016-12-04,Branch,Citizen,Employed,Salary,77000,60–100k,1950,38,676,15000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-10-18,False
+6526777409109795,KYC-00882,2013-10-11,Branch,Citizen,Retired,Pension,15000,<30k,450,57,653,2500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-07-26,False
+6526955903501879,KYC-00883,2012-07-20,Branch,Citizen,Retired,Pension,31000,30–60k,1000,28,686,8000,4,Document (in person),True,True,True,False,Clear,0,Low,2017-04-18,False
+6528911529051375,KYC-00884,2014-05-16,Online,Citizen,Self-employed,Business income,41000,30–60k,600,72,718,10000,1,Document upload,True,True,True,False,Clear,1,Low,2017-07-05,False
+6534628260579800,KYC-00885,2016-12-24,Mobile app,Citizen,Employed,Salary,48000,30–60k,750,42,676,8000,1,Document upload,True,True,True,False,Clear,0,Low,2018-04-07,False
+6535328428560433,KYC-00886,2014-04-19,Mobile app,Citizen,Employed,Salary,91000,60–100k,1950,25,715,13000,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-09-13,False
+6538441737335434,KYC-00887,2016-09-13,Branch,Citizen,Employed,Salary,52000,30–60k,1350,29,523,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-09-13,False
+6538891242532018,KYC-00888,2013-07-01,Branch,Citizen,Self-employed,Business income,47000,30–60k,1000,69,646,7000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-02-04,False
+6539653032686894,KYC-00889,2012-02-02,Branch,Citizen,Employed,Salary,97000,60–100k,2400,68,627,8500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-06-04,True
+6540981358631302,KYC-00890,2017-10-10,Online,Visa holder,Employed,Salary,119000,100–150k,3000,47,736,33000,1,Document upload,True,True,False,False,Clear,1,Low,2018-06-10,False
+6544734391390261,KYC-00891,2008-10-10,Online,Citizen,Employed,Salary,22000,<30k,700,57,680,4500,2,Database check,True,True,True,False,Clear,1,Low,2018-12-02,False
+6547670341037171,KYC-00892,2005-02-15,Branch,Citizen,Retired,Pension,32000,30–60k,800,18,678,4000,3,Document (in person),True,False,False,False,Clear,1,Low,2018-05-06,False
+6550399784335736,KYC-00893,2012-08-24,Branch,Citizen,Employed,Salary,52000,30–60k,650,35,682,9500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-10-21,True
+6554245334757802,KYC-00894,2016-03-12,Mobile app,Citizen,Employed,Salary,63000,60–100k,1850,49,664,12000,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-03-12,False
+6564459919350820,KYC-00895,2015-07-28,Online,Citizen,Employed,Salary,42000,30–60k,850,27,647,5000,1,Database check,True,True,True,False,Clear,1,Low,2015-12-14,True
+6569097840281287,KYC-00896,2011-04-25,Branch,Citizen,Employed,Salary,111000,100–150k,1500,58,728,20500,4,Document (in person),True,True,True,False,Clear,0,Low,2018-03-21,False
+6573561108825071,KYC-00897,2014-03-03,Online,Citizen,Self-employed,Business income,95000,60–100k,1650,32,635,17000,2,Document upload,True,True,False,False,Clear,1,Low,2015-07-18,True
+6577777028615915,KYC-00898,2018-12-11,Mobile app,Citizen,Student,Allowance / part-time work,10000,<30k,200,25,546,1000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-12-11,False
+6592074504369261,KYC-00899,2011-07-28,Online,Citizen,Self-employed,Business income,28000,<30k,600,59,634,3000,1,Database check,True,True,True,False,Clear,2,Medium,2018-05-05,False
+6592243974328236,KYC-00900,2012-10-06,Online,Citizen,Employed,Salary,29000,<30k,750,85,607,2000,2,Database check,True,True,True,False,Clear,1,Low,2016-04-30,False
+6592861994408652,KYC-00901,2013-04-30,Mobile app,Citizen,Employed,Salary,28000,<30k,650,21,605,3500,1,Document upload,True,True,True,False,Clear,0,Low,2018-12-18,False
+6593250708747804,KYC-00902,2006-07-15,Branch,Citizen,Employed,Salary,50000,30–60k,900,33,676,5500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-11-30,True
+6593939509150446,KYC-00903,2011-09-19,Online,Citizen,Employed,Salary,56000,30–60k,1550,20,742,16500,1,Database check,True,False,True,False,Clear,2,Medium,2016-11-06,True
+6595970453799027,KYC-00904,2011-08-26,Online,Citizen,Employed,Salary,89000,60–100k,2900,29,737,25500,3,Database check,True,True,True,False,Potential match – cleared,3,Medium,2017-08-11,False
+6596735789587928,KYC-00905,1999-03-16,Branch,Citizen,Self-employed,Business income,55000,30–60k,1550,40,726,10500,2,Document (in person),True,True,False,False,Clear,1,Low,2017-03-23,False
+6597248210463122,KYC-00906,2003-08-06,Branch,Citizen,Employed,Salary,73000,60–100k,1150,57,728,20000,4,Document (in person),True,True,True,False,Clear,0,Low,2016-11-12,False
+6597888193422452,KYC-00907,2007-06-09,Branch,Citizen,Employed,Salary,73000,60–100k,1100,53,655,13000,3,Document (in person),True,True,True,False,Clear,0,Low,2017-03-07,False
+4018105808392773675,KYC-00908,2016-03-25,Branch,Citizen,Retired,Pension,26000,<30k,700,74,714,5000,2,Document (in person),True,True,True,False,Clear,0,Low,2017-02-03,False
+4040099974063068803,KYC-00909,2012-09-27,Online,Citizen,Employed,Salary,38000,30–60k,500,54,715,9500,5,Document upload,True,True,True,False,Clear,0,Low,2016-01-16,False
+4044436772018844508,KYC-00910,2016-08-19,Mobile app,Citizen,Employed,Salary,119000,100–150k,3100,58,652,15500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-08-19,False
+4045036286570100739,KYC-00911,2015-04-29,Online,Citizen,Retired,Pension,47000,30–60k,1000,29,717,13500,1,Document upload,True,True,True,False,Clear,0,Low,2018-01-21,False
+4063094974360571498,KYC-00912,2013-04-19,Branch,Citizen,Employed,Salary,87000,60–100k,2300,27,661,16500,2,Document (in person),True,True,True,False,Clear,0,Low,2015-05-08,True
+4089096483689733451,KYC-00913,2017-04-13,Online,Citizen,Employed,Salary,45000,30–60k,1450,61,720,7500,1,Document upload,True,True,True,False,Clear,0,Low,2017-04-13,False
+4092452671396169678,KYC-00914,2002-03-14,Branch,Citizen,Retired,Pension,34000,30–60k,600,42,693,4000,3,Document (in person),True,True,True,False,Clear,0,Low,2018-04-27,False
+4102003771126577611,KYC-00915,2016-02-14,Online,Citizen,Employed,Salary,54000,30–60k,850,22,747,14500,2,Document upload,True,True,True,False,Clear,0,Low,2016-02-14,False
+4110266553600176127,KYC-00916,2017-10-18,Mobile app,Citizen,Employed,Salary,29000,<30k,450,54,612,3500,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-11-14,False
+4128730454058057622,KYC-00917,2011-06-24,Online,Citizen,Retired,Pension,23000,<30k,650,37,561,1000,1,Database check,True,True,True,False,Clear,1,Low,2016-07-22,False
+4162872756672112717,KYC-00918,2018-11-01,Mobile app,Citizen,Self-employed,Business income,32000,30–60k,800,47,687,6000,1,Document + biometric,True,True,True,False,Clear,2,Medium,2018-11-01,False
+4180192513916047166,KYC-00919,2018-06-24,Mobile app,Citizen,Retired,Pension,9000,<30k,150,68,683,1500,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-06-24,False
+4181833256558613886,KYC-00920,2015-03-23,Mobile app,Citizen,Self-employed,Business income,64000,60–100k,1300,41,573,6500,2,Document + biometric,True,True,True,False,Clear,1,Low,2017-11-16,False
+4208110975550360171,KYC-00921,2017-11-27,Mobile app,Citizen,Self-employed,Business income,96000,60–100k,2900,55,695,15000,1,Document upload,True,True,True,False,Clear,1,Low,2018-02-22,False
+4209696857872688515,KYC-00922,2013-02-17,Branch,Citizen,Employed,Salary,145000,100–150k,3100,33,701,17500,2,Document (in person),True,True,False,False,Clear,0,Low,2018-04-13,False
+4210078554961359092,KYC-00923,2006-09-12,Online,Citizen,Employed,Salary,120000,100–150k,2200,41,744,30000,2,Database check,True,True,True,False,Clear,1,Low,2017-12-30,False
+4220495028289516646,KYC-00924,2016-08-17,Online,Citizen,Employed,Salary,42000,30–60k,700,38,696,10500,1,Document upload,True,True,True,False,Clear,0,Low,2018-05-05,False
+4223708906367574214,KYC-00925,2011-09-24,Online,Citizen,Employed,Salary,53000,30–60k,800,44,652,10500,1,Database check,True,True,True,False,Clear,1,Low,2018-03-21,False
+4225990116481262579,KYC-00926,2015-06-12,Mobile app,Citizen,Employed,Salary,74000,60–100k,1350,52,650,7500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-05-20,False
+4226219726886852999,KYC-00927,2008-07-07,Online,Citizen,Employed,Salary,43000,30–60k,700,60,754,9500,2,Database check,True,True,True,False,Clear,1,Low,2018-11-30,False
+4243521033756702612,KYC-00928,2019-03-09,Mobile app,Citizen,Employed,Salary,62000,60–100k,1150,28,641,9000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-03-09,False
+4244953610136705533,KYC-00929,2015-10-14,Mobile app,Citizen,Employed,Salary,48000,30–60k,1050,45,675,6500,2,Document + biometric,True,False,False,False,Clear,1,Low,2016-08-06,False
+4255397449664185994,KYC-00930,2009-11-17,Online,Citizen,Retired,Pension,24000,<30k,400,82,738,7000,2,Database check,True,True,True,False,Clear,1,Low,2015-07-30,True
+4257110907449569602,KYC-00931,2018-02-14,Online,Citizen,Student,Allowance / part-time work,11000,<30k,200,54,620,1000,1,Document upload,True,True,True,False,Clear,1,Low,2018-09-06,False
+4292743669224718067,KYC-00932,2014-11-06,Online,Citizen,Employed,Salary,58000,30–60k,1500,51,684,8500,1,Database check,True,True,True,False,Clear,1,Low,2018-07-06,False
+4292902571056973207,KYC-00933,2016-01-31,Mobile app,Citizen,Employed,Salary,22000,<30k,550,26,549,2000,1,Document + biometric,False,True,True,False,Clear,2,Medium,2018-09-07,False
+4301028321766222513,KYC-00934,2016-09-29,Branch,Citizen,Employed,Salary,31000,30–60k,450,39,667,6000,1,Document (in person),True,True,True,False,Clear,0,Low,2018-03-31,False
+4311368326621416041,KYC-00935,2014-06-23,Branch,Citizen,Employed,Salary,30000,30–60k,600,12,570,2000,1,Document (in person),True,True,True,False,Clear,0,Low,2016-02-21,False
+4312133045694601139,KYC-00936,2001-08-11,Online,Citizen,Employed,Salary,41000,30–60k,950,56,725,7500,4,Database check,True,True,False,False,Clear,1,Low,2017-04-24,False
+4319584480204988982,KYC-00937,2011-11-18,Branch,Citizen,Employed,Salary,74000,60–100k,1800,28,698,14500,5,Document (in person),False,True,True,False,Clear,2,Medium,2017-06-24,False
+4352307151555405069,KYC-00938,2019-11-02,Mobile app,Citizen,Retired,Pension,19000,<30k,550,68,692,4000,1,Document + biometric,True,True,True,False,Clear,1,Low,2019-11-02,False
+4355790796238264643,KYC-00939,2006-07-28,Branch,Citizen,Self-employed,Business income,166000,150k+,2750,48,684,27000,2,Document (in person),True,False,True,False,Clear,2,Medium,2017-01-12,False
+4358137750029944984,KYC-00940,2018-02-26,Mobile app,Citizen,Employed,Salary,31000,30–60k,650,29,646,4000,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-02-26,False
+4373370572092720777,KYC-00941,1999-05-22,Branch,Citizen,Employed,Salary,56000,30–60k,700,35,686,13500,2,Document (in person),True,True,True,False,Clear,0,Low,2018-11-01,False
+4379260813815979609,KYC-00942,2013-07-04,Online,Citizen,Employed,Salary,51000,30–60k,800,62,729,13000,2,Database check,True,False,True,False,Clear,2,Medium,2017-07-26,False
+4390966588600992777,KYC-00943,2008-12-08,Branch,Visa holder,Employed,Salary,58000,30–60k,1400,34,728,8000,3,Document (in person),True,True,True,False,Clear,1,Low,2017-02-23,False
+4400011257587661852,KYC-00944,2012-05-19,Mobile app,Citizen,Employed,Salary,65000,60–100k,800,74,681,15000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-10-16,False
+4410582919485061752,KYC-00945,2011-10-21,Branch,Citizen,Employed,Salary,79000,60–100k,2100,121,779,15500,3,Document (in person),True,True,True,False,Clear,0,Low,2016-03-30,False
+4426075337087318654,KYC-00946,2016-11-08,Branch,Citizen,Employed,Salary,62000,60–100k,1100,29,687,10500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-11-08,False
+4428780983793657331,KYC-00947,2013-02-25,Mobile app,Citizen,Retired,Pension,25000,<30k,400,26,651,5000,1,Document + biometric,True,True,True,False,Clear,0,Low,2018-04-04,False
+4457136361520330110,KYC-00948,2019-08-20,Branch,Citizen,Retired,Pension,19000,<30k,350,67,583,1500,1,Document (in person),True,True,True,False,Clear,1,Low,2019-08-20,False
+4457732997086323466,KYC-00949,2012-08-29,Online,Citizen,Employed,Salary,20000,<30k,450,78,705,3500,1,Document upload,False,True,True,False,Clear,2,Medium,2018-09-01,False
+4462038234743679432,KYC-00950,2012-06-15,Online,Citizen,Retired,Pension,16000,<30k,250,46,633,2500,1,Database check,True,True,True,False,Clear,1,Low,2018-09-11,False
+4467456915153312231,KYC-00951,2006-07-07,Branch,Citizen,Self-employed,Business income,130000,100–150k,1900,38,721,40000,2,Document (in person),True,True,False,False,Clear,1,Low,2016-05-24,False
+4469777115158234880,KYC-00952,2008-10-16,Mobile app,Citizen,Employed,Salary,49000,30–60k,900,33,661,10500,2,Document upload,True,True,True,False,Clear,0,Low,2017-10-08,False
+4477156602511939689,KYC-00953,2015-03-31,Online,Citizen,Employed,Salary,47000,30–60k,1250,52,683,8500,2,Database check,True,True,True,False,Clear,1,Low,2016-04-08,False
+4481172224716138389,KYC-00954,2019-04-22,Online,Citizen,Employed,Salary,40000,30–60k,950,45,726,12500,1,Database check,True,True,True,False,Clear,2,Medium,2019-04-22,False
+4488258847705225890,KYC-00955,2005-02-16,Online,Citizen,Retired,Pension,24000,<30k,400,134,682,4000,5,Database check,True,True,False,False,Clear,1,Low,2017-03-07,False
+4497451418073897078,KYC-00956,2012-09-02,Branch,Citizen,Employed,Salary,19000,<30k,400,52,648,3500,1,Document (in person),True,True,True,False,Clear,0,Low,2016-11-27,False
+4497913965512794052,KYC-00957,2011-08-15,Branch,Permanent resident,Employed,Salary,67000,60–100k,1850,35,723,15500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-12-10,True
+4502539526809429801,KYC-00958,2013-10-14,Online,Citizen,Employed,Salary,25000,<30k,650,52,684,3000,1,Database check,True,True,False,False,Clear,1,Low,2015-04-29,True
+4503101193493052864,KYC-00959,2012-07-26,Mobile app,Citizen,Employed,Salary,59000,30–60k,1550,57,700,11000,1,Document + biometric,True,True,True,False,Clear,0,Low,2017-07-20,False
+4512828414983801773,KYC-00960,2007-07-29,Online,Citizen,Employed,Salary,107000,100–150k,1850,34,763,17000,4,Database check,True,True,False,False,Clear,1,Low,2017-07-02,False
+4536996888716062123,KYC-00961,2017-11-13,Online,Visa holder,Employed,Salary,66000,60–100k,1900,59,678,15000,1,Database check,True,True,True,False,Clear,2,Medium,2018-02-07,False
+4560004149983868183,KYC-00962,2010-05-09,Mobile app,Visa holder,Employed,Salary,39000,30–60k,900,41,787,7000,2,Document + biometric,True,True,True,False,Clear,1,Low,2016-08-31,False
+4560395181594436016,KYC-00963,2016-12-09,Online,Citizen,Employed,Salary,36000,30–60k,900,42,691,4500,1,Document upload,True,True,True,False,Clear,0,Low,2016-12-09,False
+4584931703207308232,KYC-00964,2013-09-29,Branch,Citizen,Self-employed,Business income,114000,100–150k,1900,69,750,25000,3,Document (in person),True,True,True,False,Clear,1,Low,2016-06-14,False
+4587657402165341815,KYC-00965,2018-07-02,Mobile app,Citizen,Student,Allowance / part-time work,8000,<30k,150,29,585,1000,1,Document upload,True,True,True,False,Clear,1,Low,2018-07-02,False
+4599735407877245080,KYC-00966,2016-11-01,Mobile app,Citizen,Employed,Salary,58000,30–60k,1350,48,711,9500,1,Document + biometric,True,True,True,False,Clear,0,Low,2016-11-01,False
+4646845581490336108,KYC-00967,2008-06-24,Branch,Citizen,Employed,Salary,23000,<30k,400,30,709,5000,1,Document (in person),True,True,True,False,Clear,0,Low,2015-04-18,True
+4653178848915023204,KYC-00968,2016-01-07,Mobile app,Citizen,Employed,Salary,44000,30–60k,1250,59,593,4000,3,Document + biometric,True,True,True,False,Clear,0,Low,2016-12-12,False
+4659625317833446364,KYC-00969,2018-10-04,Mobile app,Citizen,Employed,Salary,88000,60–100k,1200,43,660,13500,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-10-04,False
+4661996144291811856,KYC-00970,2009-05-30,Online,Citizen,Employed,Salary,32000,30–60k,450,70,698,6000,4,Database check,True,True,True,False,Clear,1,Low,2015-09-24,True
+4666314527820883145,KYC-00971,2018-04-15,Branch,Citizen,Employed,Salary,81000,60–100k,1100,29,744,22500,1,Document (in person),True,True,True,False,Clear,1,Low,2018-09-14,False
+4689147265057948423,KYC-00972,2007-08-09,Branch,Citizen,Self-employed,Business income,83000,60–100k,1600,32,692,21000,4,Document (in person),True,False,False,False,Clear,2,Medium,2017-10-06,False
+4710826438164847414,KYC-00973,2001-05-28,Branch,Citizen,Self-employed,Business income,79000,60–100k,2150,25,739,12500,2,Document (in person),True,True,True,False,Potential match – cleared,3,Medium,2017-09-27,False
+4714017207228610634,KYC-00974,2016-10-06,Online,Citizen,Retired,Pension,47000,30–60k,650,28,776,13500,1,Database check,True,True,True,False,Clear,1,Low,2016-10-06,False
+4715741951931168360,KYC-00975,2007-01-24,Branch,Citizen,Retired,Pension,23000,<30k,500,45,672,4000,4,Document (in person),True,True,True,False,Clear,0,Low,2016-12-22,False
+4725837176265195730,KYC-00976,2018-07-07,Branch,Citizen,Employed,Salary,29000,<30k,850,119,603,3000,1,Document (in person),True,True,True,False,Clear,1,Low,2018-07-07,False
+4736845434667908128,KYC-00977,2016-02-20,Branch,Citizen,Retired,Pension,17000,<30k,450,36,713,3000,1,Document (in person),True,True,True,False,Clear,0,Low,2017-04-18,False
+4742883543039288059,KYC-00978,2015-06-15,Mobile app,Citizen,Employed,Salary,76000,60–100k,1200,92,717,17500,2,Document + biometric,True,True,True,False,Clear,0,Low,2018-10-26,False
+4756039869079882102,KYC-00979,2016-05-17,Branch,Citizen,Employed,Salary,88000,60–100k,1950,103,777,17500,1,Document (in person),False,True,True,False,Clear,2,Medium,2017-09-03,False
+4761403817546679245,KYC-00980,2011-07-02,Branch,Citizen,Employed,Salary,44000,30–60k,1200,30,677,10500,2,Document (in person),True,True,True,False,Clear,0,Low,2016-06-30,False
+4769426683924058915,KYC-00981,2007-02-08,Branch,Citizen,Employed,Salary,42000,30–60k,550,65,739,8000,4,Document (in person),True,True,True,False,Clear,0,Low,2018-02-28,False
+4792627764422477317,KYC-00982,2007-05-16,Branch,Citizen,Employed,Salary,57000,30–60k,1700,32,664,11500,3,Document (in person),True,False,True,False,Clear,1,Low,2016-10-20,False
+4797297220948468262,KYC-00983,2009-03-12,Online,Citizen,Employed,Salary,22000,<30k,650,34,574,1500,1,Database check,False,True,False,False,Clear,3,Medium,2018-12-06,False
+4798937978667559470,KYC-00984,2013-03-12,Branch,Citizen,Employed,Salary,116000,100–150k,3050,118,732,26500,1,Document (in person),True,True,True,False,Clear,0,Low,2015-05-15,True
+4810789809665942990,KYC-00985,2017-11-28,Mobile app,Citizen,Employed,Salary,68000,60–100k,1700,32,683,16000,2,Document + biometric,True,True,False,False,Clear,0,Low,2018-01-18,False
+4810839835482794272,KYC-00986,2013-12-04,Branch,Citizen,Employed,Salary,61000,60–100k,1100,34,670,7500,1,Document (in person),True,True,True,False,Clear,0,Low,2018-12-01,False
+4855488158131690372,KYC-00987,2011-09-29,Online,Citizen,Employed,Salary,33000,30–60k,1000,41,615,4500,1,Database check,True,True,True,False,Clear,1,Low,2018-12-27,False
+4855853415727304322,KYC-00988,2011-06-07,Branch,Citizen,Employed,Salary,70000,60–100k,1500,141,707,11500,1,Document (in person),True,True,True,True,Clear,3,Medium,2016-12-11,True
+4861310130652566408,KYC-00989,2003-08-29,Branch,Citizen,Employed,Salary,68000,60–100k,850,60,661,8500,4,Document (in person),True,True,False,False,Clear,0,Low,2018-02-16,False
+4890424426862856940,KYC-00990,2008-07-16,Branch,Citizen,Self-employed,Business income,44000,30–60k,650,68,567,4500,2,Document (in person),True,True,False,False,Clear,1,Low,2016-09-12,False
+4897067971111209737,KYC-00991,2018-05-12,Mobile app,Citizen,Employed,Salary,77000,60–100k,1250,32,686,14500,1,Document + biometric,True,True,True,False,Clear,1,Low,2018-06-02,False
+4906628655840914250,KYC-00992,2011-03-07,Online,Citizen,Employed,Salary,51000,30–60k,1300,33,642,7000,5,Database check,True,True,True,False,Clear,1,Low,2017-04-17,False
+4911818930706644725,KYC-00993,2018-05-13,Branch,Citizen,Retired,Pension,36000,30–60k,850,42,677,7000,1,Document (in person),True,True,False,False,Clear,1,Low,2018-05-13,False
+4956828990005111019,KYC-00994,1998-12-21,Branch,Citizen,Employed,Salary,40000,30–60k,650,54,621,6500,4,Document (in person),True,False,True,False,Clear,1,Low,2016-02-22,False
+4958589671582726883,KYC-00995,2014-11-27,Mobile app,Citizen,Retired,Pension,25000,<30k,350,54,659,3000,3,Document + biometric,True,True,True,False,Clear,0,Low,2015-11-11,True
+4973530368125489546,KYC-00996,2016-03-10,Online,Citizen,Self-employed,Business income,64000,60–100k,1150,21,727,10000,3,Database check,False,True,True,False,Clear,4,High,2017-10-05,True
+4980323467523543940,KYC-00997,2002-07-20,Branch,Citizen,Retired,Pension,33000,30–60k,450,31,768,6000,2,Document (in person),True,True,True,False,Clear,0,Low,2018-12-16,False
+4989847570577635369,KYC-00998,2012-07-08,Online,Citizen,Employed,Salary,37000,30–60k,1100,38,600,2500,1,Database check,False,True,True,False,Clear,3,Medium,2018-08-30,False
+4992346398065154184,KYC-00999,2016-04-04,Mobile app,Citizen,Self-employed,Business income,56000,30–60k,1000,56,775,20500,1,Document + biometric,False,True,True,False,Clear,3,Medium,2018-10-02,False

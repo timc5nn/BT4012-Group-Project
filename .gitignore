@@ -1,4 +1,6 @@
-data/
+data/*
+# Shared synthetic KYC table: one committed copy so everyone uses identical profiles
+!data/kyc_customers.csv
 .DS_Store
 .ipynb_checkpoints/
 __pycache__/
