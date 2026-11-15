@@ -10,11 +10,13 @@ import pytest
 
 from agent.data import RAW_FILES, TransactionStore
 from agent.config import DATA_DIR
-from agent.llm import HISTORY_TOOLS, ChatResponse, LLMReviewer, parse_decision, prepare_tool_arguments, validate_evidence
+from agent.llm import ALL_TOOLS, HISTORY_TOOLS, ChatResponse, LLMReviewer, parse_decision, prepare_tool_arguments, validate_evidence
 from agent.schemas import Case
 from agent.tools import CaseTools
 
 ANSWER = {"decision": "fraud", "confidence": 0.9, "evidence": ["$900 vs usual $40"], "case_note": "Out of character."}
+PRECOLLECTED = [{"name": name, "arguments": {"limit": 20} if name == "get_transaction_history" else {}}
+                for name in ALL_TOOLS]  # every enabled tool runs before the first model turn
 
 
 def answer_for(case):
@@ -67,7 +69,7 @@ def case_and_tools(store):
     return case, lambda: CaseTools(store, row.cc_num, time)
 
 
-def test_baseline_evidence_is_collected_before_decision(case_and_tools):
+def test_all_tools_are_collected_before_decision(case_and_tools):
     case, make_tools = case_and_tools
     backend = ScriptedBackend([answer(json.dumps(answer_for(case)))])
     reviewer = LLMReviewer(backend)
@@ -75,10 +77,11 @@ def test_baseline_evidence_is_collected_before_decision(case_and_tools):
     decision = reviewer.review(case, tools)
 
     assert decision.decision == "fraud" and decision.confidence == 0.9
-    assert [c["name"] for c in tools.calls] == ["get_spending_summary"]
+    assert tools.calls == PRECOLLECTED
     assert reviewer.last_usage == {"model": "test-model", "turns": 1, "input_tokens": 100, "output_tokens": 50}
     evidence_message = backend.sent[0]["messages"][2]["content"]
     assert "required_tool_results" in evidence_message
+    assert all(name in evidence_message for name in ALL_TOOLS)
     assert "is_fraud" not in evidence_message
 
 
@@ -98,10 +101,7 @@ def test_model_can_select_additional_tool(case_and_tools):
     reviewer = LLMReviewer(backend)
     tools = make_tools()
     reviewer.review(case, tools)
-    assert tools.calls == [
-        {"name": "get_spending_summary", "arguments": {}},
-        {"name": "get_transaction_history", "arguments": {"limit": 5}},
-    ]
+    assert tools.calls == PRECOLLECTED + [{"name": "get_transaction_history", "arguments": {"limit": 5}}]
 
 
 def test_unsupported_numeric_claim_prompts_for_targeted_tool(case_and_tools):
@@ -118,10 +118,7 @@ def test_unsupported_numeric_claim_prompts_for_targeted_tool(case_and_tools):
     reviewer = LLMReviewer(backend)
     tools = make_tools()
     reviewer.review(case, tools)
-    assert tools.calls == [
-        {"name": "get_spending_summary", "arguments": {}},
-        {"name": "get_amount_deviation", "arguments": {}},
-    ]
+    assert tools.calls == PRECOLLECTED + [{"name": "get_amount_deviation", "arguments": {}}]
 
 
 def test_kyc_tool_removed_from_model_choices(case_and_tools):
@@ -131,7 +128,8 @@ def test_kyc_tool_removed_from_model_choices(case_and_tools):
     tools = make_tools()
     reviewer.review(case, tools)
     assert "get_kyc_profile" not in backend.sent[0]["tools"]
-    assert [c["name"] for c in tools.calls] == ["get_spending_summary"]
+    assert [c["name"] for c in tools.calls] == HISTORY_TOOLS  # only the enabled tools are pre-collected
+    assert "annual_income" not in backend.sent[0]["messages"][2]["content"]
 
 
 def test_malformed_answer_retried_once(case_and_tools):
@@ -166,7 +164,7 @@ def test_customer_id_argument_still_returns_the_bound_profile(case_and_tools):
     tools = make_tools()
     reviewer.review(case, tools)
     reviewer.ask(reviewer.last_messages, tools, "Show me two recent transactions.")
-    assert tools.calls[0] == {"name": "get_spending_summary", "arguments": {}}
+    assert tools.calls[:len(PRECOLLECTED)] == PRECOLLECTED
     assert tools.calls[-1] == {"name": "get_transaction_history", "arguments": {"limit": 2}}
     assert "transactions" in backend.sent[1]["messages"][-1]["content"]
 

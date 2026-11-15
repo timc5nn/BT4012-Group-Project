@@ -1,0 +1,11 @@
+# Qwen 2.5 3B with an 8,192-token context window for the fraud reviewer.
+#
+# Ollama gives models a 4,096-token window by default, and its OpenAI-compatible
+# endpoint ignores per-request num_ctx. A review prompt with all eight tool results
+# can exceed 4,096 tokens, and Ollama then silently drops the start of the
+# conversation (including the system prompt). Create this variant once:
+#
+#     ollama pull qwen2.5:3b
+#     ollama create qwen2.5:3b-8k -f ollama/qwen2.5-3b-8k.Modelfile
+FROM qwen2.5:3b
+PARAMETER num_ctx 8192

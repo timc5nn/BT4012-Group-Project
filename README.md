@@ -39,8 +39,20 @@ python -m agent.pipeline run --split val --sample 20 --reviewer llm --provider o
 
 The LLM reviewer (`agent/llm.py`) works with any OpenAI-compatible API: `openai`, `gemini`, `openrouter` or a local `ollama`. Start with a 20-case pilot to measure tokens and cost per case before larger runs.
 
-Before the LLM analyses a case, the reviewer collects the enabled case-bound tools
-and runs deterministic amount and transaction-velocity checks. Numeric evidence is
+For a local model, create the 8k-context Qwen variant once. Ollama's default 4,096-token
+window is too small for a prompt carrying all eight tool results, and it truncates silently:
+
+```bash
+ollama pull qwen2.5:3b
+ollama create qwen2.5:3b-8k -f ollama/qwen2.5-3b-8k.Modelfile
+python -m agent.pipeline run --split val --sample 20 --reviewer llm --rag --provider ollama --model qwen2.5:3b-8k
+```
+
+Before the LLM analyses a case, the reviewer runs every enabled case-bound tool (all
+eight by default; `--no-kyc` removes the KYC tool) and puts the results in the prompt,
+then runs deterministic amount and transaction-velocity checks. In a 20-case pilot where
+the model had to choose its own lookups, qwen2.5:3b never called a tool and invented the
+facts instead, so evidence collection is done in code. Numeric evidence is
 validated against the collected case data. Reviews below the configured confidence
 threshold are returned as `needs_human_review` rather than being auto-resolved.
 

@@ -74,10 +74,9 @@ class RAGReviewer(LLMReviewer):
             f"amount {case.amount} customer fraud review xgboost score {case.xgb_score}"
         )
         self.last_retrieval = self.retriever.retrieve(query, self.top_k)
-        self.additional_context = "\n\n".join(
-            f"[{doc.document_id} | {doc.topic} | retrieval_score={doc.score}]\n{doc.text}"
-            for doc in self.last_retrieval
-        )
+        # Only the guidance text goes to the model. Document ids and retrieval scores stay
+        # in the run log: the pilot showed the model citing a retrieval score as evidence.
+        self.additional_context = "\n\n".join(doc.text for doc in self.last_retrieval)
         try:
             decision = super().review(case, tools)
             decision_index = next(

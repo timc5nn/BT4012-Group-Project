@@ -16,7 +16,7 @@ from agent.reviewers import RAGReviewer
 from agent.schemas import Case
 from agent.tools import CaseTools
 
-MODEL = "qwen2.5:3b"
+MODEL = "qwen2.5:3b-8k"  # qwen2.5:3b with an 8k context window; see ollama/qwen2.5-3b-8k.Modelfile
 PROVIDER = "ollama"
 SAMPLE_COUNT = 6
 

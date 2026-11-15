@@ -25,7 +25,6 @@ from .tools import TOOL_DEFINITIONS
 
 ALL_TOOLS = [d["name"] for d in TOOL_DEFINITIONS]
 HISTORY_TOOLS = ["get_transaction_history", "get_spending_summary"]
-REQUIRED_TOOLS = ["get_spending_summary"]
 
 # Base URLs and key variables per provider. Check them against the provider's
 # current docs before the first run; they are the only provider-specific part.
@@ -270,18 +269,21 @@ class LLMReviewer:
         self.last_transcript = []  # display events for one review: user, assistant, tool, note
 
     def _collect_required_tools(self, tools):
-        """Collect the minimum baseline evidence before the first LLM turn."""
+        """Run every enabled tool before the first LLM turn.
+
+        The tools are local, deterministic and cheap, so the model gets the full
+        evidence up front instead of choosing lookups. In a 20-case pilot where only
+        the spending summary was pre-collected, qwen2.5:3b never called another tool
+        and invented merchant and velocity facts it had not looked up.
+        """
         evidence = {}
         calls = []
-        enabled = set(self.allowed_tools)
-        for name in REQUIRED_TOOLS:
-            if name not in enabled:
-                continue
+        for name in self.allowed_tools:
             arguments = {"limit": 20} if name == "get_transaction_history" else {}
             calls.append({"name": name, "arguments": arguments})
         self.last_transcript.append({
             "role": "assistant",
-            "text": "Collected the required case-bound evidence before analysis.",
+            "text": "Collected all enabled case-bound evidence before analysis.",
             "tool_calls": calls,
         })
         for call in calls:
@@ -312,8 +314,9 @@ class LLMReviewer:
             "text": "Deterministic checks: " + " ".join(findings),
         })
         messages.append(backend.user(
-            "The required evidence has already been collected before analysis. "
-            "Use it as the primary source of truth:\n" + json.dumps(evidence_context, default=str)
+            "Every available tool has already been run for this case; the results are below. "
+            "They are the only source of customer-specific facts. If a result is missing or "
+            "reports an error, say so instead of guessing:\n" + json.dumps(evidence_context, default=str)
         ))
         if self.additional_context:
             messages.append(backend.user(
