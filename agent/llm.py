@@ -240,7 +240,7 @@ def derived_numeric_values(evidence):
             values.append(float(amount) / float(category_median))
         deviation = evidence.get("get_amount_deviation", {})
         for scope in ("overall", "category", "merchant"):
-            median = deviation.get(scope, {}).get("median")
+            median = (deviation.get(scope) or {}).get("median")
             if median:
                 values.append(float(amount) / float(median))
     return values
@@ -336,7 +336,13 @@ class LLMReviewer:
             messages.append(response.assistant_message)
 
             if response.tool_calls:
-                if self._dispatch_tool_calls(response, tools, messages):
+                if self._dispatch_tool_calls(
+                    response, tools, messages, evidence_context["required_tool_results"]
+                ):
+                    evidence_context["derived_numeric_values"] = derived_numeric_values({
+                        **evidence_context["required_tool_results"],
+                        "flagged_transaction": evidence_context["flagged_transaction"],
+                    })
                     saw_tool_data = True
                 continue
 
@@ -357,10 +363,20 @@ class LLMReviewer:
                 if retried_format:
                     raise
                 retried_format = True
-                messages.append(backend.user(
-                    f"That reply could not be read as a decision ({error}). "
-                    "Reply with only the JSON object described in your instructions."
-                ))
+                if "unsupported number" in str(error):
+                    retry_message = (
+                        f"That reply used unsupported numeric evidence ({error}). "
+                        "Call the relevant available tool, such as get_amount_deviation, "
+                        "get_merchant_history, or get_velocity_profile, before deciding again. "
+                        "Then use only values from the flagged transaction, tool results, or "
+                        "calculated ratios based on those values. Reply with only the decision JSON."
+                    )
+                else:
+                    retry_message = (
+                        f"That reply could not be read as a decision ({error}). "
+                        "Reply with only the JSON object described in your instructions."
+                    )
+                messages.append(backend.user(retry_message))
                 self.last_transcript.append({
                     "role": "note",
                     "text": f"That reply was not a valid decision ({error}). Asking again.",
@@ -422,7 +438,7 @@ class LLMReviewer:
         self.last_messages = messages
         raise RuntimeError(f"no answer after {self.max_turns} model turns")
 
-    def _dispatch_tool_calls(self, response, tools, messages):
+    def _dispatch_tool_calls(self, response, tools, messages, evidence=None):
         """Run one round of tool calls. Returns whether any call returned data."""
         saw_data = False
         self.last_transcript.append({
@@ -446,6 +462,8 @@ class LLMReviewer:
             if isinstance(result, dict) and "error" not in result:
                 saw_data = True
             messages.append(self.backend.tool_result(call["id"], result))
+            if evidence is not None and isinstance(result, dict) and "error" not in result:
+                evidence[call["name"]] = result
             self.last_transcript.append({
                 "role": "tool",
                 "name": call["name"],

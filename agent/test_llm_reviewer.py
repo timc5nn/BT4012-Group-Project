@@ -104,6 +104,26 @@ def test_model_can_select_additional_tool(case_and_tools):
     ]
 
 
+def test_unsupported_numeric_claim_prompts_for_targeted_tool(case_and_tools):
+    case, make_tools = case_and_tools
+    invalid = {
+        **answer_for(case),
+        "evidence": ["The amount was 86.6 times the merchant median."],
+    }
+    backend = ScriptedBackend([
+        answer(json.dumps(invalid)),
+        tool_call("get_amount_deviation", {}),
+        answer(json.dumps(answer_for(case))),
+    ])
+    reviewer = LLMReviewer(backend)
+    tools = make_tools()
+    reviewer.review(case, tools)
+    assert tools.calls == [
+        {"name": "get_spending_summary", "arguments": {}},
+        {"name": "get_amount_deviation", "arguments": {}},
+    ]
+
+
 def test_kyc_tool_removed_from_model_choices(case_and_tools):
     case, make_tools = case_and_tools
     backend = ScriptedBackend([answer(json.dumps(answer_for(case)))])
