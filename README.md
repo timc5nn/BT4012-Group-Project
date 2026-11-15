@@ -42,8 +42,32 @@ and runs deterministic amount and transaction-velocity checks. Numeric evidence 
 validated against the collected case data. Reviews below the configured confidence
 threshold are returned as `needs_human_review` rather than being auto-resolved.
 
+The case-bound tools also provide merchant familiarity, amount deviation, velocity
+windows, transaction-location comparisons, and XGBoost threshold context. These
+lookups use only data strictly before the flagged transaction and never expose the
+fraud label.
+
 The Streamlit chat stores each session under `data/agent_runs/chat_sessions/` and
 keeps its session ID in the dashboard URL. Refreshing the same URL restores the
 conversation, open case, and follow-up context. Use **Clear chat** to remove the
 saved session. The collapsible sidebar lists the 20 most recent saved chats and
-its **New chat** button starts a separate session.
+its **New chat** button starts a separate session. Dashboard case reviews use the
+same synthetic RAG guidance as the command-line reviewer.
+
+## Synthetic RAG experiment
+
+Generate the inspectable label-free corpus:
+
+```bash
+python -m agent.rag_corpus
+```
+
+Run the LLM reviewer with retrieval enabled:
+
+```bash
+python -m agent.pipeline run --split val --sample 20 --reviewer llm --rag --provider openrouter --model <model>
+```
+
+The RAG reviewer retrieves synthetic investigation guidance, while customer-specific
+evidence still comes only from the existing point-in-time tools. Retrieved document IDs,
+scores, and text are recorded in the JSONL run output.

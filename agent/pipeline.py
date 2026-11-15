@@ -23,7 +23,7 @@ import pandas as pd
 
 from .config import PROCESSED_DIR, RUNS_DIR, THRESHOLDS_FILE
 from .data import TransactionStore
-from .reviewers import ScoreThresholdReviewer
+from .reviewers import RAGReviewer, ScoreThresholdReviewer
 from .schemas import Case
 from .tools import CaseTools
 
@@ -62,7 +62,7 @@ def run(split, reviewer, sample=None, seed=4102, run_name=None, store=None, prog
                 category=row.category,
                 xgb_score=row.xgb_score,
             )
-            tools = CaseTools(store, row.cc_num, row.trans_date_trans_time)
+            tools = CaseTools(store, row.cc_num, row.trans_date_trans_time, xgb_score=row.xgb_score)
             started = time.perf_counter()
             try:
                 decision, error = reviewer.review(case, tools).to_dict(), None
@@ -75,6 +75,7 @@ def run(split, reviewer, sample=None, seed=4102, run_name=None, store=None, prog
                 "decision": decision,
                 "error": error,
                 "tool_calls": tools.calls,
+                "retrieved_documents": [d.__dict__ for d in getattr(reviewer, "last_retrieval", [])],
                 "usage": getattr(reviewer, "last_usage", None),  # an LLM reviewer can report tokens/cost here
                 "seconds": round(time.perf_counter() - started, 3),
             }) + "\n")
@@ -151,6 +152,9 @@ def main():
     run_cmd.add_argument("--seed", type=int, default=4102)
     run_cmd.add_argument("--name", help="run name (default: the reviewer's name)")
     run_cmd.add_argument("--reviewer", choices=["baseline", "llm"], default="baseline")
+    run_cmd.add_argument("--rag", action="store_true", help="llm: retrieve synthetic investigation guidance")
+    run_cmd.add_argument("--corpus", help="rag: corpus directory or documents.jsonl")
+    run_cmd.add_argument("--top-k", type=int, default=3, help="rag: number of documents to retrieve")
     run_cmd.add_argument("--threshold", type=float, help="baseline: score threshold (default: standalone)")
     run_cmd.add_argument("--provider", help="llm: openai, gemini, openrouter or ollama")
     run_cmd.add_argument("--model", help="llm: the provider's model name")
@@ -168,11 +172,19 @@ def main():
             if not (args.provider and args.model):
                 parser.error("--reviewer llm needs --provider and --model")
             from .llm import ALL_TOOLS, HISTORY_TOOLS, LLMReviewer, OpenAICompatibleBackend
-            reviewer = LLMReviewer(
+            ReviewerClass = LLMReviewer
+            reviewer_kwargs = {}
+            if args.rag:
+                from .rag_corpus import load_corpus
+                from .retriever import LexicalRetriever
+                ReviewerClass = RAGReviewer
+                reviewer_kwargs = {"retriever": LexicalRetriever(load_corpus(args.corpus)), "top_k": args.top_k}
+            reviewer = ReviewerClass(
                 OpenAICompatibleBackend(args.provider, args.model),
                 include_score=not args.no_score,
                 allowed_tools=HISTORY_TOOLS if args.no_kyc else ALL_TOOLS,
                 max_turns=args.max_turns,
+                **reviewer_kwargs,
             )
         else:
             threshold = args.threshold if args.threshold is not None else load_thresholds()["standalone"]

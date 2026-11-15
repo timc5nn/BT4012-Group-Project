@@ -10,11 +10,18 @@ import pytest
 
 from agent.data import RAW_FILES, TransactionStore
 from agent.config import DATA_DIR
-from agent.llm import HISTORY_TOOLS, TOOL_NUDGE, ChatResponse, LLMReviewer, parse_decision, prepare_tool_arguments
+from agent.llm import HISTORY_TOOLS, ChatResponse, LLMReviewer, parse_decision, prepare_tool_arguments, validate_evidence
 from agent.schemas import Case
 from agent.tools import CaseTools
 
 ANSWER = {"decision": "fraud", "confidence": 0.9, "evidence": ["$900 vs usual $40"], "case_note": "Out of character."}
+
+
+def answer_for(case):
+    return {
+        **ANSWER,
+        "evidence": [f"The flagged amount was {case.amount:.2f}."],
+    }
 
 
 class ScriptedBackend:
@@ -60,50 +67,57 @@ def case_and_tools(store):
     return case, lambda: CaseTools(store, row.cc_num, time)
 
 
-def test_tool_loop_then_decision(case_and_tools):
+def test_baseline_evidence_is_collected_before_decision(case_and_tools):
     case, make_tools = case_and_tools
-    backend = ScriptedBackend([
-        tool_call("get_spending_summary", {}),
-        tool_call("get_transaction_history", {"limit": 5}, call_id="c2"),
-        answer(json.dumps(ANSWER)),
-    ])
+    backend = ScriptedBackend([answer(json.dumps(answer_for(case)))])
     reviewer = LLMReviewer(backend)
     tools = make_tools()
     decision = reviewer.review(case, tools)
 
     assert decision.decision == "fraud" and decision.confidence == 0.9
-    assert [c["name"] for c in tools.calls] == ["get_spending_summary", "get_transaction_history"]
-    assert reviewer.last_usage == {"model": "test-model", "turns": 3, "input_tokens": 300, "output_tokens": 70}
-    # tool results went back to the model, and contain no labels
-    tool_messages = [m for m in backend.sent[-1]["messages"] if m["role"] == "tool"]
-    assert len(tool_messages) == 2 and all("fraud" not in m["content"].lower() for m in tool_messages)
+    assert [c["name"] for c in tools.calls] == ["get_spending_summary"]
+    assert reviewer.last_usage == {"model": "test-model", "turns": 1, "input_tokens": 100, "output_tokens": 50}
+    evidence_message = backend.sent[0]["messages"][2]["content"]
+    assert "required_tool_results" in evidence_message
+    assert "is_fraud" not in evidence_message
 
 
 def test_score_withheld_when_asked(case_and_tools):
     case, make_tools = case_and_tools
-    backend = ScriptedBackend([answer(json.dumps(ANSWER)), answer(json.dumps(ANSWER))])
+    backend = ScriptedBackend([answer(json.dumps(answer_for(case)))])
     LLMReviewer(backend, include_score=False).review(case, make_tools())
     assert "xgb_score" not in backend.sent[0]["messages"][1]["content"]
 
 
-def test_kyc_tool_removed_and_refused(case_and_tools):
+def test_model_can_select_additional_tool(case_and_tools):
     case, make_tools = case_and_tools
     backend = ScriptedBackend([
-        tool_call("get_kyc_profile", {}),
-        answer(json.dumps(ANSWER)),
-        answer(json.dumps(ANSWER)),
+        tool_call("get_transaction_history", {"limit": 5}),
+        answer(json.dumps(answer_for(case))),
     ])
+    reviewer = LLMReviewer(backend)
+    tools = make_tools()
+    reviewer.review(case, tools)
+    assert tools.calls == [
+        {"name": "get_spending_summary", "arguments": {}},
+        {"name": "get_transaction_history", "arguments": {"limit": 5}},
+    ]
+
+
+def test_kyc_tool_removed_from_model_choices(case_and_tools):
+    case, make_tools = case_and_tools
+    backend = ScriptedBackend([answer(json.dumps(answer_for(case)))])
     reviewer = LLMReviewer(backend, allowed_tools=HISTORY_TOOLS)
     tools = make_tools()
     reviewer.review(case, tools)
     assert "get_kyc_profile" not in backend.sent[0]["tools"]
-    assert tools.calls == []  # the refused call never reached the tools
-    assert "not available" in backend.sent[1]["messages"][-1]["content"]
+    assert [c["name"] for c in tools.calls] == ["get_spending_summary"]
 
 
 def test_malformed_answer_retried_once(case_and_tools):
     case, make_tools = case_and_tools
-    backend = ScriptedBackend([answer("I think it's fraud."), answer("```json\n" + json.dumps(ANSWER) + "\n```")])
+    valid = answer_for(case)
+    backend = ScriptedBackend([answer("I think it's fraud."), answer("```json\n" + json.dumps(valid) + "\n```")])
     assert LLMReviewer(backend).review(case, make_tools()).decision == "fraud"
 
     backend = ScriptedBackend([answer("no idea"), answer("still no idea"), answer("still no idea")])
@@ -124,28 +138,23 @@ def test_prepare_tool_arguments_drops_identity_and_dates():
 def test_customer_id_argument_still_returns_the_bound_profile(case_and_tools):
     case, make_tools = case_and_tools
     backend = ScriptedBackend([
-        tool_call("get_kyc_profile", {"customer_id": "KYC-99999"}),
-        tool_call("get_transaction_history", {"customer_id": "KYC-99999", "limit": 2}, call_id="c2"),
-        answer(json.dumps(ANSWER)),
+    answer(json.dumps(answer_for(case))),
+    tool_call("get_transaction_history", {"customer_id": "KYC-99999", "limit": 2}),
+    answer("Here are the recent transactions."),
     ])
     reviewer = LLMReviewer(backend)
     tools = make_tools()
     reviewer.review(case, tools)
-    assert tools.calls == [
-        {"name": "get_kyc_profile", "arguments": {}},
-        {"name": "get_transaction_history", "arguments": {"limit": 2}},
-    ]
-    tool_messages = [m for m in backend.sent[2]["messages"] if m["role"] == "tool"]
-    assert len(tool_messages) == 2
-    assert "error" not in tool_messages[0]["content"]
-    assert "transactions" in tool_messages[1]["content"]
+    reviewer.ask(reviewer.last_messages, tools, "Show me two recent transactions.")
+    assert tools.calls[0] == {"name": "get_spending_summary", "arguments": {}}
+    assert tools.calls[-1] == {"name": "get_transaction_history", "arguments": {"limit": 2}}
+    assert "transactions" in backend.sent[1]["messages"][-1]["content"]
 
 
 def test_follow_up_uses_the_same_case_tools(case_and_tools):
     case, make_tools = case_and_tools
     backend = ScriptedBackend([
-        tool_call("get_spending_summary", {}),
-        answer(json.dumps(ANSWER)),
+        answer(json.dumps(answer_for(case))),
         tool_call("get_kyc_profile", {"customer_id": "KYC-99999"}),
         answer("The credit limit is on the KYC profile."),
     ])
@@ -157,17 +166,13 @@ def test_follow_up_uses_the_same_case_tools(case_and_tools):
     assert {"name": "get_kyc_profile", "arguments": {}} in tools.calls
 
 
-def test_decision_without_tools_is_nudged_once(case_and_tools):
+def test_decision_uses_precollected_tools_without_nudge(case_and_tools):
     case, make_tools = case_and_tools
-    backend = ScriptedBackend([
-        answer(json.dumps(ANSWER)),
-        tool_call("get_spending_summary", {}),
-        answer(json.dumps(ANSWER)),
-    ])
+    backend = ScriptedBackend([answer(json.dumps(answer_for(case)))])
     reviewer = LLMReviewer(backend)
     assert reviewer.review(case, make_tools()).decision == "fraud"
-    nudge = [m for m in backend.sent[1]["messages"] if m["role"] == "user" and m["content"] == TOOL_NUDGE]
-    assert len(nudge) == 1
+    assert all(message["role"] != "user" or message["content"] != "Call the tools before you decide."
+               for message in backend.sent[0]["messages"])
 
 
 def test_gives_up_after_max_turns(case_and_tools):
@@ -190,3 +195,25 @@ def test_parse_decision_accepts_qwen_evidence_objects():
         "evidence": [{"statement": "The amount was 22.50.", "amount": 22.5}],
     })
     assert parse_decision(response).evidence == ["The amount was 22.50."]
+
+
+def test_derived_numeric_evidence_is_allowed_only_when_grounded():
+    decision = parse_decision(json.dumps({
+        **ANSWER,
+        "evidence": ["The amount was 1.26 times the category median and the share was 60%."],
+    }))
+    validate_evidence(decision, {"derived_numeric_values": [1.27, 60]})
+    with pytest.raises(ValueError):
+        validate_evidence(decision, {"derived_numeric_values": [2.5]})
+
+
+def test_amount_deviation_ratio_is_grounded():
+    decision = parse_decision(json.dumps({
+        **ANSWER,
+        "evidence": ["The amount was 5.39 times the merchant median."],
+    }))
+    validate_evidence(decision, {
+        "flagged_transaction": {"amount": 1039.23},
+        "get_amount_deviation": {"merchant": {"median": 194.22}},
+        "derived_numeric_values": [1039.23 / 194.22],
+    })

@@ -11,7 +11,8 @@ import streamlit as st
 from agent.case_query import route_message
 from agent.config import CHAT_SESSIONS_DIR, DATA_DIR, PROCESSED_DIR
 from agent.data import TransactionStore
-from agent.llm import LLMReviewer, OpenAICompatibleBackend
+from agent.llm import OpenAICompatibleBackend
+from agent.reviewers import RAGReviewer
 from agent.schemas import Case
 from agent.tools import CaseTools
 
@@ -294,7 +295,7 @@ def get_samples():
 
 
 def _reviewer():
-    return LLMReviewer(OpenAICompatibleBackend(PROVIDER, MODEL))
+    return RAGReviewer(OpenAICompatibleBackend(PROVIDER, MODEL))
 
 
 def investigate(row, store):
@@ -307,7 +308,11 @@ def investigate(row, store):
         category=row.category,
         xgb_score=float(row.xgb_score),
     )
-    tools = CaseTools(store, row.cc_num, row.trans_date_trans_time)
+    tools = CaseTools(
+        store, row.cc_num, row.trans_date_trans_time,
+        amount=float(row.amt), merchant=row.merchant, category=row.category,
+        xgb_score=float(row.xgb_score),
+    )
     reviewer = _reviewer()
     started = time.perf_counter()
     try:
@@ -321,6 +326,7 @@ def investigate(row, store):
         "decision": None if decision is None else decision.to_dict(),
         "error": error,
         "usage": reviewer.last_usage,
+        "retrieved_documents": [document.__dict__ for document in reviewer.last_retrieval],
         "seconds": round(time.perf_counter() - started, 1),
         "messages": reviewer.last_messages,
         "cc_num": row.cc_num,
@@ -344,7 +350,12 @@ def answer_general(question):
 
 
 def ask_about_case(record, store, question):
-    tools = CaseTools(store, record["cc_num"], record["time"])
+    case = record["case"]
+    tools = CaseTools(
+        store, record["cc_num"], record["time"],
+        amount=case["amount"], merchant=case["merchant"], category=case["category"],
+        xgb_score=case.get("xgb_score"),
+    )
     reviewer = _reviewer()
     started = time.perf_counter()
     try:
@@ -406,7 +417,13 @@ def render_decision(decision):
     else:
         kind, title = "clear", "Clear the flag"
     st.markdown(f"<span class='verdict {kind}'>{title}</span>", unsafe_allow_html=True)
-    st.markdown(f"{decision['confidence']:.0%} confidence it is fraud")
+    if status == "fraud":
+        confidence_label = "confidence it is fraud"
+    elif status == "legitimate":
+        confidence_label = "confidence it is legitimate"
+    else:
+        confidence_label = "confidence in this assessment"
+    st.markdown(f"{decision['confidence']:.0%} {confidence_label}")
     for item in decision.get("evidence") or []:
         st.markdown(f"- {item}")
     if decision.get("case_note"):
@@ -691,7 +708,7 @@ def chat_page():
         case = active["case"]
         st.caption(f"Open case · {case['customer_id']} · ${case['amount']:,.2f} at {case['merchant']}")
     else:
-        st.caption(f"{MODEL} on Ollama · one flagged transaction at a time · the fraud label stays hidden")
+        st.caption(f"{MODEL} on Ollama with RAG guidance · one flagged transaction at a time · the fraud label stays hidden")
 
     samples = get_samples()
     store = get_store()

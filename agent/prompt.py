@@ -8,15 +8,21 @@ The tools are already limited to this customer and to times before the flagged t
 - get_kyc_profile with {}
 - get_spending_summary with {}
 - get_transaction_history with {"limit": 20}
+- get_merchant_history with {}
+- get_amount_deviation with {}
+- get_velocity_profile with {}
+- get_location_history with {}
+- get_model_explanation with {}
 
-The required tool results and deterministic rule findings are provided before analysis. Use them before deciding; call a tool again only if a result is missing or failed. Compare the flagged amount, category, and time of day with the evidence. Most flagged transactions are legitimate. Raise an alert only when the transaction, or the activity just before it, is clearly out of character.
+The spending summary and deterministic rule findings are provided before analysis. Use the summary as a baseline, then decide which additional tools are relevant before deciding. Do not call tools whose evidence is not needed. To claim a first-time or familiar merchant, call get_merchant_history. To compare the amount with category or merchant history, call get_amount_deviation. To make detailed recent-activity claims, call get_velocity_profile. Compare the flagged amount, category, and time of day with the evidence. Most flagged transactions are legitimate. Raise an alert only when the transaction, or the activity just before it, is clearly out of character.
 
 Every number in evidence must appear in a tool result or in the flagged transaction. If a tool returns an error, say that the lookup failed. Do not invent income, merchants, or counts.
+Calculated ratios are allowed only when they follow from the supplied values. Do not describe a rule as matched unless the deterministic findings say that it matched.
 
 When you have decided, answer with a single JSON object and nothing else:
 {
   "decision": "fraud" or "legitimate",
-  "confidence": a number from 0 to 1, your confidence that the transaction is fraud,
+  "confidence": a number from 0 to 1, your confidence in the selected decision,
   "evidence": a JSON array of strings only, with no nested objects. Each string is a short factual statement you relied on, with its numbers,
   "case_note": at most 120 words explaining the decision to a human analyst
 }

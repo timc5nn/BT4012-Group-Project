@@ -48,7 +48,7 @@ DECISION_SCHEMA = {
 @dataclass
 class Decision:
     decision: str  # "fraud", "legitimate", or "needs_human_review"
-    confidence: float  # 0–1, the reviewer's confidence that the transaction is fraud
+    confidence: float  # 0–1, the reviewer's confidence in the selected decision
     evidence: list = field(default_factory=list)
     case_note: str = ""
 

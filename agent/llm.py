@@ -25,6 +25,7 @@ from .tools import TOOL_DEFINITIONS
 
 ALL_TOOLS = [d["name"] for d in TOOL_DEFINITIONS]
 HISTORY_TOOLS = ["get_transaction_history", "get_spending_summary"]
+REQUIRED_TOOLS = ["get_spending_summary"]
 
 # Base URLs and key variables per provider. Check them against the provider's
 # current docs before the first run; they are the only provider-specific part.
@@ -109,8 +110,8 @@ class OpenAICompatibleBackend:
 
 
 TOOL_NUDGE = (
-    "Call the tools before you decide. get_kyc_profile and get_spending_summary take {}, "
-    "and get_transaction_history takes {\"limit\": 20} only. Do not pass a customer id or a date."
+    "Call the available case-bound tools before you decide. They take {} except "
+    "get_transaction_history, which takes {\"limit\": 20} only. Do not pass a customer id or a date."
 )
 HUMAN_REVIEW_THRESHOLD = 0.60
 NUMBER_PATTERN = re.compile(r"(?<![A-Za-z])(?:\d+(?:\.\d+)?)(?![A-Za-z])")
@@ -174,6 +175,15 @@ def rule_checks(case, evidence):
     median = overall.get("median")
     if median and case.amount / median >= 5:
         findings.append(f"Current amount {case.amount:.2f} is at least five times the historical median {median:.2f}.")
+    category = case.category
+    category_stats = summary.get("amount_by_category", {}).get(category, {})
+    category_median = category_stats.get("median")
+    if category_median:
+        category_ratio = case.amount / category_median
+        findings.append(
+            f"Current amount {case.amount:.2f} is {category_ratio:.2f} times the "
+            f"historical median for {category} ({category_median:.2f})."
+        )
     recent = summary.get("recent_activity", {})
     if recent.get("transactions_last_1h", 0) >= 3:
         findings.append(
@@ -194,10 +204,46 @@ def rule_checks(case, evidence):
 def validate_evidence(decision, evidence):
     """Reject numeric claims that are absent from the case or collected results."""
     corpus = json.dumps(evidence, default=str)
+    derived = [float(value) for value in evidence.get("derived_numeric_values", [])]
     for statement in decision.evidence:
         for number in NUMBER_PATTERN.findall(statement):
             if number not in corpus:
-                raise ValueError(f"evidence contains unsupported number {number!r}")
+                value = float(number)
+                if not any(abs(value - candidate) <= max(0.05, abs(candidate) * 0.01) for candidate in derived):
+                    raise ValueError(f"evidence contains unsupported number {number!r}")
+
+
+def derived_numeric_values(evidence):
+    """Return safe arithmetic representations of values already present in evidence."""
+    values = []
+
+    def collect(value):
+        if isinstance(value, dict):
+            for item in value.values():
+                collect(item)
+        elif isinstance(value, list):
+            for item in value:
+                collect(item)
+        elif isinstance(value, (int, float)) and 0 < float(value) < 1:
+            values.append(float(value) * 100)
+
+    collect(evidence)
+    summary = evidence.get("get_spending_summary", {})
+    amount = evidence.get("flagged_transaction", {}).get("amount")
+    if amount is not None:
+        overall = summary.get("amount_overall", {}).get("median")
+        if overall:
+            values.append(float(amount) / float(overall))
+        category = evidence.get("flagged_transaction", {}).get("category")
+        category_median = summary.get("amount_by_category", {}).get(category, {}).get("median")
+        if category_median:
+            values.append(float(amount) / float(category_median))
+        deviation = evidence.get("get_amount_deviation", {})
+        for scope in ("overall", "category", "merchant"):
+            median = deviation.get(scope, {}).get("median")
+            if median:
+                values.append(float(amount) / float(median))
+    return values
 
 
 @dataclass
@@ -208,6 +254,7 @@ class LLMReviewer:
     max_turns: int = 8  # model calls per case before giving up
     human_review_threshold: float = HUMAN_REVIEW_THRESHOLD
     name: str = ""
+    additional_context: str = ""
 
     def __post_init__(self):
         unknown = set(self.allowed_tools) - set(ALL_TOOLS)
@@ -223,11 +270,22 @@ class LLMReviewer:
         self.last_transcript = []  # display events for one review: user, assistant, tool, note
 
     def _collect_required_tools(self, tools):
-        """Collect every enabled tool before the first LLM analysis turn."""
+        """Collect the minimum baseline evidence before the first LLM turn."""
         evidence = {}
-        for definition in self.tool_definitions:
-            name = definition["name"]
+        calls = []
+        enabled = set(self.allowed_tools)
+        for name in REQUIRED_TOOLS:
+            if name not in enabled:
+                continue
             arguments = {"limit": 20} if name == "get_transaction_history" else {}
+            calls.append({"name": name, "arguments": arguments})
+        self.last_transcript.append({
+            "role": "assistant",
+            "text": "Collected the required case-bound evidence before analysis.",
+            "tool_calls": calls,
+        })
+        for call in calls:
+            name, arguments = call["name"], call["arguments"]
             result = tools.call(name, arguments)
             evidence[name] = result
             self.last_transcript.append({"role": "tool", "name": name, "arguments": arguments, "result": result})
@@ -243,12 +301,26 @@ class LLMReviewer:
             "flagged_transaction": case.to_dict(include_score=self.include_score),
             "required_tool_results": evidence,
             "deterministic_rule_findings": findings,
+            "derived_numeric_values": derived_numeric_values({
+                **evidence,
+                "flagged_transaction": case.to_dict(include_score=self.include_score),
+            }),
         }
         messages = [backend.system(SYSTEM_PROMPT), backend.user(opening)]
+        self.last_transcript.append({
+            "role": "note",
+            "text": "Deterministic checks: " + " ".join(findings),
+        })
         messages.append(backend.user(
             "The required evidence has already been collected before analysis. "
             "Use it as the primary source of truth:\n" + json.dumps(evidence_context, default=str)
         ))
+        if self.additional_context:
+            messages.append(backend.user(
+                "Retrieved background guidance from the synthetic investigation corpus. "
+                "Use it only as general guidance; customer-specific facts must come from "
+                "the flagged transaction or tool results.\n\n" + self.additional_context
+            ))
         usage = {"model": backend.model, "turns": 0, "input_tokens": 0, "output_tokens": 0}
         self.last_usage = usage  # filled in as the loop runs, so a failed case still reports its spend
         self.last_messages = messages

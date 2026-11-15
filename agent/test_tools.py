@@ -79,3 +79,24 @@ def test_tools_reject_unexpected_arguments(store, cases):
     assert "error" in tools.call("get_kyc_profile", {"customer_id": "KYC-00001"})
     assert "error" in tools.call("get_transaction_history", {"limit": 1000})
     assert "error" in tools.call("delete_everything", {})
+
+
+def test_additional_case_tools_return_grounded_context(store, cases):
+    row = cases.iloc[0]
+    tools = CaseTools(store, row.cc_num, row.trans_date_trans_time, xgb_score=0.8)
+
+    merchant = tools.call("get_merchant_history")
+    amount = tools.call("get_amount_deviation")
+    velocity = tools.call("get_velocity_profile")
+    location = tools.call("get_location_history")
+    model = tools.call("get_model_explanation")
+
+    assert "error" not in merchant
+    assert "current_amount" in amount
+    assert "windows" in velocity
+    assert "error" not in location
+    assert model["xgb_score"] == 0.8
+    assert all(
+        pd.Timestamp(transaction["time"]) < row.trans_date_trans_time
+        for transaction in tools.call("get_transaction_history", {"limit": 100})["transactions"]
+    )

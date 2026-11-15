@@ -11,7 +11,10 @@ import pandas as pd
 
 from .config import DATA_DIR
 
-TRANSACTION_COLUMNS = ["cc_num", "trans_num", "trans_date_trans_time", "amt", "merchant", "category"]
+TRANSACTION_COLUMNS = [
+    "cc_num", "trans_num", "trans_date_trans_time", "amt", "merchant", "category",
+    "lat", "long", "merch_lat", "merch_long",
+]
 RAW_FILES = ["fraudTrain.csv", "fraudTest.csv"]
 
 
@@ -25,6 +28,10 @@ class TransactionStore:
         self._amount = transactions["amt"].to_numpy()
         self._merchant = transactions["merchant"].to_numpy()
         self._category = transactions["category"].to_numpy()
+        self._lat = transactions["lat"].to_numpy()
+        self._long = transactions["long"].to_numpy()
+        self._merch_lat = transactions["merch_lat"].to_numpy()
+        self._merch_long = transactions["merch_long"].to_numpy()
         self.columns = list(transactions.columns)
 
         self._kyc = kyc.set_index("cc_num")
@@ -47,6 +54,24 @@ class TransactionStore:
     def customer_id(self, cc_num):
         return self._kyc.at[cc_num, "customer_id"]
 
+    def transaction_context(self, cc_num, time):
+        """Return the flagged transaction's non-label context for a bound case."""
+        start = np.searchsorted(self._cc, cc_num, side="left")
+        end = np.searchsorted(self._cc, cc_num, side="right")
+        matches = np.flatnonzero(self._time[start:end] == np.datetime64(pd.Timestamp(time)))
+        if len(matches) == 0:
+            return None
+        index = start + matches[0]
+        return {
+            "amount": _number(self._amount[index]),
+            "merchant": self._merchant[index],
+            "category": self._category[index],
+            "latitude": _number(self._lat[index]),
+            "longitude": _number(self._long[index]),
+            "merchant_latitude": _number(self._merch_lat[index]),
+            "merchant_longitude": _number(self._merch_long[index]),
+        }
+
     def cc_num(self, customer_id):
         return self._cc_by_customer_id[customer_id]
 
@@ -65,4 +90,12 @@ class TransactionStore:
             "amount": self._amount[first:stop],
             "merchant": self._merchant[first:stop],
             "category": self._category[first:stop],
+            "lat": self._lat[first:stop],
+            "long": self._long[first:stop],
+            "merch_lat": self._merch_lat[first:stop],
+            "merch_long": self._merch_long[first:stop],
         })
+
+
+def _number(value):
+    return float(value)
