@@ -67,6 +67,33 @@ saved session. The collapsible sidebar lists the 20 most recent saved chats and
 its **New chat** button starts a separate session. Dashboard case reviews use the
 same synthetic RAG guidance as the command-line reviewer.
 
+## Tactic RAG (`--tactics`)
+
+`agent/tactics.py` holds four fraud-tactic documents (out-of-character late-night
+spending, stolen-card spree, online purchase fraud, small charges inside a spree) and a
+note on common innocent explanations. Each tactic has a checklist of **core**,
+**supporting** and **against** signals that code tests against the case's tool results.
+A tactic matches only when all its core signals are present; matches are ranked by
+supporting minus against, and each sign is shown to the model as
+`[yes]`/`[no]`/`[unknown]`. Retrieval is by checklist, not by wording.
+
+```bash
+python -m agent.pipeline run --split val --sample 20 --reviewer llm --tactics --provider ollama --model qwen2.5:3b-8k
+```
+
+The tactics were chosen from a check of the fit rows (the first 80% of
+`fraudTrain.csv`): late-night spending and amounts far above a customer's usual were
+the strongest signals, online categories moderate, and fraud arrives as a burst of
+about ten transactions over two days. Merchant distance from home is the same for fraud
+and legitimate transactions in this simulated data, so there is no location tactic. The
+documents describe mechanisms rather than statistics, and nothing in them reads a label.
+Each run's JSONL records every tactic's ticks under `retrieved_documents`.
+
+The model sees the best-matching tactic in full, plus one line for any other strong or
+moderate match. A fraud call with no matched tactic is returned as `needs_human_review`.
+Validation results for every design tried so far, with the run logs and the scripts behind
+them, are in [`results/agent_eval/`](results/agent_eval/README.md).
+
 ## Synthetic RAG experiment
 
 Generate the inspectable label-free corpus:

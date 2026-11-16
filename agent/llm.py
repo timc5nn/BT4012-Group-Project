@@ -273,6 +273,8 @@ class LLMReviewer:
     human_review_threshold: float = HUMAN_REVIEW_THRESHOLD
     name: str = ""
     additional_context: str = ""
+    system_prompt: str = SYSTEM_PROMPT
+    require_secondary_tool: bool = True  # False when code has already collected the secondary evidence
 
     def __post_init__(self):
         unknown = set(self.allowed_tools) - set(ALL_TOOLS)
@@ -314,6 +316,26 @@ class LLMReviewer:
             self.last_transcript.append({"role": "tool", "name": name, "arguments": arguments, "result": result})
         return evidence
 
+    def _evidence_intro(self):
+        """Text that introduces the pre-collected evidence message."""
+        return (
+            "The baseline history tools have already been run for this case. Their results are "
+            "below. Other available tools have not been run yet; call them when their evidence "
+            "is needed before deciding. Tool results and the flagged transaction are the only "
+            "sources of customer-specific facts. If a result is missing or reports an error, "
+            "say so instead of guessing:\n"
+        )
+
+    def _guidance_message(self, case, evidence):
+        """Optional guidance sent after the evidence (RAG text); None to send nothing."""
+        if not self.additional_context:
+            return None
+        return (
+            "Retrieved background guidance from the synthetic investigation corpus. "
+            "Use it only as general guidance; customer-specific facts must come from "
+            "the flagged transaction or tool results.\n\n" + self.additional_context
+        )
+
     def review(self, case, tools):
         backend = self.backend
         opening = render_case(case, self.include_score)
@@ -329,31 +351,24 @@ class LLMReviewer:
                 "flagged_transaction": case.to_dict(include_score=self.include_score),
             }),
         }
-        messages = [backend.system(SYSTEM_PROMPT), backend.user(opening)]
+        messages = [backend.system(self.system_prompt), backend.user(opening)]
         self.last_transcript.append({
             "role": "note",
             "text": "Deterministic checks: " + " ".join(findings),
         })
-        messages.append(backend.user(
-            "The baseline history tools have already been run for this case. Their results are "
-            "below. Other available tools have not been run yet; call them when their evidence "
-            "is needed before deciding. Tool results and the flagged transaction are the only "
-            "sources of customer-specific facts. If a result is missing or reports an error, "
-            "say so instead of guessing:\n" + json.dumps(evidence_context, default=str)
-        ))
-        if self.additional_context:
-            messages.append(backend.user(
-                "Retrieved background guidance from the synthetic investigation corpus. "
-                "Use it only as general guidance; customer-specific facts must come from "
-                "the flagged transaction or tool results.\n\n" + self.additional_context
-            ))
+        messages.append(backend.user(self._evidence_intro() + json.dumps(evidence_context, default=str)))
+        guidance = self._guidance_message(case, evidence)
+        if guidance:
+            messages.append(backend.user(guidance))
         usage = {"model": backend.model, "turns": 0, "input_tokens": 0, "output_tokens": 0}
         self.last_usage = usage  # filled in as the loop runs, so a failed case still reports its spend
         self.last_messages = messages
         retried_format = False
         nudged_tools = False
         nudged_secondary = False
-        secondary_available = any(name not in PRECOLLECTED_TOOLS for name in self.allowed_tools)
+        secondary_available = self.require_secondary_tool and any(
+            name not in PRECOLLECTED_TOOLS for name in self.allowed_tools
+        )
         secondary_tool_used = False
         saw_tool_data = True
 

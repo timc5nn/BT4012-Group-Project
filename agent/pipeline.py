@@ -23,7 +23,7 @@ import pandas as pd
 
 from .config import PROCESSED_DIR, RUNS_DIR, THRESHOLDS_FILE
 from .data import TransactionStore
-from .reviewers import RAGReviewer, ScoreThresholdReviewer
+from .reviewers import RAGReviewer, ScoreThresholdReviewer, TacticReviewer
 from .schemas import Case
 from .tools import CaseTools
 
@@ -153,6 +153,8 @@ def main():
     run_cmd.add_argument("--name", help="run name (default: the reviewer's name)")
     run_cmd.add_argument("--reviewer", choices=["baseline", "llm"], default="baseline")
     run_cmd.add_argument("--rag", action="store_true", help="llm: retrieve synthetic investigation guidance")
+    run_cmd.add_argument("--tactics", action="store_true",
+                         help="llm: match the case to fraud-tactic documents by checklist (agent/tactics.py)")
     run_cmd.add_argument("--corpus", help="rag: corpus directory or documents.jsonl")
     run_cmd.add_argument("--top-k", type=int, default=3, help="rag: number of documents to retrieve")
     run_cmd.add_argument("--threshold", type=float, help="baseline: score threshold (default: standalone)")
@@ -174,6 +176,11 @@ def main():
             from .llm import ALL_TOOLS, HISTORY_TOOLS, LLMReviewer, OpenAICompatibleBackend
             ReviewerClass = LLMReviewer
             reviewer_kwargs = {}
+            if args.rag and args.tactics:
+                parser.error("choose one of --rag and --tactics")
+            if args.tactics:
+                ReviewerClass = TacticReviewer
+                reviewer_kwargs = {"top_k": args.top_k}
             if args.rag:
                 from .rag_corpus import load_corpus
                 from .retriever import LexicalRetriever

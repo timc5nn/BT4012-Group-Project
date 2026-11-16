@@ -20,8 +20,10 @@ The LLM reviewer is in llm.py. To support an API it doesn't cover, write a revie
 from typing import Protocol
 
 from .llm import LLMReviewer
+from .prompt import TACTIC_SYSTEM_PROMPT
 from .retriever import LexicalRetriever
 from .schemas import Case, Decision
+from .tactics import HISTORY_LIMIT, TACTIC_TOOLS, match_tactics, render_tactic_check, shown_tactics
 from .tools import CaseTools
 
 
@@ -96,3 +98,81 @@ class RAGReviewer(LLMReviewer):
             return decision
         finally:
             self.additional_context = ""
+
+
+class TacticReviewer(LLMReviewer):
+    """LLM reviewer guided by fraud-tactic documents chosen by checklist (see tactics.py).
+
+    Code runs the tools the checklists need, ticks every tactic's checklist, and sends
+    the model up to `top_k` matched tactics with their ticks, plus the innocent-
+    explanations note. The model then judges the fit; it is not required to call tools.
+    """
+
+    MODEL_HISTORY_ROWS = 20  # the checklists read 100 rows; the model sees the latest 20
+
+    def __init__(self, backend, top_k=3, **kwargs):
+        kwargs.setdefault("system_prompt", TACTIC_SYSTEM_PROMPT)
+        kwargs.setdefault("require_secondary_tool", False)
+        super().__init__(backend, **kwargs)
+        self.top_k = top_k
+        self.name = f"tactic-{self.name}"
+        self.last_retrieval = []  # TacticMatch objects; the pipeline logs them per case
+        self._history_rows = []
+
+    def _collect_required_tools(self, tools):
+        evidence = {}
+        calls = [{"name": name, "arguments": dict(arguments)}
+                 for name, arguments in TACTIC_TOOLS if name in self.allowed_tools]
+        self.last_transcript.append({
+            "role": "assistant",
+            "text": "Collected the evidence the tactic checklists need before analysis.",
+            "tool_calls": calls,
+        })
+        self._history_rows = []
+        for call in calls:
+            name, arguments = call["name"], call["arguments"]
+            result = tools.call(name, arguments)
+            self.last_transcript.append({"role": "tool", "name": name, "arguments": arguments, "result": result})
+            if name == "get_transaction_history" and isinstance(result, dict) and "transactions" in result:
+                self._history_rows = result["transactions"]
+                result = {
+                    "transactions": self._history_rows[-self.MODEL_HISTORY_ROWS:],
+                    "note": f"latest {self.MODEL_HISTORY_ROWS} of the {len(self._history_rows)} rows "
+                            f"(up to {HISTORY_LIMIT}) used by the tactic check",
+                }
+            evidence[name] = result
+        return evidence
+
+    def review(self, case, tools):
+        decision = super().review(case, tools)
+        if decision.decision == "fraud" and not any(m.matched for m in self.last_retrieval):
+            # A fraud alert must name a known tactic. In a fit-row check, transactions matching
+            # no tactic were mostly legitimate, so an unexplained alert goes to a person instead.
+            note = ("No known fraud tactic matched, so this alert needs an analyst's decision. "
+                    + decision.case_note)
+            decision = Decision(decision="needs_human_review", confidence=decision.confidence,
+                                evidence=decision.evidence, case_note=" ".join(note.split()[:120]))
+            self.last_transcript.append({"role": "note", "text": "Fraud call without a matched tactic "
+                                         "changed to needs_human_review."})
+            for event in reversed(self.last_transcript):
+                if event.get("decision"):
+                    event["decision"] = decision.to_dict()
+                    break
+        return decision
+
+    def _evidence_intro(self):
+        return (
+            "Tool results for this case, with deterministic findings. They are the only sources "
+            "of customer-specific facts. If a result is missing or reports an error, say so "
+            "instead of guessing:\n"
+        )
+
+    def _guidance_message(self, case, evidence):
+        self.last_retrieval = match_tactics(case, evidence, self._history_rows)
+        best, others = shown_tactics(self.last_retrieval, self.top_k)
+        self.last_transcript.append({
+            "role": "note",
+            "text": "Tactic check: " + (", ".join(f"{m.title} ({m.strength})" for m in [best, *others])
+                                         if best else "no known tactic matched"),
+        })
+        return render_tactic_check(self.last_retrieval, self.top_k)
