@@ -25,6 +25,7 @@ from .tools import TOOL_DEFINITIONS
 
 ALL_TOOLS = [d["name"] for d in TOOL_DEFINITIONS]
 HISTORY_TOOLS = ["get_transaction_history", "get_spending_summary"]
+PRECOLLECTED_TOOLS = HISTORY_TOOLS
 
 # Base URLs and key variables per provider. Check them against the provider's
 # current docs before the first run; they are the only provider-specific part.
@@ -113,7 +114,7 @@ TOOL_NUDGE = (
     "get_transaction_history, which takes {\"limit\": 20} only. Do not pass a customer id or a date."
 )
 HUMAN_REVIEW_THRESHOLD = 0.60
-NUMBER_PATTERN = re.compile(r"(?<![A-Za-z])(?:\d+(?:\.\d+)?)(?![A-Za-z])")
+NUMBER_PATTERN = re.compile(r"(?<!\d)(?:\d+(?:\.\d+)?)(?!\d)(?![A-Za-z])")
 
 
 def prepare_tool_arguments(name, arguments):
@@ -202,14 +203,32 @@ def rule_checks(case, evidence):
 
 def validate_evidence(decision, evidence):
     """Reject numeric claims that are absent from the case or collected results."""
-    corpus = json.dumps(evidence, default=str)
-    derived = [float(value) for value in evidence.get("derived_numeric_values", [])]
+    available = _numeric_values(evidence)
+    available.extend(float(value) for value in evidence.get("derived_numeric_values", []))
     for statement in decision.evidence:
         for number in NUMBER_PATTERN.findall(statement):
-            if number not in corpus:
-                value = float(number)
-                if not any(abs(value - candidate) <= max(0.05, abs(candidate) * 0.01) for candidate in derived):
-                    raise ValueError(f"evidence contains unsupported number {number!r}")
+            value = float(number)
+            if not any(abs(value - candidate) <= max(0.05, abs(candidate) * 0.01) for candidate in available):
+                raise ValueError(f"evidence contains unsupported number {number!r}")
+
+
+def _numeric_values(value):
+    """Extract numeric values from evidence without matching digit substrings."""
+    if isinstance(value, dict):
+        values = []
+        for item in value.values():
+            values.extend(_numeric_values(item))
+        return values
+    if isinstance(value, list):
+        values = []
+        for item in value:
+            values.extend(_numeric_values(item))
+        return values
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return [float(value)]
+    if isinstance(value, str):
+        return [float(number) for number in NUMBER_PATTERN.findall(value)]
+    return []
 
 
 def derived_numeric_values(evidence):
@@ -278,12 +297,14 @@ class LLMReviewer:
         """
         evidence = {}
         calls = []
-        for name in self.allowed_tools:
+        for name in PRECOLLECTED_TOOLS:
+            if name not in self.allowed_tools:
+                continue
             arguments = {"limit": 20} if name == "get_transaction_history" else {}
             calls.append({"name": name, "arguments": arguments})
         self.last_transcript.append({
             "role": "assistant",
-            "text": "Collected all enabled case-bound evidence before analysis.",
+            "text": "Collected baseline history evidence before analysis.",
             "tool_calls": calls,
         })
         for call in calls:
@@ -314,9 +335,11 @@ class LLMReviewer:
             "text": "Deterministic checks: " + " ".join(findings),
         })
         messages.append(backend.user(
-            "Every available tool has already been run for this case; the results are below. "
-            "They are the only source of customer-specific facts. If a result is missing or "
-            "reports an error, say so instead of guessing:\n" + json.dumps(evidence_context, default=str)
+            "The baseline history tools have already been run for this case. Their results are "
+            "below. Other available tools have not been run yet; call them when their evidence "
+            "is needed before deciding. Tool results and the flagged transaction are the only "
+            "sources of customer-specific facts. If a result is missing or reports an error, "
+            "say so instead of guessing:\n" + json.dumps(evidence_context, default=str)
         ))
         if self.additional_context:
             messages.append(backend.user(
@@ -329,6 +352,9 @@ class LLMReviewer:
         self.last_messages = messages
         retried_format = False
         nudged_tools = False
+        nudged_secondary = False
+        secondary_available = any(name not in PRECOLLECTED_TOOLS for name in self.allowed_tools)
+        secondary_tool_used = False
         saw_tool_data = True
 
         for _ in range(self.max_turns):
@@ -339,6 +365,11 @@ class LLMReviewer:
             messages.append(response.assistant_message)
 
             if response.tool_calls:
+                if any(
+                    call["name"] in self.allowed_tools and call["name"] not in PRECOLLECTED_TOOLS
+                    for call in response.tool_calls
+                ):
+                    secondary_tool_used = True
                 if self._dispatch_tool_calls(
                     response, tools, messages, evidence_context["required_tool_results"]
                 ):
@@ -347,6 +378,20 @@ class LLMReviewer:
                         "flagged_transaction": evidence_context["flagged_transaction"],
                     })
                     saw_tool_data = True
+                continue
+
+            if secondary_available and not secondary_tool_used:
+                if nudged_secondary:
+                    raise RuntimeError("model returned a decision without calling a secondary case tool")
+                nudged_secondary = True
+                messages.append(backend.user(
+                    "Before deciding, call at least one relevant secondary case tool. "
+                    "Choose it from the case signals and use its result in your evidence."
+                ))
+                self.last_transcript.append({
+                    "role": "note",
+                    "text": "Immediate decision rejected; requesting a relevant secondary lookup.",
+                })
                 continue
 
             if not saw_tool_data and not nudged_tools:
@@ -361,24 +406,14 @@ class LLMReviewer:
             self.last_transcript.append({"role": "assistant", "text": response.text})
             try:
                 decision = parse_decision(response.text)
-                validate_evidence(decision, evidence_context)
             except (ValueError, KeyError, TypeError) as error:
                 if retried_format:
                     raise
                 retried_format = True
-                if "unsupported number" in str(error):
-                    retry_message = (
-                        f"That reply used unsupported numeric evidence ({error}). "
-                        "Call the relevant available tool, such as get_amount_deviation, "
-                        "get_merchant_history, or get_velocity_profile, before deciding again. "
-                        "Then use only values from the flagged transaction, tool results, or "
-                        "calculated ratios based on those values. Reply with only the decision JSON."
-                    )
-                else:
-                    retry_message = (
-                        f"That reply could not be read as a decision ({error}). "
-                        "Reply with only the JSON object described in your instructions."
-                    )
+                retry_message = (
+                    f"That reply could not be read as a decision ({error}). "
+                    "Reply with only the JSON object described in your instructions."
+                )
                 messages.append(backend.user(retry_message))
                 self.last_transcript.append({
                     "role": "note",
@@ -417,6 +452,10 @@ class LLMReviewer:
         usage = {"model": backend.model, "turns": 0, "input_tokens": 0, "output_tokens": 0}
         self.last_usage = usage
         self.last_transcript = []
+        self.last_transcript.append({
+            "role": "note",
+            "text": "Answered using the evidence already collected for this case.",
+        })
         self.last_messages = messages
 
         for _ in range(self.max_turns):

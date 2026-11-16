@@ -48,13 +48,12 @@ ollama create qwen2.5:3b-8k -f ollama/qwen2.5-3b-8k.Modelfile
 python -m agent.pipeline run --split val --sample 20 --reviewer llm --rag --provider ollama --model qwen2.5:3b-8k
 ```
 
-Before the LLM analyses a case, the reviewer runs every enabled case-bound tool (all
-eight by default; `--no-kyc` removes the KYC tool) and puts the results in the prompt,
-then runs deterministic amount and transaction-velocity checks. In a 20-case pilot where
-the model had to choose its own lookups, qwen2.5:3b never called a tool and invented the
-facts instead, so evidence collection is done in code. Numeric evidence is
-validated against the collected case data. Reviews below the configured confidence
-threshold are returned as `needs_human_review` rather than being auto-resolved.
+Before the LLM analyses a case, the reviewer pre-collects transaction history and
+spending summary, then exposes the remaining enabled case-bound tools for the model to
+request when their evidence is needed. It also runs deterministic amount and
+transaction-velocity checks. Numeric evidence is validated against the collected case
+data. Reviews below the configured confidence threshold are returned as
+`needs_human_review` rather than being auto-resolved.
 
 The case-bound tools also provide merchant familiarity, amount deviation, velocity
 windows, transaction-location comparisons, and XGBoost threshold context. These

@@ -586,6 +586,20 @@ def _delete_saved_state():
         path.unlink()
 
 
+def _delete_chat(session_id):
+    path = _session_file(session_id)
+    try:
+        path.unlink()
+    except FileNotFoundError:
+        return
+    except OSError as error:
+        st.error(f"Could not delete chat: {error}")
+        return
+    if session_id == st.session_state.get("session_id"):
+        _new_chat()
+    st.rerun()
+
+
 def _session_title(state):
     for turn in state.get("chat", []):
         if turn.get("role") == "user":
@@ -640,9 +654,14 @@ def _render_chat_sidebar():
                 title = _session_title(state)
             except (OSError, JSONDecodeError):
                 title = "Unreadable chat"
-            label = f"● {title}" if session_id == st.session_state.session_id else title
-            if st.button(label, key=f"chat-{session_id}", width="stretch"):
-                _open_saved_session(session_id)
+            chat_col, delete_col = st.columns([6, 2])
+            with chat_col:
+                label = f"● {title}" if session_id == st.session_state.session_id else title
+                if st.button(label, key=f"chat-{session_id}", width="stretch"):
+                    _open_saved_session(session_id)
+            with delete_col:
+                if st.button("Delete", key=f"delete-chat-{session_id}"):
+                    _delete_chat(session_id)
 
 
 def _render_chat_switcher():
@@ -666,9 +685,14 @@ def _render_chat_switcher():
                 title = _session_title(state)
             except (OSError, JSONDecodeError):
                 title = "Unreadable chat"
-            label = f"● {title}" if session_id == st.session_state.session_id else title
-            if st.button(label, key=f"popover-chat-{session_id}", width="stretch"):
-                _open_saved_session(session_id)
+            chat_col, delete_col = st.columns([6, 2])
+            with chat_col:
+                label = f"● {title}" if session_id == st.session_state.session_id else title
+                if st.button(label, key=f"popover-chat-{session_id}", width="stretch"):
+                    _open_saved_session(session_id)
+            with delete_col:
+                if st.button("Delete", key=f"popover-delete-chat-{session_id}"):
+                    _delete_chat(session_id)
 
 
 def _ensure_state():

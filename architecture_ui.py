@@ -52,17 +52,22 @@ DIAGRAM = """
   <div class="col">
     <div class="node accent"><strong>Case</strong><span>Customer, time, amount, merchant, category, and the XGBoost score.</span></div>
     <div class="arrow">↓</div>
-    <div class="node accent"><strong>Qwen 2.5 3B</strong><span>Local Ollama model. It chooses which tools to call, then writes a decision.</span></div>
+    <div class="node"><strong>Baseline evidence</strong><span>The application pre-collects transaction history and spending summary before the model’s first turn.</span></div>
+    <div class="arrow">↓</div>
+    <div class="node accent"><strong>Qwen 2.5 3B · 8K</strong><span>Local Ollama model. It receives the baseline evidence and RAG guidance, then requests at least one relevant secondary tool before deciding.</span></div>
     <div class="arrow">↓</div>
     <div class="tools">
       <div class="tool">KYC profile</div>
-      <div class="tool">Transaction history</div>
-      <div class="tool">Spending summary</div>
+      <div class="tool">Merchant history</div>
+      <div class="tool">Amount deviation</div>
+      <div class="tool">Velocity profile</div>
+      <div class="tool">Location history</div>
+      <div class="tool">Model explanation</div>
     </div>
     <div class="arrow">↓</div>
     <div class="node accent"><strong>Decision</strong><span>Fraud or legitimate, a confidence, the evidence, and a short case note.</span></div>
   </div>
-  <p class="note">Each tool is locked to that customer and to times before the flagged transaction. A customer id or a date in the model’s arguments is ignored. The tools never load the fraud label. Clearing or raising the flag is a written decision, not a change to the card.</p>
+  <p class="note">Each tool is locked to that customer and to times before the flagged transaction. The model receives synthetic RAG guidance for general investigation patterns, but customer-specific facts come only from the flagged transaction and case-bound tool results. A customer id or a date in the model’s arguments is ignored. The tools never load the fraud label.</p>
 </div>
 </body>
 </html>
