@@ -17,6 +17,24 @@ notebook. These runs used Stage 1 files generated with recall target 0.98 (flag 
 0.0075, standalone 0.603, 2,232 flagged validation cases). With different Stage 1 files the
 case ids may not line up.
 
+## End-to-end XGBoost versus combined-agent runner
+
+To evaluate only XGBoost alone against the complete XGBoost + tactic checklist + embedding-RAG
+cascade, run:
+
+```bash
+ollama pull nomic-embed-text
+python results/agent_eval/scripts/run_xgb_combined_cascade.py \
+  --split val --provider ollama --model qwen2.5:3b-8k
+```
+
+By default this reviews every XGBoost-flagged validation case and scores both systems over the
+full validation split. Transactions below the XGBoost flag threshold are automatically cleared
+by the cascade, while `needs_human_review` and failed cases are reported separately. Use
+`--sample N --seed S` only for development; that produces a reviewed-sample report rather than
+an exact full-split cascade result. The report is saved under `reports/` and the agent records
+under `data/agent_runs/`.
+
 ## Designs tested
 
 All runs used `qwen2.5:3b` on Ollama. The test split has not been used by any agent run.

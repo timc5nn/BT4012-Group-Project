@@ -111,6 +111,18 @@ def test_model_can_select_additional_tool(case_and_tools):
     assert tools.calls == PRECOLLECTED + [{"name": "get_amount_deviation", "arguments": {}}]
 
 
+def test_missing_secondary_tool_is_reported_instead_of_failing(case_and_tools):
+    case, make_tools = case_and_tools
+    backend = ScriptedBackend([
+        answer(json.dumps(answer_for(case))),
+        answer(json.dumps(answer_for(case))),
+    ])
+    decision = LLMReviewer(backend).review(case, make_tools())
+    assert decision.decision == "fraud"
+    assert "No secondary case tool was called before this decision." in decision.evidence
+    assert decision.case_note.startswith("No secondary case tool was called")
+
+
 def test_unsupported_numeric_claim_does_not_block_decision(case_and_tools):
     case, make_tools = case_and_tools
     invalid = {

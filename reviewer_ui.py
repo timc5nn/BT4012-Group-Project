@@ -12,7 +12,7 @@ from agent.case_query import route_message
 from agent.config import CHAT_SESSIONS_DIR, DATA_DIR, PROCESSED_DIR
 from agent.data import TransactionStore
 from agent.llm import OpenAICompatibleBackend
-from agent.reviewers import RAGReviewer
+from agent.reviewers import CombinedReviewer
 from agent.schemas import Case
 from agent.tools import CaseTools
 
@@ -295,7 +295,7 @@ def get_samples():
 
 
 def _reviewer():
-    return RAGReviewer(OpenAICompatibleBackend(PROVIDER, MODEL))
+    return CombinedReviewer(OpenAICompatibleBackend(PROVIDER, MODEL))
 
 
 def investigate(row, store):
@@ -327,6 +327,9 @@ def investigate(row, store):
         "error": error,
         "usage": reviewer.last_usage,
         "retrieved_documents": [document.__dict__ for document in reviewer.last_retrieval],
+        "retrieved_guidance_documents": [
+            document.__dict__ for document in reviewer.last_rag_retrieval
+        ],
         "seconds": round(time.perf_counter() - started, 1),
         "messages": reviewer.last_messages,
         "cc_num": row.cc_num,
@@ -574,10 +577,22 @@ def _save_state():
         "active_id": st.session_state.active_id,
         "pending_choices": st.session_state.pending_choices,
     }
-    temporary = path.with_suffix(".tmp")
-    with temporary.open("w", encoding="utf-8") as saved:
-        json.dump(state, saved, ensure_ascii=True, default=str)
-    temporary.replace(path)
+    temporary = path.with_name(f"{path.stem}.{uuid4().hex}.tmp")
+    try:
+        with temporary.open("w", encoding="utf-8") as saved:
+            json.dump(state, saved, ensure_ascii=True, default=str)
+        for attempt in range(5):
+            try:
+                temporary.replace(path)
+                return
+            except PermissionError:
+                if attempt == 4:
+                    raise
+                time.sleep(0.2)
+    except PermissionError as error:
+        st.error(f"Could not save chat session because Windows locked the session file: {error}")
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def _delete_saved_state():

@@ -1,5 +1,5 @@
 from agent.rag_corpus import DOCUMENTS, load_corpus, write_corpus
-from agent.retriever import LexicalRetriever
+from agent.retriever import EmbeddingRetriever, LexicalRetriever
 
 
 def test_default_corpus_is_label_free():
@@ -13,6 +13,83 @@ def test_retriever_returns_relevant_guidance():
     results = LexicalRetriever().retrieve("many transactions in one hour transaction velocity", top_k=3)
     assert results[0].document_id == "pattern_velocity"
     assert 0 <= results[0].score <= 1
+
+
+class FakeEmbeddingClient:
+    class Embeddings:
+        @staticmethod
+        def create(model, input):
+            vectors = []
+            for text in input:
+                vectors.append(type("Embedding", (), {
+                    "index": 0,
+                    "embedding": [1.0, 0.0] if "velocity" in text else [0.0, 1.0],
+                })())
+            return type("Response", (), {"data": vectors})()
+
+    embeddings = Embeddings()
+
+
+def test_embedding_retriever_ranks_by_cosine_similarity(tmp_path):
+    documents = [
+        type("Document", (), {
+            "document_id": "velocity",
+            "document_type": "pattern",
+            "topic": "velocity",
+            "text": "transaction velocity",
+        })(),
+        type("Document", (), {
+            "document_id": "amount",
+            "document_type": "pattern",
+            "topic": "amount",
+            "text": "unusual amount",
+        })(),
+    ]
+    retriever = EmbeddingRetriever(documents, client=FakeEmbeddingClient(), cache_dir=tmp_path)
+    assert retriever.retrieve("velocity", top_k=1)[0].document_id == "velocity"
+
+
+def test_embedding_retriever_falls_back_when_service_is_unavailable(tmp_path):
+    class UnavailableClient:
+        class Embeddings:
+            @staticmethod
+            def create(model, input):
+                raise OSError("Ollama is unavailable")
+
+        embeddings = Embeddings()
+
+    retriever = EmbeddingRetriever(client=UnavailableClient(), cache_dir=tmp_path)
+    results = retriever.retrieve("many transactions in one hour transaction velocity")
+    assert results[0].document_id == "pattern_velocity"
+    assert retriever.last_error == "Ollama is unavailable"
+
+
+def test_embedding_retriever_reuses_cached_document_vectors(tmp_path):
+    calls = []
+
+    class CountingClient:
+        class Embeddings:
+            @staticmethod
+            def create(model, input):
+                calls.append(input)
+                return FakeEmbeddingClient.Embeddings.create(model, input)
+
+        embeddings = Embeddings()
+
+    documents = [
+        type("Document", (), {
+            "document_id": "velocity",
+            "document_type": "pattern",
+            "topic": "velocity",
+            "text": "transaction velocity",
+        })(),
+    ]
+    first = EmbeddingRetriever(documents, client=CountingClient(), cache_dir=tmp_path)
+    first.retrieve("velocity")
+    second = EmbeddingRetriever(documents, client=CountingClient(), cache_dir=tmp_path)
+    second._documents()
+
+    assert len(calls) == 2
 
 
 def test_rag_context_sent_to_model_has_no_ids_or_scores(monkeypatch):

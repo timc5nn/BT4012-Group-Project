@@ -1,11 +1,12 @@
 """Tests for the tactic checklists and the tactic reviewer (no data files or API calls)."""
 
 import json
+from types import SimpleNamespace
 
 import pandas as pd
 
 from agent.llm import ChatResponse
-from agent.reviewers import TacticReviewer
+from agent.reviewers import CombinedReviewer, TacticReviewer
 from agent.schemas import Case
 from agent.tactics import TACTIC_TOOLS, TACTICS, TacticMatch, match_tactics, render_tactic_check, shown_tactics
 
@@ -134,13 +135,28 @@ class FakeTools:
         return self.data[name]
 
 
+class FakeRetriever:
+    last_error = None
+
+    def __init__(self):
+        self.query = None
+
+    def retrieve(self, query, top_k):
+        self.query = query
+        return [SimpleNamespace(
+            document_id="policy_evidence",
+            text="Use only customer-specific tool evidence.",
+            score=0.9,
+        )]
+
+
 def test_tactic_reviewer_sends_matched_tactics_and_decides_without_extra_tools():
     reply = json.dumps({"decision": "fraud", "confidence": 0.9, "evidence": ["late and large"],
                         "case_note": "Late-night out-of-character spending."})
     backend = OneAnswerBackend(reply)
     rows = quiet_customer()
     tools = FakeTools(evidence(rows))
-    reviewer = TacticReviewer(backend)
+    reviewer = TacticReviewer(backend, require_secondary_tool=False)
     decision = reviewer.review(make_case(), tools)
 
     assert decision.decision == "fraud"
@@ -156,6 +172,22 @@ def test_tactic_reviewer_sends_matched_tactics_and_decides_without_extra_tools()
     assert "is_fraud" not in guidance and "is_fraud" not in evidence_message
 
 
+def test_combined_reviewer_runs_tactics_before_embedding_rag():
+    reply = json.dumps({"decision": "fraud", "confidence": 0.9, "evidence": ["late and large"],
+                        "case_note": "Late-night out-of-character spending."})
+    retriever = FakeRetriever()
+    backend = OneAnswerBackend(reply)
+    decision = CombinedReviewer(backend, retriever=retriever, require_secondary_tool=False).review(
+        make_case(), FakeTools(evidence(quiet_customer()))
+    )
+
+    assert decision.decision == "fraud"
+    assert "Out-of-character late-night spending" in retriever.query
+    guidance = backend.sent[0][-1]["content"]
+    assert "Best-matching tactic" in guidance
+    assert "Use only customer-specific tool evidence." in guidance
+
+
 def test_small_charges_capped_without_a_spree():
     rows = quiet_customer() + [(NOW - pd.Timedelta(hours=2), 4.2, "TinyShop", "misc_pos")]
     matches = by_id(match_tactics(make_case(), evidence(rows)))
@@ -167,7 +199,7 @@ def test_small_charges_capped_without_a_spree():
 def test_fraud_call_without_a_tactic_goes_to_human_review():
     reply = json.dumps({"decision": "fraud", "confidence": 0.9, "evidence": ["odd"], "case_note": "Looks odd."})
     tools = FakeTools(evidence(quiet_customer()))
-    reviewer = TacticReviewer(OneAnswerBackend(reply))
+    reviewer = TacticReviewer(OneAnswerBackend(reply), require_secondary_tool=False)
     decision = reviewer.review(make_case(amount=35.0, hour=13), tools)
     assert decision.decision == "needs_human_review"
     assert decision.case_note.startswith("No known fraud tactic matched")
@@ -176,7 +208,9 @@ def test_fraud_call_without_a_tactic_goes_to_human_review():
 def test_legitimate_call_without_a_tactic_is_kept():
     reply = json.dumps({"decision": "legitimate", "confidence": 0.9, "evidence": ["usual"], "case_note": "Normal."})
     tools = FakeTools(evidence(quiet_customer()))
-    decision = TacticReviewer(OneAnswerBackend(reply)).review(make_case(amount=35.0, hour=13), tools)
+    decision = TacticReviewer(OneAnswerBackend(reply), require_secondary_tool=False).review(
+        make_case(amount=35.0, hour=13), tools
+    )
     assert decision.decision == "legitimate"
 
 
