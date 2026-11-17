@@ -116,6 +116,8 @@ provided to the same LLM decision alongside the tactic check. If Ollama or the
 embedding model is unavailable, it records the error on the retriever and falls back
 to the original lexical ranking. Customer-specific evidence still comes only from the
 existing point-in-time tools. Use `--embedding-model <name>` to select another Ollama
-embedding model.
+embedding model. Document embeddings are persisted under
+`data/agent_runs/rag_embeddings/` and are reused when the corpus and embedding model
+have not changed; query embeddings are still generated for each case.
 
 Use only `--rag` for generic embedding RAG or only `--tactics` for checklist RAG.

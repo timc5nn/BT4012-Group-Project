@@ -1,11 +1,18 @@
 """Retrievers for the synthetic RAG experiment."""
 
 from dataclasses import dataclass
+import hashlib
+import json
+from pathlib import Path
 
 import numpy as np
 from openai import APIConnectionError, APIError
 
 from .rag_corpus import load_corpus, tokenize
+
+DEFAULT_EMBEDDING_CACHE_DIR = (
+    Path(__file__).resolve().parent.parent / "data" / "agent_runs" / "rag_embeddings"
+)
 
 @dataclass(frozen=True)
 class RetrievedDocument:
@@ -33,10 +40,11 @@ class LexicalRetriever:
 class EmbeddingRetriever:
     """Retrieve documents with Ollama embeddings, falling back to lexical search."""
 
-    def __init__(self, documents=None, model="nomic-embed-text", client=None):
+    def __init__(self, documents=None, model="nomic-embed-text", client=None, cache_dir=None):
         self.documents = list(documents or load_corpus())
         self.model = model
         self.client = client
+        self.cache_dir = Path(cache_dir) if cache_dir is not None else DEFAULT_EMBEDDING_CACHE_DIR
         self.fallback = LexicalRetriever(self.documents)
         self.last_error = None
         self._document_vectors = None
@@ -56,11 +64,58 @@ class EmbeddingRetriever:
             raise ValueError("embedding service returned an invalid response")
         return vectors
 
+    def _cache_path(self):
+        corpus = [
+            {
+                "document_id": document.document_id,
+                "document_type": document.document_type,
+                "topic": document.topic,
+                "text": document.text,
+            }
+            for document in self.documents
+        ]
+        cache_key = hashlib.sha256(
+            json.dumps(
+                {"model": self.model, "documents": corpus},
+                sort_keys=True,
+                ensure_ascii=True,
+            ).encode("utf-8")
+        ).hexdigest()[:16]
+        model_name = "".join(character if character.isalnum() or character in "-._" else "_"
+                             for character in self.model)
+        return self.cache_dir / f"{model_name}-{cache_key}.npz"
+
+    def _load_cached_documents(self):
+        path = self._cache_path()
+        if not path.exists():
+            return None
+        try:
+            with np.load(path) as cached:
+                vectors = cached["vectors"]
+        except (OSError, ValueError, KeyError):
+            return None
+        if vectors.ndim != 2 or vectors.shape[0] != len(self.documents):
+            return None
+        return vectors
+
+    def _save_cached_documents(self, vectors):
+        self.cache_dir.mkdir(parents=True, exist_ok=True)
+        path = self._cache_path()
+        temporary = path.with_suffix(".tmp.npz")
+        np.savez_compressed(temporary, vectors=vectors)
+        temporary.replace(path)
+
     def _documents(self):
         if self._document_vectors is None:
-            self._document_vectors = self._embed([
-                f"{document.topic}\n{document.text}" for document in self.documents
-            ])
+            self._document_vectors = self._load_cached_documents()
+            if self._document_vectors is None:
+                self._document_vectors = self._embed([
+                    f"{document.topic}\n{document.text}" for document in self.documents
+                ])
+                try:
+                    self._save_cached_documents(self._document_vectors)
+                except OSError:
+                    pass
         return self._document_vectors
 
     def retrieve(self, query, top_k=3):
