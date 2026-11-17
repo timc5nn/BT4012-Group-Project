@@ -370,6 +370,7 @@ class LLMReviewer:
             name not in PRECOLLECTED_TOOLS for name in self.allowed_tools
         )
         secondary_tool_used = False
+        secondary_tool_missing = False
         saw_tool_data = True
 
         for _ in range(self.max_turns):
@@ -397,17 +398,23 @@ class LLMReviewer:
 
             if secondary_available and not secondary_tool_used:
                 if nudged_secondary:
-                    raise RuntimeError("model returned a decision without calling a secondary case tool")
-                nudged_secondary = True
-                messages.append(backend.user(
-                    "Before deciding, call at least one relevant secondary case tool. "
-                    "Choose it from the case signals and use its result in your evidence."
-                ))
-                self.last_transcript.append({
-                    "role": "note",
-                    "text": "Immediate decision rejected; requesting a relevant secondary lookup.",
-                })
-                continue
+                    secondary_tool_missing = True
+                    self.last_transcript.append({
+                        "role": "note",
+                        "text": "Model returned a decision without calling a secondary case tool; "
+                                "accepting it with a warning.",
+                    })
+                else:
+                    nudged_secondary = True
+                    messages.append(backend.user(
+                        "Before deciding, call at least one relevant secondary case tool. "
+                        "Choose it from the case signals and use its result in your evidence."
+                    ))
+                    self.last_transcript.append({
+                        "role": "note",
+                        "text": "Immediate decision rejected; requesting a relevant secondary lookup.",
+                    })
+                    continue
 
             if not saw_tool_data and not nudged_tools:
                 nudged_tools = True
@@ -435,6 +442,14 @@ class LLMReviewer:
                     "text": f"That reply was not a valid decision ({error}). Asking again.",
                 })
                 continue
+            if secondary_tool_missing:
+                warning = "No secondary case tool was called before this decision."
+                decision = Decision(
+                    decision=decision.decision,
+                    confidence=decision.confidence,
+                    evidence=[*decision.evidence, warning],
+                    case_note=" ".join((warning + " " + decision.case_note).split()[:120]),
+                )
             if decision.confidence < self.human_review_threshold:
                 note = (
                     f"Confidence {decision.confidence:.0%} is below the "

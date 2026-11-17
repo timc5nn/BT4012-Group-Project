@@ -21,7 +21,7 @@ from typing import Protocol
 
 from .llm import LLMReviewer
 from .prompt import TACTIC_SYSTEM_PROMPT
-from .retriever import LexicalRetriever
+from .retriever import EmbeddingRetriever
 from .schemas import Case, Decision
 from .tactics import HISTORY_LIMIT, TACTIC_TOOLS, match_tactics, render_tactic_check, shown_tactics
 from .tools import CaseTools
@@ -65,7 +65,7 @@ class RAGReviewer(LLMReviewer):
 
     def __init__(self, backend, retriever=None, top_k=3, **kwargs):
         super().__init__(backend, **kwargs)
-        self.retriever = retriever or LexicalRetriever()
+        self.retriever = retriever or EmbeddingRetriever()
         self.top_k = top_k
         self.name = f"rag-{self.name}"
         self.last_retrieval = []
@@ -112,7 +112,7 @@ class TacticReviewer(LLMReviewer):
 
     def __init__(self, backend, top_k=3, **kwargs):
         kwargs.setdefault("system_prompt", TACTIC_SYSTEM_PROMPT)
-        kwargs.setdefault("require_secondary_tool", False)
+        kwargs.setdefault("require_secondary_tool", True)
         super().__init__(backend, **kwargs)
         self.top_k = top_k
         self.name = f"tactic-{self.name}"
@@ -176,3 +176,36 @@ class TacticReviewer(LLMReviewer):
                                          if best else "no known tactic matched"),
         })
         return render_tactic_check(self.last_retrieval, self.top_k)
+
+
+class CombinedReviewer(TacticReviewer):
+    """Run deterministic tactic matching, then retrieve generic guidance by embedding."""
+
+    def __init__(self, backend, retriever=None, top_k=3, **kwargs):
+        super().__init__(backend, top_k=top_k, **kwargs)
+        self.retriever = retriever or EmbeddingRetriever()
+        self.last_rag_retrieval = []
+        self.name = f"tactic-rag-{self.name.removeprefix('tactic-')}"
+
+    def _guidance_message(self, case, evidence):
+        tactic_guidance = super()._guidance_message(case, evidence)
+        matched = [match for match in self.last_retrieval if match.matched]
+        tactic_query = " ".join(
+            [case.category, case.merchant, "fraud investigation guidance"]
+            + [match.title for match in matched]
+            + [item["detail"] for match in matched for item in match.core]
+        )
+        self.last_rag_retrieval = self.retriever.retrieve(tactic_query, self.top_k)
+        self.last_transcript.append({
+            "role": "note",
+            "text": "Retrieved generic guidance: " + ", ".join(
+                f"{document.document_id} ({document.score:.2f})"
+                for document in self.last_rag_retrieval
+            ),
+        })
+        generic_guidance = "\n\n".join(document.text for document in self.last_rag_retrieval)
+        return (
+            tactic_guidance
+            + "\n\nGeneric investigation guidance retrieved after the tactic check:\n"
+            + generic_guidance
+        )

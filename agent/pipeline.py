@@ -23,7 +23,7 @@ import pandas as pd
 
 from .config import PROCESSED_DIR, RUNS_DIR, THRESHOLDS_FILE
 from .data import TransactionStore
-from .reviewers import RAGReviewer, ScoreThresholdReviewer, TacticReviewer
+from .reviewers import CombinedReviewer, RAGReviewer, ScoreThresholdReviewer, TacticReviewer
 from .schemas import Case
 from .tools import CaseTools
 
@@ -76,6 +76,10 @@ def run(split, reviewer, sample=None, seed=4102, run_name=None, store=None, prog
                 "error": error,
                 "tool_calls": tools.calls,
                 "retrieved_documents": [d.__dict__ for d in getattr(reviewer, "last_retrieval", [])],
+                "retrieved_guidance_documents": [
+                    d.__dict__ for d in getattr(reviewer, "last_rag_retrieval", [])
+                ],
+                "retrieval_error": getattr(getattr(reviewer, "retriever", None), "last_error", None),
                 "usage": getattr(reviewer, "last_usage", None),  # an LLM reviewer can report tokens/cost here
                 "seconds": round(time.perf_counter() - started, 3),
             }) + "\n")
@@ -156,6 +160,8 @@ def main():
     run_cmd.add_argument("--tactics", action="store_true",
                          help="llm: match the case to fraud-tactic documents by checklist (agent/tactics.py)")
     run_cmd.add_argument("--corpus", help="rag: corpus directory or documents.jsonl")
+    run_cmd.add_argument("--embedding-model", default="nomic-embed-text",
+                         help="rag: Ollama embedding model (default: nomic-embed-text)")
     run_cmd.add_argument("--top-k", type=int, default=3, help="rag: number of documents to retrieve")
     run_cmd.add_argument("--threshold", type=float, help="baseline: score threshold (default: standalone)")
     run_cmd.add_argument("--provider", help="llm: openai, gemini, openrouter or ollama")
@@ -177,15 +183,30 @@ def main():
             ReviewerClass = LLMReviewer
             reviewer_kwargs = {}
             if args.rag and args.tactics:
-                parser.error("choose one of --rag and --tactics")
-            if args.tactics:
+                from .rag_corpus import load_corpus
+                from .retriever import EmbeddingRetriever
+                ReviewerClass = CombinedReviewer
+                reviewer_kwargs = {
+                    "retriever": EmbeddingRetriever(
+                        load_corpus(args.corpus),
+                        model=args.embedding_model,
+                    ),
+                    "top_k": args.top_k,
+                }
+            elif args.tactics:
                 ReviewerClass = TacticReviewer
                 reviewer_kwargs = {"top_k": args.top_k}
             if args.rag:
                 from .rag_corpus import load_corpus
-                from .retriever import LexicalRetriever
+                from .retriever import EmbeddingRetriever
                 ReviewerClass = RAGReviewer
-                reviewer_kwargs = {"retriever": LexicalRetriever(load_corpus(args.corpus)), "top_k": args.top_k}
+                reviewer_kwargs = {
+                    "retriever": EmbeddingRetriever(
+                        load_corpus(args.corpus),
+                        model=args.embedding_model,
+                    ),
+                    "top_k": args.top_k,
+                }
             reviewer = ReviewerClass(
                 OpenAICompatibleBackend(args.provider, args.model),
                 include_score=not args.no_score,

@@ -105,9 +105,17 @@ python -m agent.rag_corpus
 Run the LLM reviewer with retrieval enabled:
 
 ```bash
-python -m agent.pipeline run --split val --sample 20 --reviewer llm --rag --provider openrouter --model <model>
+ollama pull nomic-embed-text
+python -m agent.pipeline run --split val --sample 20 --reviewer llm --rag --tactics --provider ollama --model qwen2.5:3b-8k
 ```
 
-The RAG reviewer retrieves synthetic investigation guidance, while customer-specific
-evidence still comes only from the existing point-in-time tools. Retrieved document IDs,
-scores, and text are recorded in the JSONL run output.
+With both `--rag` and `--tactics`, the combined reviewer first runs the deterministic
+tactic checklist, then uses the matched tactic and case signals to query the local
+Ollama `nomic-embed-text` model. The resulting generic investigation guidance is
+provided to the same LLM decision alongside the tactic check. If Ollama or the
+embedding model is unavailable, it records the error on the retriever and falls back
+to the original lexical ranking. Customer-specific evidence still comes only from the
+existing point-in-time tools. Use `--embedding-model <name>` to select another Ollama
+embedding model.
+
+Use only `--rag` for generic embedding RAG or only `--tactics` for checklist RAG.
