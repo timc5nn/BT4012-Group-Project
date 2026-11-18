@@ -17,9 +17,10 @@ Each step writes files into `data/` that the next one reads.
 | 1 | `eda.ipynb` | nothing (exploration only) |
 | 2 | `kyc.ipynb` | `data/kyc_customers.csv`, a synthetic KYC profile per customer (already committed; optional) |
 | 3 | `preprocessing.ipynb` | `data/processed/fraud{Train,Test}_features.csv` |
-| 4 | `supervised.ipynb` | nothing (logistic regression comparison) |
-| 5 | `xgboost.ipynb` | stage 1: model, thresholds, flagged cases and scores in `data/processed/` |
-| 6 | `agent_pipeline.ipynb` | stage 2 demo: runs in `data/agent_runs/` |
+| 4 | `logistic_regression.ipynb` | nothing (baseline model for the comparison) |
+| 5 | `random_forest.ipynb` | nothing (tree model for the comparison) |
+| 6 | `xgboost.ipynb` | stage 1: model, thresholds, flagged cases and scores in `data/processed/` |
+| 7 | `agent_pipeline.ipynb` | stage 2 demo: runs in `data/agent_runs/` |
 
 Feature definitions are in `engineered_features.md`.
 

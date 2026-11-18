@@ -7,9 +7,15 @@ the credit-card fraud-detection models. The notebook writes
 label plus 110 features.
 
 Run order: `kyc.ipynb` (generates `data/kyc_customers.csv`), then
-`preprocessing.ipynb`, then `supervised.ipynb`.
+`preprocessing.ipynb`, then the model notebooks (`logistic_regression.ipynb`,
+`random_forest.ipynb`, `xgboost.ipynb`).
 
-The features fall into three groups, which `supervised.ipynb` compares:
+The features fall into three groups. The final models use only the 83
+transaction features, so all three are compared on identical inputs. An
+earlier version of the logistic regression notebook compared the groups:
+adding the KYC features left test PR-AUC unchanged (0.194), and adding the
+behavioural features raised it to 0.334. That comparison is in the
+notebook's git history.
 
 | Group | Columns | Count |
 |---|---|---|
