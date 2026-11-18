@@ -8,6 +8,8 @@ The CSVs are too large for GitHub (143MB / 335MB) so they are **not** committed 
 
 The one exception is `data/kyc_customers.csv` (the synthetic KYC table, 171KB), which is committed so that everyone uses identical profiles. You don't need to run `kyc.ipynb`. If you do re-run it, `git status` will show whether your output differs from the shared copy; don't commit a changed version without agreeing it with the group.
 
+The Stage 1 output is committed for the same reason: `data/processed/flagged_val.csv` and `flagged_test.csv` (the flagged cases, without labels), `scores_val.csv` and `scores_test.csv` (every transaction's score and label, read only when a run is evaluated), `xgb_thresholds.json` and `xgb_model.json`, all from `xgboost.ipynb` with all 110 features and a 98% recall target. With these files and the raw Kaggle CSVs you can run and evaluate the agent pipeline without re-running the notebooks. The test scores are for the single final run of the frozen design. If you re-run `xgboost.ipynb`, check with `git status` that the shared files are unchanged, and don't commit a changed version without agreeing it with the group.
+
 ## Run order
 
 Each step writes files into `data/` that the next one reads.
