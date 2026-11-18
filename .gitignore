@@ -1,6 +1,16 @@
 data/*
 # Shared synthetic KYC table: one committed copy so everyone uses identical profiles
 !data/kyc_customers.csv
+# Shared Stage 1 output: one committed copy so everyone's agent runs review the same flagged cases.
+# The scores files hold the labels; only evaluation reads them. The feature files stay local.
+!data/processed/
+data/processed/*
+!data/processed/flagged_val.csv
+!data/processed/flagged_test.csv
+!data/processed/scores_val.csv
+!data/processed/scores_test.csv
+!data/processed/xgb_thresholds.json
+!data/processed/xgb_model.json
 .DS_Store
 .ipynb_checkpoints/
 __pycache__/

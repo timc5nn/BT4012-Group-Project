@@ -1,0 +1,8 @@
+{
+  "standalone": 0.6025750041007996,
+  "flag": 0.007549512665718794,
+  "recall_target": 0.98,
+  "feature_set": "all 110 (transaction + KYC + behavioural)",
+  "max_depth": 8,
+  "trees": 513
+}
