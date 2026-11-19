@@ -11,13 +11,6 @@ Run order: `kyc.ipynb` (generates `data/kyc_customers.csv`), then
 `random_forest.ipynb`, `xgboost.ipynb`).
 
 The features fall into three groups. All three models use all 110 features.
-Compared with the 83 transaction features alone, the extra features raise
-validation PR-AUC from 0.259 to 0.420 (logistic regression), 0.895 to 0.945
-(random forest) and 0.901 to 0.981 (XGBoost). The gain comes from the
-behavioural features: 24-hour spend is the most important feature in both
-tree models. An earlier logistic regression comparison found that the KYC
-features alone leave validation PR-AUC unchanged (0.259); the 83-feature
-runs are in the notebooks' git history.
 
 | Group | Columns | Count |
 |---|---|---|
