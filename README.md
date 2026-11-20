@@ -55,8 +55,10 @@ Before the LLM analyses a case, the reviewer pre-collects transaction history an
 spending summary, then exposes the remaining enabled case-bound tools for the model to
 request when their evidence is needed. It also runs deterministic amount and
 transaction-velocity checks. Numeric evidence is validated against the collected case
-data. Reviews below the configured confidence threshold are returned as
-`needs_human_review` rather than being auto-resolved.
+data. Reviews below the confidence threshold (0.89 by default, chosen with
+`results/agent_eval/scripts/tune_confidence.py` on a 100-case validation run of the base LLM
+reviewer, without tactics or RAG; set it with `--confidence-threshold`) are
+returned as `needs_human_review` rather than being auto-resolved.
 
 The case-bound tools also provide merchant familiarity, amount deviation, velocity
 windows, transaction-location comparisons, and XGBoost threshold context. These
@@ -94,8 +96,9 @@ Each run's JSONL records every tactic's ticks under `retrieved_documents`.
 
 The model sees the best-matching tactic in full, plus one line for any other strong or
 moderate match. A fraud call with no matched tactic is returned as `needs_human_review`.
-Validation results for every design tried so far, with the run logs and the scripts behind
-them, are in [`results/agent_eval/`](results/agent_eval/README.md).
+Validation results for every design tried, the confidence-threshold tuning, and the single
+frozen-design run on 100 flagged test cases, with the run logs and the scripts behind them,
+are in [`results/agent_eval/`](results/agent_eval/README.md).
 
 ## Synthetic RAG experiment
 

@@ -1,6 +1,5 @@
 run,cases,tool recall,cases with every check,argument accuracy (all calls),argument accuracy (model's own calls),model's own calls,order violations (cases),gate adherence,rule grounding ok,judged,GROUNDING mean (0-2),GROUNDING = 0,HEDGING mean (0-2),COMPLETENESS = 2,rubric pass (GROUNDING > 0)
 current-combined-qwen8k-s2033,20,0.81,1/20,1.0,1.0,1,20,12/25,9/20,20,0.4,15.0,0.45,18/20,5/20
-current-combined-qwen8k-s9999,1,0.8,0/1,1.0,,0,1,0/1,1/1,0,,,,,
 eval100-qwen8k-tactics-v2,100,1.0,100/100,1.0,,0,0,12/14,71/98,0,,,,,
 eval100-qwen8k-tactics-v3,100,1.0,100/100,1.0,,0,0,11/11,61/100,20,0.7,13.0,0.7,17/20,7/20
 pilot-qwen-rag,20,0.75,0/20,1.0,,0,0,0/3,13/17,0,,,,,

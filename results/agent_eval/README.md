@@ -1,14 +1,28 @@
-# Stage 2 agent evaluation results (validation split)
+# Stage 2 agent evaluation results
 
-Saved run logs and analysis scripts for the LLM reviewer experiments of 15–17 Nov 2026, so
+Saved run logs and analysis scripts for the LLM reviewer experiments of 15–20 Nov 2026, so
 the numbers in the report can be re-checked without re-running the model (about 20–30 s per
-case on a laptop).
+case on a laptop). Every run is on the validation split except `test100_test`, the single
+frozen-design run on the test split.
 
 - `runs/`: the pipeline's JSONL output for each run, copied from `data/agent_runs/`. One line
   per case: decision, tool calls, retrieved documents or tactic checks, token use, time.
   **The logs contain no fraud labels.**
+  - `current-combined-qwen8k-s2033_val` (+ `_transcripts`): 20-case diagnostic run of the
+    combined reviewer, used for the process evaluation.
+  - `test100_test`: the frozen design (confidence threshold 0.89) on a random sample of 100
+    flagged test cases (seed 4102).
+- `reports/`: `agent_eval_summary.csv` and `agent_eval_cases.csv` (process metrics from
+  `evaluate_agent.py`), `judge_cache.jsonl` (cached LLM-judge scores), `qwen3b-val-100_sample.jsonl`
+  (the 100-case validation run of the base LLM reviewer, without tactics or RAG, used to choose
+  the confidence threshold) and
+  `test100_test_cascade.json` (XGBoost alone against XGBoost + agent on the 100 test cases).
 - `scripts/summarise_runs.py`: scores every run against the validation labels and against
   XGBoost alone on the same cases. It produces the tables below.
+- `scripts/evaluate_agent.py`: process metrics (tool recall, argument accuracy, order, gates)
+  and the LLM-judge grounding scores.
+- `scripts/tune_confidence.py`: picks the human-review confidence threshold from a saved run.
+- `scripts/run_xgb_combined_cascade.py`: XGBoost alone against the full cascade (below).
 - `scripts/fit_tactic_signals.py`: which fraud tactics occur in the fit rows (no val/test data).
 - `scripts/fit_tactic_matcher.py`: the tactic checklists run on fit-row transactions (no val/test data).
 
@@ -37,7 +51,7 @@ under `data/agent_runs/`.
 
 ## Designs tested
 
-All runs used `qwen2.5:3b` on Ollama. The test split has not been used by any agent run.
+All runs used `qwen2.5:3b` on Ollama. The design runs below are on validation only.
 
 | Run | Design | Code |
 |---|---|---|
@@ -47,8 +61,13 @@ All runs used `qwen2.5:3b` on Ollama. The test split has not been used by any ag
 | `eval100-qwen8k-tactics-v2` | v2: + small-charges tactic capped at moderate without a spree; + a fraud call with no matched tactic goes to human review | not committed separately |
 | `eval100-qwen8k-tactics-v3` | v3: best tactic in full, other strong/moderate matches as one line, weak ones dropped | **this commit** (`--tactics`) |
 
-The current default reviewer on main (2 history tools pre-collected, at least 1 more tool
-required) has not been evaluated yet.
+The current combined reviewer on main (tactic checklist + embedding RAG) was then checked on a
+20-case validation diagnostic (`current-combined-qwen8k-s2033`). The confidence threshold of
+0.89 was chosen on a 100-case validation run of the base LLM reviewer, without tactics or RAG
+(`reports/qwen3b-val-100_sample.jsonl`), and applied unchanged to the combined reviewer. The
+frozen design was then run once on 100 flagged test cases
+(`test100_test`; XGBoost alone 92 correct, agent 43 correct automatically with 29 sent to human
+review, see `reports/test100_test_cascade.json`).
 
 ## Results
 
@@ -99,4 +118,4 @@ excluding them gives 53 correct for the agent against 91 for XGBoost.
 
 - Validation has now been used for three tactic design rounds (v1 → v2 → v3). Report this.
 - Each new round was scored on a fresh random sample, not on the cases that prompted it.
-- The test split stays locked until the group freezes the design, then is run once.
+- The test split was used once, after the design and the 0.89 threshold were frozen (`test100_test`).
