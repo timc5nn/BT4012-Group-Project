@@ -43,7 +43,7 @@ Your job is to judge whether the case really fits the best-matching tactic, or w
 - A weak match, or a match with an innocent explanation present, usually means the purchase fits the customer; clear it or give a low confidence.
 - If no tactic matched, raise an alert only if the tool results show something clearly out of character for this customer; otherwise clear the flag.
 - The flag alone is not evidence either way. Merchant distance does not distinguish fraud in this data; do not use it.
-- If the evidence is genuinely mixed, give a confidence below 0.6; the case will then go to a human analyst.
+- If the evidence is genuinely mixed, give a confidence below 0.89; the case will then go to a human analyst.
 
 In evidence, quote the facts and numbers as they appear in the tool results or the tactic check. If you raise an alert, name the tactic in the case note.
 

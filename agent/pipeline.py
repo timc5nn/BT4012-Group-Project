@@ -33,7 +33,12 @@ def load_thresholds():
 
 
 def load_flagged(split):
-    flagged = pd.read_csv(PROCESSED_DIR / f"flagged_{split}.csv", parse_dates=["trans_date_trans_time"])
+    flagged = pd.read_csv(PROCESSED_DIR / f"flagged_{split}.csv")
+    flagged["trans_date_trans_time"] = pd.to_datetime(
+        flagged["trans_date_trans_time"],
+        format="mixed",
+        errors="raise",
+    )
     assert "is_fraud" not in flagged.columns, "flagged cases must not carry labels"
     return flagged
 
@@ -168,6 +173,8 @@ def main():
     run_cmd.add_argument("--model", help="llm: the provider's model name")
     run_cmd.add_argument("--no-score", action="store_true", help="llm: withhold the XGBoost score (system C)")
     run_cmd.add_argument("--no-kyc", action="store_true", help="llm: remove the KYC tool (system D)")
+    run_cmd.add_argument("--confidence-threshold", type=float, default=0.89,
+                         help="llm: route decisions below this confidence to human review (default: 0.89)")
     run_cmd.add_argument("--max-turns", type=int, default=8, help="llm: model calls per case before giving up")
 
     eval_cmd = sub.add_parser("evaluate", help="evaluate a finished run")
@@ -212,6 +219,7 @@ def main():
                 include_score=not args.no_score,
                 allowed_tools=HISTORY_TOOLS if args.no_kyc else ALL_TOOLS,
                 max_turns=args.max_turns,
+                human_review_threshold=args.confidence_threshold,
                 **reviewer_kwargs,
             )
         else:
