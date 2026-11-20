@@ -234,7 +234,7 @@ def gates(record, calls, recall, design):
         required.append("no decision recorded (crash)")
     else:
         if decision["confidence"] < HUMAN_REVIEW_THRESHOLD:
-            required.append("confidence below 0.60")
+            required.append(f"confidence below {HUMAN_REVIEW_THRESHOLD:.2f}")
         matches = tactic_matches(record)
         if matches and not any(m["matched"] for m in matches) and (
                 final == "fraud" or decision.get("case_note", "").startswith("No known fraud tactic matched")):
