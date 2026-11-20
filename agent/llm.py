@@ -113,7 +113,7 @@ TOOL_NUDGE = (
     "Call the available case-bound tools before you decide. They take {} except "
     "get_transaction_history, which takes {\"limit\": 20} only. Do not pass a customer id or a date."
 )
-HUMAN_REVIEW_THRESHOLD = 0.60
+HUMAN_REVIEW_THRESHOLD = 0.89
 NUMBER_PATTERN = re.compile(r"(?<!\d)(?:\d+(?:\.\d+)?)(?!\d)(?![A-Za-z])")
 
 

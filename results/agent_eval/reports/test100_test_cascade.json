@@ -1,0 +1,58 @@
+{
+  "split": "test",
+  "thresholds": {
+    "standalone": 0.6025750041007996,
+    "flag": 0.007549512665718794,
+    "recall_target": 0.98,
+    "feature_set": "all 110 (transaction + KYC + behavioural)",
+    "max_depth": 8,
+    "trees": 513
+  },
+  "population": "reviewed sample",
+  "reviewed_records": 100,
+  "metrics": [
+    {
+      "system": "XGBoost alone (same reviewed sample)",
+      "cases": 100,
+      "fraud": 69,
+      "fraud_caught": 65,
+      "fraud_sent_to_human": 0,
+      "fraud_missed": 4,
+      "legitimate_cleared": 27,
+      "false_alarms": 4,
+      "human_review": 0,
+      "errors": 0,
+      "correct_automatic": 92,
+      "precision": 0.9420289855072463,
+      "fraud_recall": 0.9420289855072463,
+      "review_rate": 0.0
+    },
+    {
+      "system": "XGBoost + combined agent",
+      "cases": 100,
+      "fraud": 69,
+      "fraud_caught": 41,
+      "fraud_sent_to_human": 22,
+      "fraud_missed": 6,
+      "legitimate_cleared": 2,
+      "false_alarms": 22,
+      "human_review": 29,
+      "errors": 2,
+      "correct_automatic": 43,
+      "precision": 0.6507936507936508,
+      "fraud_recall": 0.5942028985507246,
+      "review_rate": 0.29
+    }
+  ],
+  "run_file": "/content/BT4102-Group-Project/data/agent_runs/test100_test.jsonl",
+  "configuration": {
+    "git_commit": "4aae4aa2357de8f11c5fac3be28d7343a78376b5",
+    "provider": "ollama",
+    "model": "qwen2.5:3b-8k",
+    "embedding_model": "nomic-embed-text",
+    "sample": 100,
+    "seed": 4102,
+    "max_turns": 8,
+    "reviewer": "combined tactic checklist + embedding RAG"
+  }
+}

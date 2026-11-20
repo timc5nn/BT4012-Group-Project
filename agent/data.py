@@ -43,7 +43,11 @@ class TransactionStore:
             [pd.read_csv(data_dir / name, usecols=TRANSACTION_COLUMNS) for name in RAW_FILES],
             ignore_index=True,
         )
-        transactions["time"] = pd.to_datetime(transactions.pop("trans_date_trans_time"))
+        transactions["time"] = pd.to_datetime(
+            transactions.pop("trans_date_trans_time"),
+            format="mixed",
+            errors="raise",
+        )
         # Every Sparkov merchant name starts with "fraud_", legitimate ones included.
         # It is a simulator artefact, not a label, but it would mislead an LLM.
         assert transactions["merchant"].str.startswith("fraud_").all()
